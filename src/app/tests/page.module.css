@@ -1,0 +1,223 @@
+.container {
+  min-height: 100vh;
+  width: 100%;
+  padding-top: 100px;
+  background-color: var(--background);
+  position: relative;
+}
+
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+}
+
+.header {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.headerText h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-dark);
+}
+
+.headerText p {
+  color: var(--text-light);
+  font-size: 1.125rem;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: white;
+  border: 1px solid var(--card-border);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* Filters bar */
+.filters {
+  padding: 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+  margin-bottom: 4rem;
+  flex-wrap: wrap;
+}
+
+.filterGroup {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.filterGroup label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  letter-spacing: 0.05em;
+}
+
+.select {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  border-radius: 14px;
+  border: 1px solid var(--card-border);
+  background: white;
+  font-size: 0.95rem;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23777' class='bi bi-chevron-down' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: calc(100% - 1rem) center;
+}
+
+.filterBtn {
+  padding: 1rem 2rem;
+  background: var(--text-dark);
+  color: white;
+  border-radius: 14px;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.filterBtn:hover {
+  background: black;
+  transform: translateY(-2px);
+}
+
+/* Test Grid and Cards */
+.testGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+}
+
+.testCard {
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.testCard:hover {
+  transform: translateY(-10px);
+  background: white;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+  border-color: var(--accent);
+}
+
+.cardHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.catBadge {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+
+.cardHeader h3 {
+  font-size: 1.5rem;
+  color: var(--text-dark);
+}
+
+.metaRow {
+  display: flex;
+  gap: 2rem;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.meta p {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-light);
+}
+
+/* Difficulty section */
+.difficultySection {
+  margin-top: auto;
+}
+
+.diffHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.diffHeader p {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--text-light);
+  letter-spacing: 0.05em;
+}
+
+.diffHeader span {
+  font-weight: 800;
+  font-size: 0.875rem;
+  color: var(--text-dark);
+}
+
+.progressBar {
+  width: 100%;
+  height: 8px;
+  background: var(--background);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.pFill {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 1s ease;
+}
+
+.startBtn {
+  margin-top: 2rem;
+  padding: 1.125rem;
+  background: var(--accent);
+  color: white;
+  text-align: center;
+  border-radius: 16px;
+  font-weight: 800;
+  box-shadow: 0 4px 12px rgba(124, 92, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.startBtn:hover {
+  background: var(--accent-light);
+  box-shadow: 0 8px 24px rgba(124, 92, 255, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .testGrid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .testGrid { grid-template-columns: 1fr; }
+  .filters { flex-direction: column; align-items: stretch; padding: 2rem; }
+  .filterBtn { width: 100%; }
+  .headerText h1 { font-size: 2.25rem; }
+}
