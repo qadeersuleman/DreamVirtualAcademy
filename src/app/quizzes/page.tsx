@@ -1,25 +1,32 @@
+import { createClient } from '@/lib/supabase/server';
 import styles from '../page.module.css';
+import QuizApp from '@/components/QuizApp';
 
-export default function QuizzesPage() {
+export default async function QuizzesPage() {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
   return (
     <div className={styles.container}>
       <div className="bg-mesh" />
       <section className={styles.section} style={{paddingTop: '140px'}}>
         <div className={styles.sectionHeader}>
           <span className={styles.badge}>DAILY CHALLENGE</span>
-          <h1>Interactive Quizzes</h1>
-          <p>Boost your knowledge with our daily AI-powered quiz challenges.</p>
+          <h1>Interactive Learning</h1>
+          <p>Boost your knowledge with our daily AI-powered quiz challenges and real-time results.</p>
+        </div>
+
+        <div style={{ maxWidth: '900px', margin: '0 auto 4rem' }}>
+          {/* Main Quiz App for Physics & Logic */}
+          <QuizApp user={user} />
+        </div>
+
+        <div className={styles.sectionHeader}>
+           <h2>Other Challenges</h2>
+           <p>These challenges are unlocked for your practice session.</p>
         </div>
 
         <div className={styles.grid}>
-          <div className={`${styles.card} glass`} style={{border: '2px solid var(--accent)'}}>
-            <div className={styles.cardTag}>DAILY MCQS</div>
-            <div className={styles.iconWrapper}>🔥</div>
-            <h3>Physics & Logic</h3>
-            <p>10 Questions • 15 Minutes</p>
-            <button className={styles.primaryBtn} style={{width: '100%', marginTop: '1.5rem'}}>Start Quiz</button>
-          </div>
-
           <div className={`${styles.card} glass`}>
              <div className={styles.iconWrapper}>🧠</div>
              <h3>Mathematics Blitz</h3>
@@ -33,10 +40,17 @@ export default function QuizzesPage() {
              <p>10 Questions • 10 Minutes</p>
              <button className={styles.secondaryBtn} style={{width: '100%', marginTop: '1.5rem'}}>Unlock Quiz</button>
           </div>
+
+          <div className={`${styles.card} glass`}>
+             <div className={styles.iconWrapper}>✨</div>
+             <h3>Grammar Skill</h3>
+             <p>5 Questions • 5 Minutes</p>
+             <button className={styles.secondaryBtn} style={{width: '100%', marginTop: '1.5rem'}}>Unlock Quiz</button>
+          </div>
         </div>
       </section>
 
-      {/* Leaderboard Placeholder */}
+      {/* Leaderboard Section */}
       <section className={styles.section}>
          <div className={styles.featureCard} style={{maxWidth: '800px', margin: '0 auto'}}>
             <h2 style={{textAlign: 'center', marginBottom: '2rem'}}>Daily Leaderboard</h2>

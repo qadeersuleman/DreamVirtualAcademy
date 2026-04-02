@@ -84,9 +84,6 @@ export default function LoginPage() {
         {/* Left Branding Side */}
         <div className={styles.brandSide}>
           <div className={styles.brandLogo}>
-            <div className={styles.logoDot}>
-               <LogIn size={20} color="#F4C47F" />
-            </div>
             <span>Dreams Academy</span>
           </div>
 
@@ -208,10 +205,7 @@ export default function LoginPage() {
               {loading ? (
                 <div className={styles.loadingSpinner} />
               ) : (
-                <>
-                  <span>Sign In to Academy</span>
-                  <LogIn size={20} />
-                </>
+                <span>Sign In to Academy</span>
               )}
             </motion.button>
           </form>

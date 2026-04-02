@@ -92,9 +92,6 @@ export default function RegisterPage() {
         {/* Left Branding Side */}
         <div className={styles.brandSide}>
           <div className={styles.brandLogo}>
-            <div className={styles.logoDot}>
-               <UserPlus size={20} color="#F4C47F" />
-            </div>
             <span>Dreams Academy</span>
           </div>
 
@@ -222,10 +219,7 @@ export default function RegisterPage() {
               {loading ? (
                 <div className={styles.loadingSpinner} />
               ) : (
-                <>
-                  <span>Join the Academy</span>
-                  <UserPlus size={20} />
-                </>
+                <span>Join the Academy</span>
               )}
             </motion.button>
           </form>

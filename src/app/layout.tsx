@@ -19,6 +19,9 @@ export const metadata: Metadata = {
   title: "Dreams Virtual Academy | The Elite Digital Future",
   description: "Join the elite online learning platform for modern technologies, design, and digital entrepreneurship.",
   keywords: "online academy, digital learning, web development, graphic design, entrepreneurship, virtual school",
+  icons: {
+    icon: "/images/logo.jpg",
+  },
   openGraph: {
     title: "Dreams Virtual Academy",
     description: "Your dream career starts here.",
