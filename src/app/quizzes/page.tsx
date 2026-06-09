@@ -13,7 +13,7 @@ export default async function QuizzesPage() {
         <div className={styles.sectionHeader}>
           <span className={styles.badge}>DAILY CHALLENGE</span>
           <h1>Interactive Learning</h1>
-          <p>Boost your knowledge with our daily AI-powered quiz challenges and real-time results.</p>
+          <p>Boost your knowledge with our daily interactive concept-based quiz challenges and real-time results.</p>
         </div>
 
         <div style={{ maxWidth: '900px', margin: '0 auto 4rem' }}>
@@ -35,8 +35,8 @@ export default async function QuizzesPage() {
           </div>
 
           <div className={`${styles.card} glass`}>
-             <div className={styles.iconWrapper}>💻</div>
-             <h3>General Knowledge</h3>
+             <div className={styles.iconWrapper}>🔬</div>
+             <h3>Everyday Science</h3>
              <p>10 Questions • 10 Minutes</p>
              <button className={styles.secondaryBtn} style={{width: '100%', marginTop: '1.5rem'}}>Unlock Quiz</button>
           </div>

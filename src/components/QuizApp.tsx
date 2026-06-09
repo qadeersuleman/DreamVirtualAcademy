@@ -81,7 +81,7 @@ export default function QuizApp({ user }: QuizAppProps) {
         <div style={{ fontSize: '4rem', marginBottom: '1.5rem' }}>🔒</div>
         <h2 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Premium Quiz Locked</h2>
         <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>
-          Please login to your account to participate in daily physics and logic challenges.
+          Please login to your account to participate in daily general science challenges.
         </p>
         <button 
           className={styles.primaryBtn} 
@@ -142,9 +142,9 @@ export default function QuizApp({ user }: QuizAppProps) {
       >
         <div className={styles.cardTag}>100 XP REWARD</div>
         <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>⚡</div>
-        <h2 style={{ fontSize: '2.2rem', marginBottom: '1rem' }}>Physics & Logic Blitz</h2>
+        <h2 style={{ fontSize: '2.2rem', marginBottom: '1rem' }}>General Science Blitz</h2>
         <p style={{ color: 'var(--text-muted)', marginBottom: '2rem', fontSize: '1.1rem' }}>
-          Test your cognitive speed and physical knowledge. You have 15 minutes to answer 10 questions.
+          Test your general scientific knowledge. You have 15 minutes to answer 10 questions.
         </p>
 
         <div className={styles.quizStats}>

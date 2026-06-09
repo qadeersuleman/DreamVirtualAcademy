@@ -16,9 +16,9 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Dreams Virtual Academy | The Elite Digital Future",
-  description: "Join the elite online learning platform for modern technologies, design, and digital entrepreneurship.",
-  keywords: "online academy, digital learning, web development, graphic design, entrepreneurship, virtual school",
+  title: "Dreams Virtual Academy | Science & Academic Excellence",
+  description: "Join the elite online learning platform for science, physics, chemistry, mathematics, and academic preparation.",
+  keywords: "online academy, science academy, physics, chemistry, biology, mathematics, academic preparation, FPSC, CSS, virtual school",
   icons: {
     icon: "/images/logo.jpg",
   },

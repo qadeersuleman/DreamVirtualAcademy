@@ -528,3 +528,16 @@
     margin-top: 0.5rem;
   }
 }
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 2.25rem;
+  }
+  .subtitle {
+    font-size: 1rem;
+  }
+  .ctaGroup {
+    flex-direction: column;
+    align-items: center;
+  }
+}

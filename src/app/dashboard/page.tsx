@@ -147,10 +147,10 @@ export default function DashboardPage() {
           </div>
         </section>
 
-        {/* AI Recommendations */}
+        {/* Smart Recommendations */}
         <section className={styles.section}>
           <div className={styles.sectionTitle}>
-             <h2 className={styles.aiTitle}>Recommended for You <span className={styles.aiBadge}>AI BASED</span></h2>
+             <h2 className={styles.aiTitle}>Recommended for You <span className={styles.aiBadge}>SMART STUDY</span></h2>
              <p>Tailored based on your recent performance.</p>
           </div>
           <div className={styles.aiGrid}>

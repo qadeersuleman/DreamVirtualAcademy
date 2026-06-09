@@ -1,6 +1,18 @@
 import styles from './page.module.css';
 import Link from 'next/link';
 
+const popularPlaylists = [
+  { category: "Physics", title: "Mechanics & Relativity Masterclass", videos: 18, hours: 9 },
+  { category: "Chemistry", title: "Organic Chemistry: Fundamentals to Advanced", videos: 22, hours: 11 },
+  { category: "Mathematics", title: "Calculus & Analytical Geometry", videos: 25, hours: 14 }
+];
+
+const testimonials = [
+  { name: "Aisha Rehman", role: "FSc Pre-Medical Student", text: "This platform completely changed how I learn. The mock tests are incredibly helpful, and the UI is just amazing!" },
+  { name: "Bilal Ahmed", role: "CSS Aspirant", text: "The Everyday Science and GK quizzes helped me clear my screening test with ease. Extremely recommended!" },
+  { name: "Mariam Khan", role: "O-Level Physics Student", text: "The smart notes and interactive mock tests saved my exams. Concepts are explained so clearly!" }
+];
+
 export default function Home() {
   return (
     <div className={styles.container}>
@@ -14,12 +26,13 @@ export default function Home() {
           <div className={`${styles.heroMain} animate-fade-in-up`}>
             {/* Left Column: Text */}
             <div className={styles.heroText}>
-              <span className={`${styles.badge} animate-float`}>#1 Digital Academy in Pakistan</span>
+
+              <span className={`${styles.badge} animate-float`}>#1 Virtual Academy in Sindh</span>
               <h1 className={styles.title}>
                 Dreams Virtual <span className={styles.accentText}>Academy</span>
               </h1>
               <p className={styles.subtitle}>
-                Master the skills that matter. From Web Development to AI, join the modern education revolution and build your dream career today.
+                Master the subjects that matter. From Physics and Chemistry to Mathematics and Biology, join the modern education revolution and build your academic future today.
               </p>
               <div className={styles.ctaGroup}>
                 <Link href="/register" className={styles.primaryBtn}>Get Started</Link>
@@ -29,9 +42,9 @@ export default function Home() {
 
             {/* Right Column: Illustration */}
             <div className={styles.heroImage}>
-              <img 
-                src="/illustration-hero.png" 
-                alt="Student Illustration" 
+              <img
+                src="/illustration-hero.png"
+                alt="Student Illustration"
                 className={styles.illustration}
               />
             </div>
@@ -41,9 +54,9 @@ export default function Home() {
           <div className={styles.searchSection}>
             <div className={styles.searchBar}>
               <span className={styles.searchIcon}>🔍</span>
-              <input 
-                type="text" 
-                placeholder="Search Notes / Tests / Videos / Quizzes..." 
+              <input
+                type="text"
+                placeholder="Search Notes / Tests / Videos / Quizzes..."
                 className={styles.searchInput}
               />
               <button className={styles.searchBtn}>Search</button>
@@ -68,7 +81,7 @@ export default function Home() {
           <div className={`${styles.card} glass`}>
             <div className={styles.iconWrapper}>🎬</div>
             <h3>Video Lessons</h3>
-            <p>High-quality video content from industry experts, organized by subject.</p>
+            <p>High-quality video content from experienced educators, organized by subject.</p>
           </div>
         </div>
       </section>
@@ -92,11 +105,11 @@ export default function Home() {
           <div className={`${styles.featureCard} ${styles.progressCard}`}>
             <h2>Quick Progress</h2>
             <div className={styles.miniGraph}>
-              <div className={styles.barLine} style={{height: '40%'}}></div>
-              <div className={styles.barLine} style={{height: '70%'}}></div>
-              <div className={styles.barLine} style={{height: '90%'}}></div>
-              <div className={styles.barLine} style={{height: '60%'}}></div>
-              <div className={styles.barLine} style={{height: '85%'}}></div>
+              <div className={styles.barLine} style={{ height: '40%' }}></div>
+              <div className={styles.barLine} style={{ height: '70%' }}></div>
+              <div className={styles.barLine} style={{ height: '90%' }}></div>
+              <div className={styles.barLine} style={{ height: '60%' }}></div>
+              <div className={styles.barLine} style={{ height: '85%' }}></div>
             </div>
             <p>Your performance has improved by <strong>15%</strong> this week!</p>
             <button className={styles.textBtn}>View Full Analytics →</button>
@@ -120,15 +133,15 @@ export default function Home() {
           <p>Explore our most watched and loved course collections.</p>
         </div>
         <div className={styles.grid}>
-          {[1, 2, 3].map((i) => (
-            <div key={i} className={styles.playlistCard}>
+          {popularPlaylists.map((playlist, idx) => (
+            <div key={idx} className={styles.playlistCard}>
               <div className={styles.playImage}>
                 <span className={styles.playIcon}>▶</span>
               </div>
               <div className={styles.playInfo}>
-                <span className={styles.category}>Development</span>
-                <h4>Modern Web Masterclass {2024 + i}</h4>
-                <p>24 Videos • 12 Hours</p>
+                <span className={styles.category}>{playlist.category}</span>
+                <h4>{playlist.title}</h4>
+                <p>{playlist.videos} Videos • {playlist.hours} Hours</p>
               </div>
             </div>
           ))}
@@ -139,22 +152,22 @@ export default function Home() {
       <section className={styles.section}>
         <div className={styles.sectionHeader}>
           <h2>Success Stories</h2>
-          <p>Hear from students who transformed their lives at Dreams Academy.</p>
+          <p>Hear from students who transformed their learning at Dreams Academy.</p>
         </div>
         <div className={styles.grid}>
-          {[1, 2, 3].map((i) => (
+          {testimonials.map((t, i) => (
             <div key={i} className={`${styles.testimonial} glass`}>
               <div className={styles.user}>
-                <img 
-                  src={`https://api.dicebear.com/7.x/avataaars/svg?seed=User${i}`} 
-                  alt="User" 
+                <img
+                  src={`https://api.dicebear.com/7.x/avataaars/svg?seed=User${i}`}
+                  alt="User"
                 />
                 <div>
-                  <strong>Student Name {i}</strong>
-                  <span>Software Developer</span>
+                  <strong>{t.name}</strong>
+                  <span>{t.role}</span>
                 </div>
               </div>
-              <p>"This platform completely changed how I learn. The mock tests are incredibly helpful, and the UI is just amazing!"</p>
+              <p>"{t.text}"</p>
             </div>
           ))}
         </div>
@@ -164,11 +177,11 @@ export default function Home() {
       <footer className={styles.footer}>
         <div className={styles.footerGrid}>
           <div className={styles.footerInfo}>
-             <h2>Dreams Virtual Academy</h2>
-             <p>Your journey to excellence starts here. Learn, build, and lead with modern skills.</p>
-             <div className={styles.socials}>
-               <span>🌐</span> <span>📸</span> <span>🐦</span> <span>💼</span>
-             </div>
+            <h2>Dreams Virtual Academy</h2>
+            <p>Your journey to academic excellence starts here. Learn, explore, and master key subjects for your bright future.</p>
+            <div className={styles.socials}>
+              <span>🌐</span> <span>📸</span> <span>🐦</span> <span>💼</span>
+            </div>
           </div>
           <div className={styles.footerNav}>
             <h4>Quick Links</h4>
@@ -191,3 +204,4 @@ export default function Home() {
     </div>
   );
 }
+

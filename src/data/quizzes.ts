@@ -20,8 +20,8 @@ export const physicsLogicQuiz: Question[] = [
   },
   {
     id: 3,
-    question: "If 1=5, 2=25, 3=125, then 4=625. What is 5 equal to?",
-    options: ["5", "3125", "2500", "1"],
+    question: "What is the value of the acceleration due to gravity (g) on the surface of the Earth?",
+    options: ["8.9 m/s²", "9.8 m/s²", "10.5 m/s²", "6.7 m/s²"],
     correctAnswer: 1
   },
   {
@@ -32,8 +32,8 @@ export const physicsLogicQuiz: Question[] = [
   },
   {
     id: 5,
-    question: "Find the odd one out: Apple, Banana, Orange, Ferrari",
-    options: ["Apple", "Banana", "Orange", "Ferrari"],
+    question: "Which of the following is NOT one of the main states of matter?",
+    options: ["Solid", "Liquid", "Gas", "Vacuum"],
     correctAnswer: 3
   },
   {
@@ -44,9 +44,9 @@ export const physicsLogicQuiz: Question[] = [
   },
   {
     id: 7,
-    question: "If 'A' is the father of 'B', but 'B' is not the son of 'A', then what is the relationship of 'B' to 'A'?",
-    options: ["Grandson", "Nephew", "Daughter", "Cousin"],
-    correctAnswer: 2
+    question: "Which gas is primarily absorbed by plants during the process of photosynthesis?",
+    options: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Hydrogen"],
+    correctAnswer: 1
   },
   {
     id: 8,
@@ -56,8 +56,8 @@ export const physicsLogicQuiz: Question[] = [
   },
   {
     id: 9,
-    question: "If you have 3 apples and you take away 2, how many apples do you have?",
-    options: ["1", "2", "3", "5"],
+    question: "What is the pH level of chemically pure, neutral water at 25 °C?",
+    options: ["5.0", "7.0", "9.0", "14.0"],
     correctAnswer: 1
   },
   {
@@ -67,3 +67,4 @@ export const physicsLogicQuiz: Question[] = [
     correctAnswer: 1
   }
 ];
+

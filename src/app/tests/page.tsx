@@ -1,12 +1,29 @@
+'use client';
+
+import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import styles from './page.module.css';
-import Link from 'next/link';
 
 export default function MockTestsPage() {
-  const tests = [
-    { id: 1, title: "FPSC General Knowledge #4", mcqs: 50, time: 60, difficulty: 70, category: "FPSC" },
-    { id: 2, title: "CSS English Précis & Composition", mcqs: 30, time: 45, difficulty: 90, category: "CSS" },
-    { id: 3, title: "PPSC Everyday Science Quiz", mcqs: 40, time: 30, difficulty: 50, category: "PPSC" },
-    { id: 4, title: "Computer Science - Mock Test", mcqs: 25, time: 20, difficulty: 40, category: "General" },
+  const router = useRouter();
+
+  // Filter States
+  const [subject, setSubject] = useState('Science');
+  const [level, setLevel] = useState('easy');
+  const [testType, setTestType] = useState('Mock Exams');
+
+  const handleStartCustomTest = () => {
+    // Navigate to the custom step-by-step test take route
+    router.push(`/tests/custom?subject=${encodeURIComponent(subject)}&level=${level}&type=${encodeURIComponent(testType)}`);
+  };
+
+  // Pre-configured quick-start tests matching our subjects
+  const featuredTests = [
+    { id: 1, title: "General Science Assessment", subject: "Science", level: "easy", type: "Mock Exams", mcqs: 3, time: 5, difficultyPercentage: 40 },
+    { id: 2, title: "Mathematics Equations Test", subject: "Mathematics", level: "medium", type: "Topic Quizzes", mcqs: 3, time: 5, difficultyPercentage: 65 },
+    { id: 3, title: "Chemistry Formula Practice", subject: "Chemistry", level: "easy", type: "Topic Quizzes", mcqs: 3, time: 5, difficultyPercentage: 45 },
+    { id: 4, title: "Physics Laws & Units", subject: "Physics", level: "medium", type: "Past Papers", mcqs: 3, time: 5, difficultyPercentage: 70 },
+    { id: 5, title: "Computer Basics Fundamentals", subject: "Computer Basics", level: "easy", type: "Mock Exams", mcqs: 3, time: 5, difficultyPercentage: 35 }
   ];
 
   return (
@@ -15,83 +32,115 @@ export default function MockTestsPage() {
       
       <div className={styles.content}>
         <header className={styles.header}>
-          <div className={styles.headerText}>
-             <span className={styles.badge}>MOCK TESTS</span>
-             <h1>Online Practice Hub</h1>
-             <p>Simulate real exam conditions with our curated mock tests.</p>
+          <div className={styles.headerText} style={{ paddingTop: '140px' }}>
+             <span className={styles.badge}>EXAM GENERATOR</span>
+             <h1>Custom Practice Hub</h1>
+             <p>Generate customized academic & science assessments based on your level and subject choice.</p>
           </div>
         </header>
 
-        {/* Filters Section */}
-        <section className={`${styles.filters} glass`}>
+        {/* Dynamic Generator Section */}
+        <section className={`${styles.filters} glass`} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr auto', alignItems: 'end', gap: '1.5rem', margin: '2rem auto 4rem', maxWidth: '1000px', padding: '2rem' }}>
           <div className={styles.filterGroup}>
-             <label>SUBJECT</label>
-             <select className={styles.select}>
-                <option>All Subjects</option>
-                <option>English</option>
-                <option>Mathematics</option>
-                <option>General Knowledge</option>
+             <label style={{ display: 'block', fontWeight: 'bold', fontSize: '0.8rem', color: 'var(--accent)', marginBottom: '0.5rem', textTransform: 'uppercase' }}>Subject</label>
+             <select 
+               className={styles.select} 
+               value={subject} 
+               onChange={(e) => setSubject(e.target.value)}
+               style={{ width: '100%', padding: '0.8rem', borderRadius: '12px', border: '1px solid var(--card-border)', background: 'white', fontSize: '1rem', color: 'var(--text-dark)' }}
+             >
+                <option value="Science">Science</option>
+                <option value="Mathematics">Mathematics</option>
+                <option value="Chemistry">Chemistry</option>
+                <option value="Physics">Physics</option>
+                <option value="Computer Basics">Computer Basics</option>
              </select>
           </div>
+          
           <div className={styles.filterGroup}>
-             <label>DIFFICULTY</label>
-             <select className={styles.select}>
-                <option>All Levels</option>
-                <option>Beginner</option>
-                <option>Intermediate</option>
-                <option>Hard</option>
+             <label style={{ display: 'block', fontWeight: 'bold', fontSize: '0.8rem', color: 'var(--accent)', marginBottom: '0.5rem', textTransform: 'uppercase' }}>Difficulty Level</label>
+             <select 
+               className={styles.select} 
+               value={level} 
+               onChange={(e) => setLevel(e.target.value)}
+               style={{ width: '100%', padding: '0.8rem', borderRadius: '12px', border: '1px solid var(--card-border)', background: 'white', fontSize: '1rem', color: 'var(--text-dark)' }}
+             >
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
              </select>
           </div>
+
           <div className={styles.filterGroup}>
-             <label>TEST TYPE</label>
-             <select className={styles.select}>
-                <option>Mock Exams</option>
-                <option>Topic Quizzes</option>
-                <option>Past Papers</option>
+             <label style={{ display: 'block', fontWeight: 'bold', fontSize: '0.8rem', color: 'var(--accent)', marginBottom: '0.5rem', textTransform: 'uppercase' }}>Test Type</label>
+             <select 
+               className={styles.select} 
+               value={testType} 
+               onChange={(e) => setTestType(e.target.value)}
+               style={{ width: '100%', padding: '0.8rem', borderRadius: '12px', border: '1px solid var(--card-border)', background: 'white', fontSize: '1rem', color: 'var(--text-dark)' }}
+             >
+                <option value="Mock Exams">Mock Exams</option>
+                <option value="Topic Quizzes">Topic Quizzes</option>
+                <option value="Past Papers">Past Papers</option>
              </select>
           </div>
-          <button className={styles.filterBtn}>Apply Filters</button>
+
+          <button 
+            onClick={handleStartCustomTest}
+            className={styles.filterBtn}
+            style={{ padding: '0.9rem 2rem', background: 'var(--accent)', color: 'white', border: 'none', borderRadius: '12px', fontWeight: 'bold', cursor: 'pointer', fontSize: '1rem', transition: 'all 0.3s' }}
+          >
+            Start Custom Test
+          </button>
         </section>
 
-        {/* Test List Grid */}
-        <div className={styles.testGrid}>
-          {tests.map((test) => (
-            <div key={test.id} className={`${styles.testCard} glass animate-fade-in-up`}>
-              <div className={styles.cardHeader}>
-                 <span className={styles.catBadge}>{test.category}</span>
-                 <h3>{test.title}</h3>
-              </div>
-              
-              <div className={styles.metaRow}>
-                 <div className={styles.meta}>
-                    <span>📝</span>
-                    <p>{test.mcqs} MCQs</p>
-                 </div>
-                 <div className={styles.meta}>
-                    <span>⏱️</span>
-                    <p>{test.time} Min</p>
-                 </div>
+        {/* Featured Quick Start Cards */}
+        <h2 style={{ textAlign: 'center', marginBottom: '2rem', fontSize: '2rem' }}>Featured Science & Math Tests</h2>
+        <div className={styles.testGrid} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '2rem' }}>
+          {featuredTests.map((test) => (
+            <div key={test.id} className={`${styles.testCard} glass animate-fade-in-up`} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '2rem', background: 'white', borderRadius: '24px', border: '1px solid var(--card-border)' }}>
+              <div>
+                <div className={styles.cardHeader} style={{ marginBottom: '1.5rem' }}>
+                   <span className={styles.catBadge} style={{ background: 'rgba(124, 92, 255, 0.1)', color: 'var(--accent)', padding: '0.4rem 1rem', borderRadius: '99px', fontSize: '0.75rem', fontWeight: 800 }}>{test.type}</span>
+                   <h3 style={{ fontSize: '1.4rem', marginTop: '1rem', color: 'var(--text-dark)' }}>{test.title}</h3>
+                </div>
+                
+                <div className={styles.metaRow} style={{ display: 'flex', gap: '1.5rem', marginBottom: '1.5rem' }}>
+                   <div className={styles.meta} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <span>📝</span>
+                      <p style={{ margin: 0, fontWeight: 600, color: 'var(--text-light)' }}>{test.mcqs} MCQs</p>
+                   </div>
+                   <div className={styles.meta} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <span>⏱️</span>
+                      <p style={{ margin: 0, fontWeight: 600, color: 'var(--text-light)' }}>{test.time} Min</p>
+                   </div>
+                </div>
+
+                <div className={styles.difficultySection} style={{ marginBottom: '1.5rem' }}>
+                   <div className={styles.diffHeader} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', fontWeight: 'bold', color: 'var(--text-light)', marginBottom: '0.5rem' }}>
+                      <p style={{ margin: 0 }}>AVERAGE DIFFICULTY</p>
+                      <span>{test.difficultyPercentage}%</span>
+                   </div>
+                   <div className={styles.progressBar} style={{ height: '6px', background: '#eee', borderRadius: '99px', overflow: 'hidden' }}>
+                      <div 
+                        className={styles.pFill} 
+                        style={{ 
+                          height: '100%',
+                          width: `${test.difficultyPercentage}%`,
+                          background: test.difficultyPercentage > 80 ? 'red' : test.difficultyPercentage > 50 ? 'orange' : 'green'
+                        }} 
+                      />
+                   </div>
+                </div>
               </div>
 
-              <div className={styles.difficultySection}>
-                 <div className={styles.diffHeader}>
-                    <p>DIFFICULTY</p>
-                    <span>{test.difficulty}%</span>
-                 </div>
-                 <div className={styles.progressBar}>
-                    <div 
-                      className={styles.pFill} 
-                      style={{ 
-                        width: `${test.difficulty}%`,
-                        background: test.difficulty > 80 ? 'var(--error)' : test.difficulty > 50 ? 'var(--warning)' : 'var(--success)'
-                      }} 
-                    />
-                 </div>
-              </div>
-
-              <Link href={`/tests/${test.id}`} className={styles.startBtn}>
-                Start Today's Quiz
-              </Link>
+              <button 
+                onClick={() => router.push(`/tests/custom?subject=${encodeURIComponent(test.subject)}&level=${test.level}&type=${encodeURIComponent(test.type)}`)} 
+                className={styles.startBtn}
+                style={{ width: '100%', padding: '1rem', textAlign: 'center', display: 'block', background: 'transparent', border: '1px solid var(--accent)', color: 'var(--accent)', borderRadius: '12px', fontWeight: 'bold', cursor: 'pointer', transition: 'all 0.3s' }}
+              >
+                Launch Test Now
+              </button>
             </div>
           ))}
         </div>
