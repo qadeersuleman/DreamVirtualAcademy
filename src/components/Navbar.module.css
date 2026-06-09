@@ -248,6 +248,45 @@
   box-shadow: 0 6px 15px rgba(124, 92, 255, 0.3);
 }
 
+.whatsappBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #25D366;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.2);
+  border: none;
+  cursor: pointer;
+}
+
+.whatsappBtn:hover {
+  background: #20ba59;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(37, 211, 102, 0.3);
+}
+
+.whatsappIcon {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+@media (max-width: 768px) {
+  .whatsappBtnText {
+    display: none;
+  }
+  .whatsappBtn {
+    padding: 0.5rem;
+    border-radius: 50%;
+  }
+}
+
 [data-theme="dark"] .profileDropdown {
   background: #1a1a1a;
 }
