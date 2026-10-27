@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Target, Clock, Trophy, RefreshCcw, CheckCircle2, ArrowRight, ArrowLeft, ArrowLeftCircle } from 'lucide-react';
+import { Target, Clock, Trophy, RefreshCcw, CheckCircle2, ArrowRight, ArrowLeft, ArrowLeftCircle, ThumbsUp, BookOpen, AlertCircle, GraduationCap } from 'lucide-react';
 import { mockTestsData } from '@/data/mockTestsData';
 import { createClient } from '@/lib/supabase/client';
 import styles from '@/app/page.module.css';
@@ -222,16 +222,23 @@ export default function TakeTestPage() {
                 </div>
             </div>
             
-            <h2 style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>
-              {percentage >= 80 ? 'Mastermind! 🏆' : percentage >= 50 ? 'Good Effort! 👍' : 'Keep Learning! 📚'}
+            <h2 style={{ fontSize: '2.5rem', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+              {percentage >= 80 ? (
+                <>Mastermind! <Trophy size={28} color="#EAB308" /></>
+              ) : percentage >= 50 ? (
+                <>Good Effort! <ThumbsUp size={28} color="#3DBE7A" /></>
+              ) : (
+                <>Keep Learning! <BookOpen size={28} color="var(--accent)" /></>
+              )}
             </h2>
             <p style={{ fontSize: '1.2rem', marginBottom: '2rem' }}>
               You scored <strong style={{ color: 'var(--accent)' }}>{score} out of {questions.length}</strong> questions correctly on <strong style={{ textTransform: 'capitalize' }}>{difficulty}</strong> difficulty.
             </p>
 
             {!user && (
-              <div style={{ background: 'rgba(255, 165, 0, 0.1)', color: 'orange', padding: '1rem', borderRadius: '12px', fontSize: '0.9rem', marginBottom: '2rem', border: '1px solid orange' }}>
-                💡 <strong>Notice:</strong> Your result was not saved. Log in to track your scores in the personal dashboard.
+              <div style={{ background: 'rgba(255, 165, 0, 0.1)', color: 'orange', padding: '1rem', borderRadius: '12px', fontSize: '0.9rem', marginBottom: '2rem', border: '1px solid orange', display: 'flex', alignItems: 'center', gap: '8px', justifyContent: 'center' }}>
+                <AlertCircle size={18} />
+                <span><strong>Notice:</strong> Your result was not saved. Log in to track your scores in the personal dashboard.</span>
               </div>
             )}
 
@@ -270,7 +277,9 @@ export default function TakeTestPage() {
             style={{ border: '2px solid var(--accent)' }}
           >
             <div className={styles.cardTag}>{testDetails?.category} EXAM</div>
-            <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🎓</div>
+            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}>
+              <GraduationCap size={48} color="var(--accent)" />
+            </div>
             <h2 style={{ fontSize: '2.2rem', marginBottom: '1rem' }}>{testDetails?.title}</h2>
             <p style={{ color: 'var(--text-muted)', marginBottom: '2rem', fontSize: '1.1rem' }}>
               Simulate actual competitive conditions. Choose a difficulty level below to configure your questions:
@@ -289,23 +298,26 @@ export default function TakeTestPage() {
               <button 
                 onClick={() => handleSelectDifficulty('easy')}
                 className={styles.secondaryBtn} 
-                style={{ padding: '1rem', background: '#ecfdf5', border: '1px solid #10b981', color: '#047857', borderRadius: '12px', cursor: 'pointer' }}
+                style={{ padding: '1rem', background: '#ecfdf5', border: '1px solid #10b981', color: '#047857', borderRadius: '12px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}
               >
-                🟢 Easy Mode
+                <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#10b981', display: 'inline-block' }} />
+                <span>Easy Mode</span>
               </button>
               <button 
                 onClick={() => handleSelectDifficulty('medium')}
                 className={styles.secondaryBtn}
-                style={{ padding: '1rem', background: '#fffbeb', border: '1px solid #f59e0b', color: '#b45309', borderRadius: '12px', cursor: 'pointer' }}
+                style={{ padding: '1rem', background: '#fffbeb', border: '1px solid #f59e0b', color: '#b45309', borderRadius: '12px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}
               >
-                🟡 Medium Mode
+                <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#f59e0b', display: 'inline-block' }} />
+                <span>Medium Mode</span>
               </button>
               <button 
                 onClick={() => handleSelectDifficulty('hard')}
                 className={styles.secondaryBtn}
-                style={{ padding: '1rem', background: '#fef2f2', border: '1px solid #ef4444', color: '#b91c1c', borderRadius: '12px', cursor: 'pointer' }}
+                style={{ padding: '1rem', background: '#fef2f2', border: '1px solid #ef4444', color: '#b91c1c', borderRadius: '12px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}
               >
-                🔴 Hard Mode
+                <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#ef4444', display: 'inline-block' }} />
+                <span>Hard Mode</span>
               </button>
             </div>
           </motion.div>

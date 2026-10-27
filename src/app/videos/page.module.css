@@ -309,18 +309,18 @@
   background: white;
   border-radius: 20px;
   overflow: hidden;
-  border: 2px solid transparent;
+  border: 1.5px solid var(--card-border);
   box-shadow: 0 4px 20px rgba(74,59,47,0.06);
   cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   text-align: left;
   position: relative;
 }
 
 .videoCard:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(74,59,47,0.12);
-  border-color: var(--primary-dark);
+  transform: translateY(-8px) scale(1.015);
+  box-shadow: 0 20px 45px -10px rgba(124,92,255,0.22);
+  border-color: var(--accent);
 }
 
 .videoCardActive {

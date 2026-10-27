@@ -92,6 +92,11 @@ export default function RegisterPage() {
         {/* Left Branding Side */}
         <div className={styles.brandSide}>
           <div className={styles.brandLogo}>
+            <img 
+              src="/images/logo-variants/12_app_icon_light.png" 
+              alt="Dreams Academy Icon" 
+              style={{ width: 44, height: 44, borderRadius: 12, objectFit: 'cover', boxShadow: '0 4px 14px rgba(0,0,0,0.12)' }} 
+            />
             <span>Dreams Academy</span>
           </div>
 
@@ -120,6 +125,14 @@ export default function RegisterPage() {
         {/* Right Form Side */}
         <div className={styles.formSide}>
           <div className={styles.formHeader}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1rem' }}>
+              <img 
+                src="/images/logo-variants/12_app_icon_light.png" 
+                alt="Dreams Academy" 
+                style={{ width: 36, height: 36, borderRadius: 10, objectFit: 'cover' }} 
+              />
+              <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--text-dark)' }}>Dreams Virtual Academy</span>
+            </div>
             <motion.h1
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}

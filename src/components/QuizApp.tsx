@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Target, Clock, Trophy, RefreshCcw, CheckCircle2, XCircle, ArrowRight, ArrowLeft } from 'lucide-react';
+import { Target, Clock, Trophy, RefreshCcw, CheckCircle2, XCircle, ArrowRight, ArrowLeft, Lock, Zap, ThumbsUp, BookOpen } from 'lucide-react';
 import { physicsLogicQuiz, Question } from '@/data/quizzes';
 import styles from '@/app/page.module.css';
 
@@ -78,7 +78,9 @@ export default function QuizApp({ user }: QuizAppProps) {
   if (!user) {
     return (
       <div className={`${styles.featureCard} glass`} style={{ textAlign: 'center', padding: '4rem 2rem' }}>
-        <div style={{ fontSize: '4rem', marginBottom: '1.5rem' }}>🔒</div>
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.5rem' }}>
+          <Lock size={56} color="var(--primary)" />
+        </div>
         <h2 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Premium Quiz Locked</h2>
         <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>
           Please login to your account to participate in daily general science challenges.
@@ -113,8 +115,14 @@ export default function QuizApp({ user }: QuizAppProps) {
             </div>
         </div>
         
-        <h2 style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>
-          {percentage >= 80 ? 'Mastermind! 🏆' : percentage >= 50 ? 'Good Effort! 👍' : 'Keep Learning! 📚'}
+        <h2 style={{ fontSize: '2.5rem', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+          {percentage >= 80 ? (
+            <>Mastermind! <Trophy size={28} color="#EAB308" /></>
+          ) : percentage >= 50 ? (
+            <>Good Effort! <ThumbsUp size={28} color="#3DBE7A" /></>
+          ) : (
+            <>Keep Learning! <BookOpen size={28} color="var(--accent)" /></>
+          )}
         </h2>
         <p style={{ fontSize: '1.2rem', marginBottom: '2rem' }}>
           You scored <strong style={{ color: 'var(--accent)' }}>{score} out of {physicsLogicQuiz.length}</strong> questions correctly.
@@ -141,7 +149,9 @@ export default function QuizApp({ user }: QuizAppProps) {
         style={{ border: '2px solid var(--accent)' }}
       >
         <div className={styles.cardTag}>100 XP REWARD</div>
-        <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>⚡</div>
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}>
+          <Zap size={48} color="var(--accent)" />
+        </div>
         <h2 style={{ fontSize: '2.2rem', marginBottom: '1rem' }}>General Science Blitz</h2>
         <p style={{ color: 'var(--text-muted)', marginBottom: '2rem', fontSize: '1.1rem' }}>
           Test your general scientific knowledge. You have 15 minutes to answer 10 questions.

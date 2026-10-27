@@ -3,7 +3,7 @@
 import React, { useState, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { Target, Clock, Trophy, RefreshCcw, CheckCircle2, ArrowRight, ArrowLeft, ArrowLeftCircle } from 'lucide-react';
+import { Target, Clock, Trophy, RefreshCcw, CheckCircle2, ArrowRight, ArrowLeft, ArrowLeftCircle, Award, ThumbsUp, BookOpen, Microscope, Star } from 'lucide-react';
 import { mockTestsData } from '@/data/mockTestsData';
 import { createClient } from '@/lib/supabase/client';
 import styles from '@/app/page.module.css';
@@ -167,8 +167,14 @@ function CustomQuizRunner() {
                 </div>
             </div>
             
-            <h2 style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>
-              {percentage >= 80 ? 'Excellent! 🏆' : percentage >= 50 ? 'Good Job! 👍' : 'Keep Practicing! 📚'}
+            <h2 style={{ fontSize: '2.5rem', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+              {percentage >= 80 ? (
+                <>Excellent! <Trophy size={28} color="#EAB308" /></>
+              ) : percentage >= 50 ? (
+                <>Good Job! <ThumbsUp size={28} color="#3DBE7A" /></>
+              ) : (
+                <>Keep Practicing! <BookOpen size={28} color="var(--accent)" /></>
+              )}
             </h2>
             <p style={{ fontSize: '1.2rem', marginBottom: '2rem' }}>
               You scored <strong style={{ color: 'var(--accent)' }}>{score} out of {questions.length}</strong> correctly on the <strong style={{ color: 'var(--accent)' }}>{subject}</strong> test.
@@ -209,7 +215,9 @@ function CustomQuizRunner() {
             style={{ border: '2px solid var(--accent)', padding: '3rem' }}
           >
             <div className={styles.cardTag} style={{ textTransform: 'uppercase' }}>{testType}</div>
-            <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🔬</div>
+            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}>
+              <Microscope size={48} color="var(--accent)" />
+            </div>
             <h2 style={{ fontSize: '2.2rem', marginBottom: '1rem' }}>Custom {subject} Test</h2>
             <p style={{ color: 'var(--text-muted)', marginBottom: '2rem', fontSize: '1.1rem' }}>
               You are about to start a custom-generated assessment. Questions are presented one-by-one.
@@ -223,7 +231,7 @@ function CustomQuizRunner() {
                 <Clock size={20} color="var(--accent)" /> 5 Minutes Limit
               </div>
               <div className={styles.stat} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', textTransform: 'capitalize' }}>
-                ⭐ {level} Level
+                <Star size={18} color="#F59E0B" /> {level} Level
               </div>
             </div>
 

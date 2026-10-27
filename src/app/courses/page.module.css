@@ -1,0 +1,556 @@
+.container {
+  min-height: 100vh;
+  position: relative;
+  background-color: var(--background);
+  color: var(--text-dark);
+  padding-bottom: 6rem;
+}
+
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.header {
+  text-align: center;
+  padding: 8.5rem 1rem 3rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(244, 196, 127, 0.25);
+  color: var(--text-dark);
+  border: 1px solid var(--primary);
+  padding: 0.4rem 1.2rem;
+  border-radius: 99px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 0.6rem;
+  line-height: 1.2;
+}
+
+.sindhiSubtitle {
+  font-family: var(--font-sindhi), 'Noto Sans Arabic', serif;
+  font-size: 1.6rem;
+  color: var(--accent);
+  margin-bottom: 0.6rem;
+  direction: rtl;
+}
+
+.subtitle {
+  color: var(--text-light);
+  font-size: 1.1rem;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+/* Guarantee / Info Bar */
+.infoBar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  background: white;
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
+  padding: 1.5rem 2rem;
+  margin: 1.5rem auto 3.5rem;
+  box-shadow: 0 8px 24px rgba(74, 59, 47, 0.04);
+}
+
+.infoItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.infoIcon {
+  font-size: 2rem;
+  background: rgba(124, 92, 255, 0.1);
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.infoText h4 {
+  font-size: 1rem;
+  color: var(--text-dark);
+  margin-bottom: 0.2rem;
+}
+
+.infoText p {
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+/* Courses Grid */
+.coursesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 2rem;
+}
+
+.courseCard {
+  background: white;
+  border-radius: 24px;
+  border: 1px solid var(--card-border);
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(74, 59, 47, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.courseCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px rgba(74, 59, 47, 0.1);
+  border-color: var(--accent);
+}
+
+.featuredCard {
+  border: 2px solid var(--accent);
+}
+
+.cardHeader {
+  padding: 2rem 2rem 1.5rem;
+  border-bottom: 1px dashed var(--card-border);
+  position: relative;
+}
+
+.topPills {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.categoryBadge {
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 0.3rem 0.8rem;
+  border-radius: 99px;
+  text-transform: uppercase;
+}
+
+.statusBadge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.3rem 0.8rem;
+  border-radius: 99px;
+  background: rgba(61, 190, 122, 0.15);
+  color: #2e9660;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.courseTitle {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 0.4rem;
+  line-height: 1.3;
+}
+
+.sindhiCourseTitle {
+  font-family: var(--font-sindhi), 'Noto Sans Arabic', serif;
+  font-size: 1.25rem;
+  color: var(--accent);
+  direction: rtl;
+  margin-bottom: 1rem;
+}
+
+.priceBox {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.feeAmount {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-dark);
+}
+
+.feeDuration {
+  color: var(--text-light);
+  font-size: 0.9rem;
+}
+
+.cardBody {
+  padding: 1.75rem 2rem;
+  flex: 1;
+}
+
+.courseOverview {
+  color: var(--text-light);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  margin-bottom: 1.5rem;
+}
+
+.featuresList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.featureItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  font-size: 0.92rem;
+  color: var(--text-dark);
+}
+
+.checkIcon {
+  color: #3DBE7A;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.timingRow {
+  background: var(--background);
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: var(--text-dark);
+}
+
+.cardFooter {
+  padding: 1.5rem 2rem 2rem;
+  background: #FAFAFA;
+  border-top: 1px solid var(--card-border);
+}
+
+.enrollBtn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background: var(--accent);
+  color: white;
+  padding: 0.9rem 1.5rem;
+  border-radius: 14px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 15px rgba(124, 92, 255, 0.3);
+}
+
+.enrollBtn:hover {
+  background: #6a48f5;
+  transform: translateY(-2px);
+}
+
+/* Admission Modal */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+}
+
+.modalContent {
+  background: white;
+  border-radius: 24px;
+  max-width: 580px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 2.5rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+  position: relative;
+  animation: modalScale 0.25s ease-out;
+}
+
+@keyframes modalScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.closeBtn {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  background: #F1F1F1;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalHeader {
+  margin-bottom: 1.75rem;
+}
+
+.modalHeader h2 {
+  font-size: 1.7rem;
+  color: var(--text-dark);
+  margin-bottom: 0.3rem;
+}
+
+.modalHeader p {
+  color: var(--text-light);
+  font-size: 0.95rem;
+}
+
+/* Payment Instructions Box */
+.paymentGuide {
+  background: #FFF7ED;
+  border: 1px solid var(--primary);
+  border-radius: 16px;
+  padding: 1.25rem;
+  margin-bottom: 1.75rem;
+}
+
+.paymentGuide h4 {
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.paymentMethods {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.paymentCard {
+  background: white;
+  border: 1px solid rgba(74, 59, 47, 0.12);
+  border-radius: 12px;
+  padding: 0.85rem;
+}
+
+.paymentName {
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #D9A461;
+}
+
+.accountNumber {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin: 0.2rem 0;
+  font-family: monospace;
+}
+
+.accountTitle {
+  font-size: 0.78rem;
+  color: var(--text-light);
+}
+
+.paymentNote {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Admission Form */
+.formGroup {
+  margin-bottom: 1.25rem;
+}
+
+.formLabel {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 0.4rem;
+}
+
+.formInput {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  font-size: 1rem;
+  color: var(--text-dark);
+  background: #FAF9F6;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.formInput:focus {
+  border-color: var(--accent);
+  background: white;
+}
+
+.submitWhatsAppBtn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background: #25D366;
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 14px;
+  font-size: 1.1rem;
+  font-weight: 800;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
+}
+
+.submitWhatsAppBtn:hover {
+  background: #1ebd5b;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 2.1rem;
+  }
+  .header {
+    padding-top: 7rem;
+  }
+  .paymentMethods {
+    grid-template-columns: 1fr;
+  }
+  .modalContent {
+    padding: 1.75rem;
+  }
+}
+
+
+/* Instructor Info in Course Card */
+.instructorBar {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.75rem 1rem;
+  background: #FFF7ED;
+  border-radius: 14px;
+  border: 1px solid var(--primary);
+  margin-bottom: 1.25rem;
+}
+
+.instructorImg {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--accent);
+  flex-shrink: 0;
+}
+
+.instructorDetails h5 {
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  margin-bottom: 0.15rem;
+}
+
+.instructorDetails p {
+  font-size: 0.78rem;
+  color: var(--text-light);
+  margin: 0;
+}
+
+/* Faculty Showcase on Courses Page */
+.facultyShowcaseSection {
+  margin-top: 6rem;
+  padding-top: 4rem;
+  border-top: 1px solid var(--card-border);
+}
+
+.facultySectionHeader {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.facultySectionHeader h2 {
+  font-size: 2.3rem;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+}
+
+.facultySindhiSub {
+  font-family: var(--font-sindhi), 'Noto Sans Arabic', serif;
+  font-size: 1.5rem;
+  color: var(--accent);
+  direction: rtl;
+  margin-bottom: 0.5rem;
+}
+
+.facultyGridSimple {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.75rem;
+}
+
+@media (max-width: 1024px) {
+  .facultyGridSimple {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .facultyGridSimple {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .coursesGrid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  .courseBody {
+    padding: 1.25rem;
+  }
+}

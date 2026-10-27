@@ -1,5 +1,6 @@
 import styles from './page.module.css';
 import Link from 'next/link';
+import { Camera, Bell, Moon, Lock } from 'lucide-react';
 
 export default function ProfilePage() {
   return (
@@ -18,11 +19,13 @@ export default function ProfilePage() {
             <div className={styles.avatarSection}>
               <div className={styles.avatarWrapper}>
                 <img 
-                  src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" 
+                  src="/images/profile.png" 
                   alt="Profile" 
                   className={styles.avatar} 
                 />
-                <button className={styles.editAvatar}>📷</button>
+                <button className={styles.editAvatar} aria-label="Change Avatar">
+                  <Camera size={14} />
+                </button>
               </div>
               <div className={styles.nameSection}>
                 <h2>Qadeer</h2>
@@ -76,15 +79,21 @@ export default function ProfilePage() {
               <h3>Account Settings</h3>
               <div className={styles.settingsList}>
                 <div className={styles.settingItem}>
-                  <span>🔔 Notifications</span>
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                    <Bell size={16} /> Notifications
+                  </span>
                   <div className={styles.toggle} />
                 </div>
                 <div className={styles.settingItem}>
-                  <span>🌙 Dark Mode</span>
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                    <Moon size={16} /> Dark Mode
+                  </span>
                   <div className={styles.toggleActive} />
                 </div>
                 <div className={styles.settingItem}>
-                  <span>🔒 Change Password</span>
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                    <Lock size={16} /> Change Password
+                  </span>
                   <span className={styles.arrow}>→</span>
                 </div>
               </div>

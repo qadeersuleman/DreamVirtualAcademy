@@ -56,11 +56,41 @@
   position: relative;
 }
 
+/* Floating Hero Badges */
+.floatingChip {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 0.65rem 1.15rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  box-shadow: 0 14px 30px rgba(74, 59, 47, 0.12), 0 0 0 1px rgba(255, 255, 255, 0.8);
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  z-index: 15;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.chipTopLeft {
+  top: 8%;
+  left: -20px;
+}
+
+.chipBottomRight {
+  bottom: 8%;
+  right: -25px;
+}
+
 .illustration {
   width: 100%;
   max-width: 500px;
   height: auto;
-  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.1));
+  filter: drop-shadow(0 25px 45px rgba(0,0,0,0.12));
 }
 
 .title {
@@ -102,35 +132,49 @@
 
 .primaryBtn {
   padding: 1rem 2.5rem;
-  background: var(--accent);
+  background: linear-gradient(135deg, #7C5CFF 0%, #6842FF 100%);
   color: white;
   border-radius: 14px;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1.125rem;
-  box-shadow: 0 4px 20px rgba(124, 92, 255, 0.3);
-  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(124, 92, 255, 0.35);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
 }
 
 .primaryBtn:hover {
-  transform: translateY(-2px);
-  background: var(--accent-light);
-  box-shadow: 0 8px 30px rgba(124, 92, 255, 0.4);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(124, 92, 255, 0.5);
+}
+
+.primaryBtn:active {
+  transform: translateY(0) scale(0.98);
 }
 
 .secondaryBtn {
   padding: 1rem 2.5rem;
-  background: white;
-  border: 1px solid var(--card-border);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  border: 1.5px solid var(--card-border);
   color: var(--text-dark);
   border-radius: 14px;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1.125rem;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px rgba(74, 59, 47, 0.04);
 }
 
 .secondaryBtn:hover {
-  background: var(--background);
-  border-color: var(--primary-dark);
+  background: white;
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(124, 92, 255, 0.15);
+}
+
+.secondaryBtn:active {
+  transform: translateY(0) scale(0.98);
 }
 
 /* Search Bar Section */
@@ -150,7 +194,14 @@
   display: flex;
   align-items: center;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1.5px solid rgba(74, 59, 47, 0.1);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.searchBar:focus-within {
+  transform: translateY(-3px) scale(1.01);
+  border-color: var(--accent);
+  box-shadow: 0 16px 45px rgba(124, 92, 255, 0.18), 0 0 0 4px rgba(124, 92, 255, 0.12);
 }
 
 .searchIcon {
@@ -539,5 +590,739 @@
   .ctaGroup {
     flex-direction: column;
     align-items: center;
+  }
+}
+
+/* ── Sindhi Community & Teacher Spotlight Additions ── */
+.sindhiHero {
+  font-family: var(--font-sindhi), 'Noto Sans Arabic', serif;
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+  direction: rtl;
+  line-height: 1.4;
+}
+
+.districtStrip {
+  margin: 2.5rem auto 0;
+  padding: 0.9rem 1.5rem;
+  background: white;
+  border: 1px solid var(--card-border);
+  border-radius: 99px;
+  max-width: 950px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  font-size: 0.88rem;
+  color: var(--text-light);
+  box-shadow: 0 4px 16px rgba(74, 59, 47, 0.04);
+}
+
+.districtTitle {
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.districtDot {
+  color: var(--primary-dark);
+}
+
+.whatsappHeroBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2.2rem;
+  background: #25D366;
+  color: white;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-decoration: none;
+  box-shadow: 0 4px 18px rgba(37, 211, 102, 0.35);
+  transition: all 0.3s ease;
+}
+
+.whatsappHeroBtn:hover {
+  background: #1ebd5b;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.45);
+}
+
+/* Teacher Spotlight Section */
+.teacherSection {
+  background: white;
+  border-radius: 32px;
+  border: 1px solid var(--card-border);
+  padding: 3.5rem;
+  display: flex;
+  align-items: center;
+  gap: 3.5rem;
+  box-shadow: 0 12px 40px rgba(74, 59, 47, 0.06);
+  margin: 4rem auto;
+  max-width: 1200px;
+}
+
+.teacherAvatarWrap {
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.teacherPhoto {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--primary);
+  box-shadow: 0 8px 24px rgba(74, 59, 47, 0.12);
+  margin-bottom: 1rem;
+}
+
+.teacherBadge {
+  display: inline-block;
+  background: rgba(124, 92, 255, 0.12);
+  color: var(--accent);
+  padding: 0.35rem 0.9rem;
+  border-radius: 99px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.teacherBio {
+  flex: 1;
+}
+
+.teacherName {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 0.25rem;
+}
+
+.teacherRole {
+  font-size: 1.05rem;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.teacherSindhiQuote {
+  font-family: var(--font-sindhi), 'Noto Sans Arabic', serif;
+  font-size: 1.35rem;
+  color: var(--text-dark);
+  direction: rtl;
+  background: #FFF7ED;
+  padding: 1rem 1.5rem;
+  border-radius: 16px;
+  border-right: 4px solid var(--primary-dark);
+  margin-bottom: 1.25rem;
+  line-height: 1.6;
+}
+
+.teacherText {
+  color: var(--text-light);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.teacherStatsRow {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1.75rem;
+  flex-wrap: wrap;
+}
+
+.tStat strong {
+  display: block;
+  font-size: 1.5rem;
+  color: var(--text-dark);
+}
+
+.tStat span {
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+@media (max-width: 900px) {
+  .teacherSection {
+    flex-direction: column;
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+  }
+  .teacherSindhiQuote {
+    text-align: right;
+  }
+  .teacherStatsRow {
+    justify-content: center;
+  }
+}
+
+/* ── Faculty Grid Section ── */
+.facultySection {
+  padding: 5rem 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.facultyHeader {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.facultyHeader h2 {
+  font-size: 2.5rem;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+}
+
+.facultySindhiSubtitle {
+  font-family: var(--font-sindhi), 'Noto Sans Arabic', serif;
+  font-size: 1.5rem;
+  color: var(--accent);
+  direction: rtl;
+  margin-bottom: 0.6rem;
+}
+
+.facultyHeader p {
+  color: var(--text-light);
+  font-size: 1.05rem;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.facultyGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.75rem;
+}
+
+.facultyCard {
+  background: white;
+  border-radius: 24px;
+  border: 1px solid var(--card-border);
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(74, 59, 47, 0.05);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+  position: relative;
+}
+
+.facultyCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 40px rgba(74, 59, 47, 0.12);
+  border-color: var(--accent);
+}
+
+.facultyImgWrap {
+  width: 100%;
+  height: 280px;
+  position: relative;
+  overflow: hidden;
+  background: #F4E8D8;
+}
+
+.facultyImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.4s ease;
+}
+
+.facultyCard:hover .facultyImg {
+  transform: scale(1.04);
+}
+
+.facultyRoleBadge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  padding: 0.35rem 0.85rem;
+  border-radius: 99px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--text-dark);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--card-border);
+}
+
+.ceoBadge {
+  background: var(--accent);
+  color: white;
+  border: none;
+}
+
+.facultyInfo {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-between;
+}
+
+.facultyName {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 0.2rem;
+}
+
+.facultyTitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.facultyHandle {
+  font-size: 0.78rem;
+  color: var(--text-light);
+  background: #FFF7ED;
+  padding: 0.15rem 0.5rem;
+  border-radius: 6px;
+  display: inline-block;
+  margin-bottom: 0.6rem;
+  font-family: monospace;
+}
+
+.facultyEduBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  background: rgba(244, 196, 127, 0.3);
+  padding: 0.25rem 0.65rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  width: fit-content;
+}
+
+.facultySubjects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1.25rem;
+}
+
+.subjectPill {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 99px;
+  background: #F4F4F6;
+  color: var(--text-dark);
+  border: 1px solid rgba(74, 59, 47, 0.08);
+}
+
+.facultyCardFooter {
+  padding-top: 1rem;
+  border-top: 1px dashed var(--card-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.facultyWhatsAppBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #25D366;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.facultyWhatsAppBtn:hover {
+  color: #1ebd5b;
+}
+
+@media (max-width: 1024px) {
+  .facultyGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .facultyGrid {
+    grid-template-columns: 1fr;
+  }
+  .facultyImgWrap {
+    height: 320px;
+  }
+}
+
+/* ── Science Diagram Gallery Section ── */
+.gallerySection {
+  padding: 5rem 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.galleryHeader {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.galleryHeader h2 {
+  font-size: 2.5rem;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+}
+
+.gallerySindhiSub {
+  font-family: var(--font-sindhi), 'Noto Sans Arabic', serif;
+  font-size: 1.5rem;
+  color: var(--accent);
+  direction: rtl;
+  margin-bottom: 0.6rem;
+}
+
+.galleryHeader p {
+  color: var(--text-light);
+  font-size: 1.05rem;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.75rem;
+}
+
+.galleryCard {
+  background: white;
+  border-radius: 20px;
+  border: 1px solid var(--card-border);
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(74, 59, 47, 0.05);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+  position: relative;
+}
+
+.galleryCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 40px rgba(74, 59, 47, 0.12);
+  border-color: var(--accent);
+}
+
+.galleryImgWrap {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  position: relative;
+  background: #FFF7ED;
+}
+
+.galleryImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.galleryCard:hover .galleryImg {
+  transform: scale(1.05);
+}
+
+.galleryCardOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(74, 59, 47, 0.4);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.galleryCard:hover .galleryCardOverlay {
+  opacity: 1;
+}
+
+.zoomPill {
+  background: white;
+  color: var(--text-dark);
+  padding: 0.6rem 1.2rem;
+  border-radius: 99px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.galleryCardInfo {
+  padding: 1.25rem 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-between;
+}
+
+.galleryBadge {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(124, 92, 255, 0.1);
+  padding: 0.2rem 0.6rem;
+  border-radius: 99px;
+  width: fit-content;
+  margin-bottom: 0.5rem;
+}
+
+.galleryTitle {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 0.25rem;
+  line-height: 1.3;
+}
+
+.gallerySindhiTitle {
+  font-family: var(--font-sindhi), 'Noto Sans Arabic', serif;
+  font-size: 1.1rem;
+  color: var(--accent);
+  direction: rtl;
+  margin-bottom: 0.5rem;
+}
+
+.galleryCardAction {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--card-border);
+  font-size: 0.8rem;
+  color: var(--text-light);
+  font-weight: 600;
+}
+
+/* Lightbox Modal */
+.lightboxBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 12, 10, 0.88);
+  backdrop-filter: blur(8px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  animation: fadeIn 0.25s ease;
+}
+
+.lightboxBox {
+  background: white;
+  border-radius: 24px;
+  max-width: 900px;
+  width: 100%;
+  max-height: 92vh;
+  display: flex;
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+  position: relative;
+  animation: modalScale 0.25s ease;
+}
+
+.lightboxImgWrap {
+  flex: 1.2;
+  background: #F4E8D8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  max-height: 92vh;
+}
+
+.lightboxImg {
+  width: 100%;
+  height: 100%;
+  max-height: 92vh;
+  object-fit: contain;
+}
+
+.lightboxDetails {
+  flex: 1;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
+}
+
+.lightboxClose {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #F1F1F1;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: background 0.2s;
+}
+
+.lightboxClose:hover {
+  background: #E0E0E0;
+}
+
+.lightboxTitle {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 0.4rem;
+  line-height: 1.25;
+}
+
+.lightboxSindhi {
+  font-family: var(--font-sindhi), 'Noto Sans Arabic', serif;
+  font-size: 1.4rem;
+  color: var(--accent);
+  direction: rtl;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.lightboxDesc {
+  color: var(--text-light);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.labelsList {
+  background: #FFF7ED;
+  border: 1px solid var(--primary);
+  border-radius: 14px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.labelsList h5 {
+  font-size: 0.82rem;
+  color: var(--text-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.labelChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.labelChip {
+  font-size: 0.75rem;
+  background: white;
+  border: 1px solid rgba(74, 59, 47, 0.12);
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
+  color: var(--text-dark);
+  font-weight: 600;
+}
+
+.lightboxActions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.downloadDiagramBtn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--accent);
+  color: white;
+  padding: 0.85rem 1.2rem;
+  border-radius: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.downloadDiagramBtn:hover {
+  background: #6a48f5;
+  transform: translateY(-2px);
+}
+
+.shareDiagramWhatsApp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: #25D366;
+  color: white;
+  padding: 0.85rem 1.2rem;
+  border-radius: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.shareDiagramWhatsApp:hover {
+  background: #1ebd5b;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 1024px) {
+  .galleryGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .lightboxBox {
+    flex-direction: column;
+    max-height: 90vh;
+  }
+  .lightboxImgWrap {
+    max-height: 45vh;
+  }
+  .lightboxDetails {
+    padding: 1.5rem;
+  }
+  .lightboxTitle {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .galleryGrid {
+    grid-template-columns: 1fr;
   }
 }

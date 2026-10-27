@@ -1,6 +1,20 @@
 'use client';
 
 import React, { useEffect, useMemo, useState } from 'react';
+import { 
+  Video as VideoIcon, 
+  BookOpen, 
+  Dna, 
+  Zap, 
+  FlaskConical, 
+  Leaf, 
+  FileCheck, 
+  GraduationCap, 
+  Play, 
+  Search, 
+  X 
+} from 'lucide-react';
+import { WhatsAppIcon } from '@/components/Icons';
 import styles from './page.module.css';
 
 type Video = {
@@ -248,7 +262,7 @@ const ALL_VIDEOS: Video[] = [
   // ── GENERAL ───────────────────────────────
   {
     id: 'JRi5lEVAqPU',
-    title: 'The Conversation Starts Today.... ❤ - Dilshad Murtaza',
+    title: 'The Conversation Starts Today - Dilshad Murtaza',
     category: 'General',
     description: 'An introductory/welcome video from Dilshad Murtaza to begin the learning journey.',
     tags: ['Introduction', 'General'],
@@ -257,15 +271,17 @@ const ALL_VIDEOS: Video[] = [
 
 const CATEGORIES = ['All', 'Pedagogy', 'Biology', 'Physics', 'Chemistry', 'Ecology', 'Test Prep', 'General'];
 
-const CATEGORY_ICONS: Record<string, string> = {
-  All: '🎬',
-  Pedagogy: '📚',
-  Biology: '🧬',
-  Physics: '⚡',
-  Chemistry: '🧪',
-  Ecology: '🌿',
-  'Test Prep': '📝',
-  General: '🎓',
+const getCategoryIcon = (cat: string, size = 16) => {
+  switch (cat) {
+    case 'Pedagogy': return <BookOpen size={size} />;
+    case 'Biology': return <Dna size={size} />;
+    case 'Physics': return <Zap size={size} />;
+    case 'Chemistry': return <FlaskConical size={size} />;
+    case 'Ecology': return <Leaf size={size} />;
+    case 'Test Prep': return <FileCheck size={size} />;
+    case 'General': return <GraduationCap size={size} />;
+    default: return <VideoIcon size={size} />;
+  }
 };
 
 const CATEGORY_COLORS: Record<string, string> = {
@@ -354,9 +370,22 @@ export default function VideosPage() {
       <div className={styles.content}>
         {/* ── HEADER ── */}
         <header className={styles.header}>
-          <span className={styles.badge}>🎥 DREAMS SCIENCE ACADEMY</span>
-          <h1>Video Lectures</h1>
-          <p>Explore our complete library of {videos.length} educational video lectures — from Pedagogy to Physics, Biology, Chemistry and beyond.</p>
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.25rem' }}>
+            <img 
+              src="/images/logo-variants/07_horizontal_color_light.png" 
+              alt="Dreams Virtual Academy Lectures" 
+              style={{ height: '42px', width: 'auto', objectFit: 'contain', mixBlendMode: 'multiply' }} 
+            />
+          </div>
+          <span className={styles.badge}>
+            <VideoIcon size={14} style={{ display: 'inline-block', marginRight: '6px', verticalAlign: 'middle' }} />
+            DREAMS SCIENCE ACADEMY
+          </span>
+          <h1>Video Lectures Library</h1>
+          <p style={{ fontFamily: 'var(--font-sindhi), "Noto Sans Arabic"', fontSize: '1.4rem', color: 'var(--accent)', direction: 'rtl', margin: '0.5rem 0 1rem' }}>
+            سنڌي ٻوليءَ ۾ سائنس، فزڪس، ڪيمسٽري ۽ ٽيسٽن جي تياري جا مڪمل وڊيو ليڪچرز
+          </p>
+          <p>Explore our complete library of {videos.length} educational video lectures — from Pedagogy to Physics, Biology, Chemistry and STS preparation.</p>
           <div className={styles.sourceNote} data-loading={isLoadingVideos ? 'true' : 'false'}>
             {videoSourceNote}
           </div>
@@ -391,13 +420,34 @@ export default function VideosPage() {
               <div className={styles.tagRow}>
                 <span
                   className={styles.catTag}
-                  style={{ background: CATEGORY_COLORS[activeVideo.category] + '22', color: CATEGORY_COLORS[activeVideo.category], border: `1px solid ${CATEGORY_COLORS[activeVideo.category]}44` }}
+                  style={{ background: CATEGORY_COLORS[activeVideo.category] + '22', color: CATEGORY_COLORS[activeVideo.category], border: `1px solid ${CATEGORY_COLORS[activeVideo.category]}44`, display: 'inline-flex', alignItems: 'center', gap: '5px' }}
                 >
-                  {CATEGORY_ICONS[activeVideo.category]} {activeVideo.category}
+                  {getCategoryIcon(activeVideo.category, 14)} {activeVideo.category}
                 </span>
                 {activeVideo.tags.map((tag) => (
                   <span key={tag} className={styles.smallTag}>{tag}</span>
                 ))}
+                <a
+                  href={`https://wa.me/?text=${encodeURIComponent(`*Dreams Science Academy Lecture*\n\n*${activeVideo.title}*\nWatch here: https://youtu.be/${activeVideo.id}\nWebsite: https://dreamsvirtualacademy.edu/videos`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    marginLeft: 'auto',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.4rem',
+                    background: '#25D366',
+                    color: 'white',
+                    padding: '0.45rem 1rem',
+                    borderRadius: '99px',
+                    fontSize: '0.8rem',
+                    fontWeight: 700,
+                    textDecoration: 'none',
+                    boxShadow: '0 2px 10px rgba(37, 211, 102, 0.25)',
+                  }}
+                >
+                  <WhatsAppIcon size={16} /> Share Video on WhatsApp
+                </a>
               </div>
             </div>
           </div>
@@ -406,10 +456,7 @@ export default function VideosPage() {
         {/* ── SEARCH ── */}
         <div className={styles.searchWrapper}>
           <div className={styles.searchBox}>
-            <svg viewBox="0 0 24 24" className={styles.searchIcon}>
-              <circle cx="11" cy="11" r="8" stroke="currentColor" strokeWidth="2" fill="none" />
-              <path d="m21 21-4.35-4.35" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-            </svg>
+            <Search className={styles.searchIcon} size={18} />
             <input
               id="video-search"
               type="text"
@@ -419,7 +466,9 @@ export default function VideosPage() {
               className={styles.searchInput}
             />
             {searchQuery && (
-              <button className={styles.clearBtn} onClick={() => setSearchQuery('')} aria-label="Clear search">✕</button>
+              <button className={styles.clearBtn} onClick={() => setSearchQuery('')} aria-label="Clear search">
+                <X size={16} />
+              </button>
             )}
           </div>
         </div>
@@ -435,7 +484,7 @@ export default function VideosPage() {
                 style={activeCategory === cat ? { background: CATEGORY_COLORS[cat], color: '#fff', borderColor: CATEGORY_COLORS[cat] } : {}}
                 onClick={() => setActiveCategory(cat)}
               >
-                <span>{CATEGORY_ICONS[cat]}</span>
+                <span>{getCategoryIcon(cat, 15)}</span>
                 <span>{cat}</span>
                 <span className={styles.countBadge}>{counts[cat]}</span>
               </button>
@@ -447,7 +496,9 @@ export default function VideosPage() {
         <section className={styles.gridSection}>
           {filtered.length === 0 ? (
             <div className={styles.noResults}>
-              <div className={styles.noResultsIcon}>🔍</div>
+              <div className={styles.noResultsIcon}>
+                <Search size={36} color="var(--primary)" />
+              </div>
               <h3>No videos found</h3>
               <p>Try a different category or search term.</p>
             </div>
@@ -473,14 +524,14 @@ export default function VideosPage() {
                     />
                     <div className={styles.playOverlay}>
                       <div className={styles.playBtn}>
-                        <svg viewBox="0 0 24 24" fill="white" width="24" height="24">
-                          <path d="M8 5v14l11-7z" />
-                        </svg>
+                        <Play size={20} fill="white" color="white" />
                       </div>
                     </div>
                     {activeVideo.id === video.id && (
                       <div className={styles.nowPlayingOverlay}>
-                        <span>▶ Playing</span>
+                        <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                          <Play size={12} fill="currentColor" /> Playing
+                        </span>
                       </div>
                     )}
                   </div>
@@ -489,9 +540,9 @@ export default function VideosPage() {
                   <div className={styles.cardBody}>
                     <div
                       className={styles.categoryPill}
-                      style={{ background: CATEGORY_COLORS[video.category] + '18', color: CATEGORY_COLORS[video.category] }}
+                      style={{ background: CATEGORY_COLORS[video.category] + '18', color: CATEGORY_COLORS[video.category], display: 'inline-flex', alignItems: 'center', gap: '5px' }}
                     >
-                      {CATEGORY_ICONS[video.category]} {video.category}
+                      {getCategoryIcon(video.category, 13)} {video.category}
                     </div>
                     <h3 className={styles.cardTitle}>{video.title}</h3>
                     <p className={styles.cardDesc}>{video.description}</p>
@@ -516,7 +567,7 @@ export default function VideosPage() {
               style={{ borderTop: `3px solid ${CATEGORY_COLORS[cat]}` }}
               onClick={() => { setActiveCategory(cat); setSearchQuery(''); }}
             >
-              <span className={styles.statIcon}>{CATEGORY_ICONS[cat]}</span>
+              <span className={styles.statIcon}>{getCategoryIcon(cat, 22)}</span>
               <span className={styles.statCount}>{counts[cat]}</span>
               <span className={styles.statLabel}>{cat}</span>
             </div>
