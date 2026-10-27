@@ -469,7 +469,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Respected Faculty Grid Section */}
       <motion.section 
@@ -859,7 +859,7 @@ export default function Home() {
             />
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Testimonials with Realistic Images */}
       <motion.section 
@@ -899,7 +899,7 @@ export default function Home() {
             </motion.div>
           ))}
         </div>
-      </section>
+      </motion.section>
 
       {/* Footer */}
       <footer className={styles.footer}>

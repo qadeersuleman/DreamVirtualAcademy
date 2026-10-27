@@ -1,0 +1,295 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: #FFF7ED;
+  overflow: hidden;
+  padding: 20px;
+  font-family: 'Inter', sans-serif;
+}
+
+.bgBlob {
+  position: absolute;
+  filter: blur(80px);
+  z-index: 0;
+  opacity: 0.45;
+  border-radius: 50%;
+}
+
+.blob1 {
+  width: 420px;
+  height: 420px;
+  background: #F4C47F;
+  top: -100px;
+  left: -100px;
+  animation: float 18s infinite alternate;
+}
+
+.blob2 {
+  width: 500px;
+  height: 500px;
+  background: #7C5CFF;
+  bottom: -150px;
+  right: -150px;
+  animation: float 22s infinite alternate-reverse;
+}
+
+@keyframes float {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(60px, 80px) scale(1.12); }
+}
+
+.card {
+  width: 100%;
+  max-width: 950px;
+  min-height: 560px;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 32px;
+  display: flex;
+  overflow: hidden;
+  box-shadow: 0 25px 60px -15px rgba(74, 59, 47, 0.12);
+  position: relative;
+  z-index: 1;
+}
+
+.brandSide {
+  flex: 1;
+  background: linear-gradient(135deg, #F4C47F 0%, #D9A461 100%);
+  padding: 55px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #4A3B2F;
+  position: relative;
+  overflow: hidden;
+}
+
+.brandSide::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 57c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.15' fill-rule='evenodd'/%3E%3C/svg%3E");
+  opacity: 0.5;
+}
+
+.brandLogo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  font-size: 1.4rem;
+  z-index: 2;
+}
+
+.brandContent {
+  z-index: 2;
+  margin: 40px 0;
+}
+
+.brandContent h2 {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 16px;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: -1.5px;
+  color: #4A3B2F;
+}
+
+.brandContent p {
+  font-size: 1.05rem;
+  opacity: 0.95;
+  max-width: 380px;
+  line-height: 1.65;
+}
+
+.brandSindhiQuote {
+  margin-top: 1.25rem;
+  font-family: 'Noto Sans Arabic', sans-serif;
+  direction: rtl;
+  font-size: 1.15rem;
+  color: #4A3B2F;
+  font-weight: 600;
+  line-height: 1.7;
+}
+
+.brandFooter {
+  z-index: 2;
+  font-size: 0.85rem;
+  opacity: 0.75;
+}
+
+.formSide {
+  flex: 1.2;
+  padding: 55px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: white;
+}
+
+.formHeader {
+  margin-bottom: 2rem;
+}
+
+.formHeader h1 {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #4A3B2F;
+  margin-bottom: 8px;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: -0.03em;
+}
+
+.formHeader p {
+  color: #7A6A5C;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.inputWrapper label {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #4A3B2F;
+}
+
+.inputContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 16px;
+  color: #7A6A5C;
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+}
+
+.passwordToggle {
+  position: absolute;
+  right: 16px;
+  background: none;
+  border: none;
+  color: #7A6A5C;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+}
+
+.input {
+  width: 100%;
+  padding: 14px 48px 14px 48px;
+  background: #F9FAFB;
+  border: 1.5px solid rgba(74, 59, 47, 0.1);
+  border-radius: 16px;
+  font-size: 1rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  color: #4A3B2F;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--accent, #7C5CFF);
+  background: white;
+  box-shadow: 0 0 0 4px rgba(124, 92, 255, 0.15), 0 8px 20px rgba(0,0,0,0.04);
+}
+
+.submitBtn {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #7C5CFF 0%, #6842FF 100%);
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(124, 92, 255, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-top: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.submitBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(124, 92, 255, 0.45);
+}
+
+.submitBtn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.loadingSpinner {
+  width: 22px;
+  height: 22px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.backToLogin {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #4A3B2F;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  margin-top: 1.5rem;
+  transition: all 0.2s ease;
+  padding: 8px 0;
+}
+
+.backToLogin:hover {
+  color: var(--accent, #7C5CFF);
+  transform: translateX(-3px);
+}
+
+@media (max-width: 900px) {
+  .card {
+    flex-direction: column;
+    max-width: 500px;
+  }
+  .brandSide {
+    display: none;
+  }
+  .formSide {
+    padding: 40px 24px;
+  }
+}
+
