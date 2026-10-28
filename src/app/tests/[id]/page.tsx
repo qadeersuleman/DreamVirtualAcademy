@@ -3,9 +3,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Target, Clock, Trophy, RefreshCcw, CheckCircle2, ArrowRight, ArrowLeft, ArrowLeftCircle, ThumbsUp, BookOpen, AlertCircle, GraduationCap } from 'lucide-react';
+import { Target, Clock, Trophy, RefreshCcw, CheckCircle2, ArrowRight, ArrowLeft, ArrowLeftCircle, ThumbsUp, BookOpen, AlertCircle, GraduationCap, Sparkles } from 'lucide-react';
 import { mockTestsData, type MockQuestion, type SubjectData } from '@/data/mockTestsData';
 import { createClient } from '@/lib/supabase/client';
+import { openUstadAi } from '@/components/UstadAiWidget';
 import type { User } from '@supabase/supabase-js';
 import styles from '@/app/page.module.css';
 
@@ -253,9 +254,40 @@ export default function TakeTestPage() {
                 <>Keep Learning! <BookOpen size={28} color="var(--accent)" /></>
               )}
             </h2>
-            <p style={{ fontSize: '1.2rem', marginBottom: '2rem' }}>
+            <p style={{ fontSize: '1.2rem', marginBottom: '1.5rem' }}>
               You scored <strong style={{ color: 'var(--accent)' }}>{score} out of {questions.length}</strong> questions correctly on <strong style={{ textTransform: 'capitalize' }}>{difficulty}</strong> difficulty.
             </p>
+
+            {/* AI Performance Analysis Trigger */}
+            <div style={{ marginBottom: '2rem' }}>
+              <button 
+                onClick={() => {
+                  openUstadAi(
+                    `Maine abhi ${difficulty} difficulty ka ${testDetails?.title || 'Science Exam'} mock test complete kiya hai. Mera score ${score}/${questions.length} (${percentage}%) aaya hai. Barah-e-karam meri performance evaluate karein aur aage STS/JST exam ke liye 3 zaroori tips dein in Sindhi/Urdu.`,
+                    `Exam: ${testDetails?.title || 'Science Exam'}, Level: ${difficulty}, Score: ${score}/${questions.length}, Percentage: ${percentage}%`,
+                    'ask'
+                  );
+                }}
+                style={{
+                  background: 'linear-gradient(135deg, #0284C7 0%, #00E5FF 100%)',
+                  color: '#031326',
+                  fontWeight: 700,
+                  fontSize: '0.95rem',
+                  border: 'none',
+                  borderRadius: '12px',
+                  padding: '0.85rem 1.6rem',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  cursor: 'pointer',
+                  boxShadow: '0 4px 20px rgba(0, 229, 255, 0.35)',
+                  transition: 'transform 0.2s ease',
+                }}
+              >
+                <Sparkles size={18} />
+                <span>Ustad AI Performance Review (استاد کان مشورو وٺو)</span>
+              </button>
+            </div>
 
             {!user && (
               <div style={{ background: 'rgba(255, 165, 0, 0.1)', color: 'orange', padding: '1rem', borderRadius: '12px', fontSize: '0.9rem', marginBottom: '2rem', border: '1px solid orange', display: 'flex', alignItems: 'center', gap: '8px', justifyContent: 'center' }}>

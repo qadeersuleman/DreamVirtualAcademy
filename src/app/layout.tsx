@@ -3,8 +3,8 @@ import Script from "next/script";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
-import WhatsAppFloatingButton from "@/components/WhatsAppFloatingButton";
 import { DvaToastProvider } from "@/components/DvaToast";
+import UstadAiWidget from "@/components/UstadAiWidget";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -55,7 +55,7 @@ export default function RootLayout({
           <Navbar />
           {children}
           <Footer />
-          <WhatsAppFloatingButton />
+          <UstadAiWidget />
         </DvaToastProvider>
       </body>
     </html>
