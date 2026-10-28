@@ -988,6 +988,11 @@ export default function Home() {
 
         <div className={styles.footerBottom}>
           <p>© 2026 Dreams Virtual Academy. Serving the Sindhi Student Community with Excellence.</p>
+          <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', marginTop: '0.6rem', fontSize: '0.85rem' }}>
+            <Link href="/privacy-policy" style={{ color: 'var(--text-light)', textDecoration: 'none' }}>Privacy Policy</Link>
+            <span style={{ color: 'var(--card-border)' }}>•</span>
+            <Link href="/terms" style={{ color: 'var(--text-light)', textDecoration: 'none' }}>Terms of Service</Link>
+          </div>
         </div>
       </footer>
     </div>

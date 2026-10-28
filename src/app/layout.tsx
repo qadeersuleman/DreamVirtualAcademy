@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import Navbar from "@/components/Navbar";
 import ScrollProgress from "@/components/ScrollProgress";
 import WhatsAppFloatingButton from "@/components/WhatsAppFloatingButton";
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
     description: "Learn Science, Math & Test Prep in Sindhi - Dreams Virtual Academy",
     type: "website",
     locale: "en_PK",
-    url: "https://dreamsvirtualacademy.edu",
+    url: "https://www.dreamsacademy.online",
     siteName: "Dreams Virtual Academy",
   },
 };
@@ -31,6 +32,14 @@ export default function RootLayout({
   return (
     <html lang="en" data-scroll-behavior="smooth">
       <head>
+        {/* Google AdSense Verification & Script */}
+        <meta name="google-adsense-account" content="ca-pub-9494184033509881" />
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9494184033509881"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link

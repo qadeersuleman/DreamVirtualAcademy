@@ -15,6 +15,7 @@ import {
   X 
 } from 'lucide-react';
 import { WhatsAppIcon } from '@/components/Icons';
+import AdBanner from '@/components/AdBanner';
 import styles from './page.module.css';
 
 type Video = {
@@ -452,6 +453,9 @@ export default function VideosPage() {
             </div>
           </div>
         </section>
+
+        {/* ── GOOGLE ADSENSE BANNER ── */}
+        <AdBanner slot="1029384756" />
 
         {/* ── SEARCH ── */}
         <div className={styles.searchWrapper}>
