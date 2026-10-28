@@ -28,8 +28,9 @@ export default function DashboardPage() {
     testsGiven: 0,
     avgScore: 0,
     streak: 1,
-    hasRealData: false,
-    recentTestTitle: 'FPSC General Knowledge - Mock Test #4',
+    weakArea: 'None (Take your first test)',
+    hasTests: false,
+    recentTestTitle: 'General Science - Diagnostic Mock Test #1',
   });
 
   useEffect(() => {
@@ -60,10 +61,21 @@ export default function DashboardPage() {
             testsGiven: attempts.length,
             avgScore: calculatedAvg,
             streak: Math.min(attempts.length + 1, 14),
-            hasRealData: true,
+            weakArea: calculatedAvg < 60 ? 'Science & Numericals' : 'Exam Ready (Keep it up!)',
+            hasTests: true,
             recentTestTitle: attempts[0]?.difficulty 
-              ? `${attempts[0].difficulty.toUpperCase()} Science Test (Score: ${attempts[0].score}/${attempts[0].total_questions})` 
+              ? `${attempts[0].difficulty.toUpperCase()} Test (Score: ${attempts[0].score}/${attempts[0].total_questions})` 
               : 'Recent Mock Test Attempt',
+          });
+        } else {
+          // New student with 0 attempts
+          setStats({
+            testsGiven: 0,
+            avgScore: 0,
+            streak: 1,
+            weakArea: 'No tests attempted yet',
+            hasTests: false,
+            recentTestTitle: 'General Science - Diagnostic Test',
           });
         }
       } catch (err) {
@@ -133,7 +145,7 @@ export default function DashboardPage() {
               <FileText size={22} color="var(--primary)" />
             </span>
             <div className={styles.statInfo}>
-              <h3>{stats.hasRealData ? stats.testsGiven : '12'}</h3>
+              <h3>{stats.testsGiven}</h3>
               <p>Mock Tests Given</p>
             </div>
           </div>
@@ -142,7 +154,7 @@ export default function DashboardPage() {
               <Target size={22} color="#3DBE7A" />
             </span>
             <div className={styles.statInfo}>
-              <h3>{stats.hasRealData ? `${stats.avgScore}%` : '85%'}</h3>
+              <h3>{stats.hasTests ? `${stats.avgScore}%` : '0%'}</h3>
               <p>Avg Score</p>
             </div>
           </div>
@@ -151,7 +163,7 @@ export default function DashboardPage() {
               <Flame size={22} color="#FF8C42" />
             </span>
             <div className={styles.statInfo}>
-              <h3>{stats.hasRealData ? `${stats.streak} Days` : '7 Days'}</h3>
+              <h3>{stats.streak} Day{stats.streak > 1 ? 's' : ''}</h3>
               <p>Study Streak</p>
             </div>
           </div>
@@ -161,7 +173,7 @@ export default function DashboardPage() {
             </span>
             <div className={styles.statInfo}>
               <h3>Weak Areas</h3>
-              <p>Pak Studies, Grammar</p>
+              <p>{stats.weakArea}</p>
             </div>
           </div>
         </section>
@@ -171,17 +183,17 @@ export default function DashboardPage() {
           <div className={styles.resumeInfo}>
             <div className={styles.cardHeader}>
               <span className={styles.pulse}></span>
-              <h4>CONTINUE WHERE YOU LEFT OFF</h4>
+              <h4>{stats.hasTests ? 'CONTINUE WHERE YOU LEFT OFF' : 'GET STARTED WITH YOUR STUDIES'}</h4>
             </div>
-            <h2>{stats.recentTestTitle}</h2>
+            <h2>{stats.hasTests ? stats.recentTestTitle : 'Start Your First Diagnostic Mock Test! 🎯'}</h2>
             <p>
-              {stats.hasRealData 
+              {stats.hasTests 
                 ? 'Your latest test score is recorded. Take a new test or revision quiz to boost your ranking!' 
-                : 'You stopped at Question 18/50. Resume to finish the test.'}
+                : 'Welcome to Dreams Virtual Academy! Take your first test to measure your STS / JST prep score.'}
             </p>
           </div>
           <Link href="/tests" className={styles.resumeBtn} style={{ textDecoration: 'none', textAlign: 'center' }}>
-            {stats.hasRealData ? 'New Mock Test →' : 'Resume Test →'}
+            {stats.hasTests ? 'Take New Test →' : 'Start Test Now →'}
           </Link>
         </section>
 

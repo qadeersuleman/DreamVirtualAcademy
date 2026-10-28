@@ -119,15 +119,15 @@ export default function ProfilePage() {
               <h3>Academic Mastery</h3>
               <div className={styles.statsGrid}>
                 <div className={styles.stat}>
-                  <span className={styles.statValue}>{stats.hasRealData ? stats.testsTaken : 12}</span>
+                  <span className={styles.statValue}>{stats.testsTaken}</span>
                   <p>Tests Taken</p>
                 </div>
                 <div className={styles.stat}>
-                  <span className={styles.statValue}>{stats.hasRealData ? `${stats.avgScore}%` : '85%'}</span>
+                  <span className={styles.statValue}>{stats.hasRealData ? `${stats.avgScore}%` : '0%'}</span>
                   <p>Average Score</p>
                 </div>
                 <div className={styles.stat}>
-                  <span className={styles.statValue}>{stats.hasRealData ? stats.xpPoints : 450}</span>
+                  <span className={styles.statValue}>{stats.xpPoints}</span>
                   <p>XP Earned</p>
                 </div>
               </div>

@@ -9,10 +9,27 @@ import { BarChart3, Flame, FileQuestion, Award, Target } from 'lucide-react';
 export default function ProgressPage() {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const [testCount, setTestCount] = useState(0);
+  const [avgScore, setAvgScore] = useState(0);
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    supabase.auth.getSession().then(async ({ data: { session } }) => {
       setUser(session?.user ?? null);
+      if (session?.user) {
+        const { data: attempts } = await supabase
+          .from('user_attempts')
+          .select('*')
+          .eq('user_id', session.user.id);
+
+        if (attempts && attempts.length > 0) {
+          const totalScorePercent = attempts.reduce((acc, curr) => {
+            const pct = curr.total_questions > 0 ? (curr.score / curr.total_questions) * 100 : 0;
+            return acc + pct;
+          }, 0);
+          setTestCount(attempts.length);
+          setAvgScore(Math.round(totalScorePercent / attempts.length));
+        }
+      }
       setLoading(false);
     });
   }, []);
@@ -77,18 +94,24 @@ export default function ProgressPage() {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '1rem', marginBottom: '2rem' }}>
               <div style={{ background: '#FFF7ED', padding: '1.25rem', borderRadius: '14px', border: '1px solid var(--primary)' }}>
                 <Flame size={28} color="#FF8C42" />
-                <h4 style={{ fontSize: '1.4rem', margin: '0.3rem 0 0.1rem', color: 'var(--text-dark)' }}>Active</h4>
-                <p style={{ fontSize: '0.8rem', color: 'var(--text-light)' }}>Quiz Streak</p>
+                <h4 style={{ fontSize: '1.4rem', margin: '0.3rem 0 0.1rem', color: 'var(--text-dark)' }}>
+                  {testCount > 0 ? `${Math.min(testCount + 1, 14)} Days` : '1 Day'}
+                </h4>
+                <p style={{ fontSize: '0.8rem', color: 'var(--text-light)' }}>Study Streak</p>
               </div>
               <div style={{ background: 'rgba(124, 92, 255, 0.08)', padding: '1.25rem', borderRadius: '14px', border: '1px solid rgba(124, 92, 255, 0.2)' }}>
                 <FileQuestion size={28} color="var(--accent)" />
-                <h4 style={{ fontSize: '1.4rem', margin: '0.3rem 0 0.1rem', color: 'var(--accent)' }}>Custom Tests</h4>
-                <p style={{ fontSize: '0.8rem', color: 'var(--text-light)' }}>Science & Math Practice</p>
+                <h4 style={{ fontSize: '1.4rem', margin: '0.3rem 0 0.1rem', color: 'var(--accent)' }}>
+                  {testCount} Completed
+                </h4>
+                <p style={{ fontSize: '0.8rem', color: 'var(--text-light)' }}>Mock & Custom Tests</p>
               </div>
               <div style={{ background: 'rgba(61, 190, 122, 0.08)', padding: '1.25rem', borderRadius: '14px', border: '1px solid rgba(61, 190, 122, 0.2)' }}>
                 <Award size={28} color="#2e9660" />
-                <h4 style={{ fontSize: '1.4rem', margin: '0.3rem 0 0.1rem', color: '#2e9660' }}>Pass Grade</h4>
-                <p style={{ fontSize: '0.8rem', color: 'var(--text-light)' }}>Overall Average</p>
+                <h4 style={{ fontSize: '1.4rem', margin: '0.3rem 0 0.1rem', color: '#2e9660' }}>
+                  {testCount > 0 ? `${avgScore}% Avg` : 'New Student'}
+                </h4>
+                <p style={{ fontSize: '0.8rem', color: 'var(--text-light)' }}>Academic Grade</p>
               </div>
             </div>
 
