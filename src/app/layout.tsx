@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
 import WhatsAppFloatingButton from "@/components/WhatsAppFloatingButton";
+import { DvaToastProvider } from "@/components/DvaToast";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -49,11 +50,13 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased">
-        <ScrollProgress />
-        <Navbar />
-        {children}
-        <Footer />
-        <WhatsAppFloatingButton />
+        <DvaToastProvider>
+          <ScrollProgress />
+          <Navbar />
+          {children}
+          <Footer />
+          <WhatsAppFloatingButton />
+        </DvaToastProvider>
       </body>
     </html>
   );

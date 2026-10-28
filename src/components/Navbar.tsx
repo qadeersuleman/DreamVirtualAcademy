@@ -120,7 +120,7 @@ export default function Navbar() {
               {isProfileOpen && (
                 <div className={`${styles.profileDropdown} glass animate-dropdown`}>
                   <div className={styles.dropdownHeader}>
-                    <strong>{user.user_metadata?.full_name || user.email.split('@')[0]}</strong>
+                    <strong>{user?.user_metadata?.full_name || (user?.email ? user.email.split('@')[0] : 'Student')}</strong>
                     <span>Master Student</span>
                   </div>
                   <div className={styles.dropdownDivider} />

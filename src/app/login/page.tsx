@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Lock, Eye, EyeOff, LogIn, AlertCircle, CheckCircle2 } from 'lucide-react';
 import { GithubIcon as Github, ChromeIcon as Chrome } from '@/components/Icons';
 import { supabase } from '@/lib/supabase';
+import { dvaToast } from '@/components/DvaToast';
 import styles from './page.module.css';
 
 /**
@@ -35,22 +36,28 @@ export default function LoginPage() {
     setMessage(null);
 
     try {
+      const dva_email = email.trim().toLowerCase();
+      const dva_password = password;
+
       const { data, error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
+        email: dva_email,
+        password: dva_password,
       });
 
       if (error) throw error;
 
+      dvaToast.success('Login kamyab! Dashboard open ho raha hai...', 'Welcome Back!');
       setMessage({ type: 'success', text: 'Login successful! Redirecting...' });
       
       // Flash successful message then redirect
       setTimeout(() => {
         router.push('/dashboard');
-      }, 1500);
+      }, 1200);
     } catch (error: unknown) {
       const err = error as Error;
-      setMessage({ type: 'error', text: err.message || 'Failed to sign in. Please check your credentials.' });
+      const errorText = err.message || 'Failed to sign in. Please check your credentials.';
+      dvaToast.error(errorText, 'Sign In Error');
+      setMessage({ type: 'error', text: errorText });
     } finally {
       setLoading(false);
     }

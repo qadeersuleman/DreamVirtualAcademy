@@ -7,6 +7,10 @@ export interface MockQuestion {
 export interface SubjectData {
   id: number;
   subject: string; // "Science" | "Mathematics" | "Chemistry" | "Physics" | "Computer Basics"
+  title?: string;
+  category?: string;
+  timeLimit?: number;
+  mcqsCount?: number;
   questions: {
     easy: MockQuestion[];
     medium: MockQuestion[];

@@ -57,6 +57,7 @@ export default function TakeTestPage() {
           // If found in DB, merge details
           setTestDetails({
             id: dbTest.id,
+            subject: localTest.subject,
             title: dbTest.title,
             category: dbTest.category,
             timeLimit: dbTest.time_limit,
@@ -77,6 +78,7 @@ export default function TakeTestPage() {
 
   // 2. Handle Difficulty Selection & Fetch Questions
   const handleSelectDifficulty = async (level: 'easy' | 'medium' | 'hard') => {
+    if (!testDetails) return;
     setDifficulty(level);
     setLoading(true);
 
@@ -106,7 +108,7 @@ export default function TakeTestPage() {
     }
 
     setQuestions(selectedQuestions);
-    setTimeLeft(testDetails.timeLimit * 60); // Set time limit
+    setTimeLeft((testDetails.timeLimit ?? 15) * 60); // Set time limit
     setStarted(true);
     setLoading(false);
   };
@@ -125,12 +127,18 @@ export default function TakeTestPage() {
     // Save Attempt to Supabase if authenticated
     if (user) {
       try {
+        const dva_user_id = user.id;
+        const dva_test_id = testId;
+        const dva_score = finalScore;
+        const dva_total_questions = questions.length;
+        const dva_difficulty = difficulty;
+
         await supabase.from('user_attempts').insert({
-          user_id: user.id,
-          test_id: testId,
-          score: finalScore,
-          total_questions: questions.length,
-          difficulty: difficulty
+          user_id: dva_user_id,
+          test_id: dva_test_id,
+          score: dva_score,
+          total_questions: dva_total_questions,
+          difficulty: dva_difficulty,
         });
       } catch (err) {
         console.error("Failed to save attempt to Supabase", err);

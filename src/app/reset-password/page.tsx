@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Lock, Eye, EyeOff, CheckCircle2, AlertCircle, ArrowLeft, ShieldCheck } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
+import { dvaAlert, dvaToast } from '@/components/DvaToast';
 import styles from './page.module.css';
 
 export default function ResetPasswordPage() {
@@ -34,25 +35,33 @@ export default function ResetPasswordPage() {
     setMessage(null);
 
     try {
+      const dva_new_password = password;
       const { error } = await supabase.auth.updateUser({
-        password: password,
+        password: dva_new_password,
       });
 
       if (error) throw error;
+
+      dvaToast.success('Password update ho gaya hai!');
+      dvaAlert.fire({
+        title: 'Password Updated! 🔒',
+        text: 'Aapka naya password kamyabi se save ho chuka hai. Ab aap login kar sakte hain.',
+        icon: 'success',
+        confirmButtonText: 'Login Now',
+        onConfirm: () => router.push('/login'),
+      });
 
       setMessage({
         type: 'success',
         text: 'Password updated successfully! Redirecting to login...',
       });
-
-      setTimeout(() => {
-        router.push('/login');
-      }, 2000);
     } catch (error: unknown) {
       const err = error as Error;
+      const errorText = err.message || 'Failed to update password. Your reset link may have expired.';
+      dvaToast.error(errorText);
       setMessage({
         type: 'error',
-        text: err.message || 'Failed to update password. Your reset link may have expired.',
+        text: errorText,
       });
     } finally {
       setLoading(false);

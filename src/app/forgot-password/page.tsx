@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, ArrowLeft, AlertCircle, CheckCircle2, KeyRound, Sparkles } from 'lucide-react';
 import { WhatsAppIcon } from '@/components/Icons';
 import { supabase } from '@/lib/supabase';
+import { dvaAlert, dvaToast } from '@/components/DvaToast';
 import styles from './page.module.css';
 
 export default function ForgotPasswordPage() {
@@ -31,21 +32,32 @@ export default function ForgotPasswordPage() {
     setErrorMessage(null);
 
     try {
+      const dva_email = email.trim().toLowerCase();
       const redirectUrl = typeof window !== 'undefined'
         ? `${window.location.origin}/auth/callback?next=/reset-password`
-        : 'https://dreamsvirtualacademy.edu/reset-password';
+        : 'https://www.dreamsacademy.online/reset-password';
 
-      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      const { error } = await supabase.auth.resetPasswordForEmail(dva_email, {
         redirectTo: redirectUrl,
       });
 
       if (error) throw error;
 
+      dvaToast.success('Password reset link bhej diya gaya hai!');
+      dvaAlert.fire({
+        title: 'Check Your Email ✉️',
+        text: `Humne ${dva_email} par password reset instructions bhej di hain. Apne inbox aur spam folder ko check karein.`,
+        icon: 'info',
+        confirmButtonText: 'Theek Hai',
+      });
+
       setIsSubmitted(true);
       setResendTimer(60);
     } catch (error: unknown) {
       const err = error as Error;
-      setErrorMessage(err.message || 'Failed to send reset link. Please check your email and try again.');
+      const errorText = err.message || 'Failed to send reset link. Please check your email and try again.';
+      dvaToast.error(errorText);
+      setErrorMessage(errorText);
     } finally {
       setLoading(false);
     }

@@ -15,6 +15,7 @@ import {
   BookOpen,
 } from 'lucide-react';
 import { WhatsAppIcon } from '@/components/Icons';
+import { dvaAlert, dvaToast } from '@/components/DvaToast';
 import styles from './page.module.css';
 
 type Instructor = {
@@ -192,9 +193,10 @@ const SINDH_DISTRICTS = [
 
 export default function CoursesPage() {
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
-  const [studentName, setStudentName] = useState('');
-  const [studentPhone, setStudentPhone] = useState('');
-  const [studentDistrict, setStudentDistrict] = useState(SINDH_DISTRICTS[0]);
+  const [dva_name, setDvaName] = useState('');
+  const [dva_phone, setDvaPhone] = useState('');
+  const [dva_age, setDvaAge] = useState('');
+  const [dva_district, setDvaDistrict] = useState(SINDH_DISTRICTS[0]);
 
   const handleOpenEnrollment = (course: Course) => {
     setSelectedCourse(course);
@@ -208,19 +210,41 @@ export default function CoursesPage() {
     e.preventDefault();
     if (!selectedCourse) return;
 
+    // Standardized DVA parameters with strict input sanitization
+    const clean_name = dva_name.trim().replace(/[<>]/g, '');
+    const clean_phone = dva_phone.trim().replace(/[^\d+-\s]/g, '');
+    const clean_age = dva_age.trim().replace(/[^\d]/g, '');
+    const clean_district = dva_district.replace(/[<>]/g, '');
+    const dva_price = selectedCourse.fee;
+    const dva_course_title = selectedCourse.title;
+
     const message = `*Dreams Virtual Academy - New Admission Request*
 ---------------------------------------
-• Student Name: ${studentName || 'Not specified'}
-• WhatsApp Number: ${studentPhone || 'Not specified'}
-• District / City: ${studentDistrict}
-• Selected Course: ${selectedCourse.title}
+• Student Name (dva_name): ${clean_name || 'Not specified'}
+• Age / Class (dva_age): ${clean_age ? `${clean_age} Years` : 'Not specified'}
+• WhatsApp Number (dva_phone): ${clean_phone || 'Not specified'}
+• District / City (dva_district): ${clean_district}
+• Selected Course: ${dva_course_title}
 • Instructor: ${selectedCourse.instructor.name}
-• Course Fee: ${selectedCourse.fee} (${selectedCourse.duration})
+• Course Fee (dva_price): ${dva_price} (${selectedCourse.duration})
 ---------------------------------------
 Salam Sir! I want to join this batch. I am sending my EasyPaisa / JazzCash payment screenshot for confirmation.`;
 
     const url = `https://wa.me/923018183624?text=${encodeURIComponent(message)}`;
-    window.open(url, '_blank');
+    
+    dvaToast.success('Admission request generated successfully!');
+    dvaAlert.fire({
+      title: 'Admission Request Ready! 🎉',
+      text: `Salam ${clean_name || 'Student'}! Aapka admission details tayyar hai. "Send on WhatsApp" dabayein aur fees screenshot send karein.`,
+      icon: 'success',
+      confirmButtonText: 'Send on WhatsApp',
+      showCancelButton: true,
+      cancelButtonText: 'Close',
+      onConfirm: () => {
+        window.open(url, '_blank');
+      },
+    });
+
     setSelectedCourse(null);
   };
 
@@ -511,8 +535,19 @@ Salam Sir! I want to join this batch. I am sending my EasyPaisa / JazzCash payme
                     type="text"
                     required
                     placeholder="e.g. Asad Ali / زاهد حسين"
-                    value={studentName}
-                    onChange={(e) => setStudentName(e.target.value)}
+                    value={dva_name}
+                    onChange={(e) => setDvaName(e.target.value)}
+                    className={styles.formInput}
+                  />
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label className={styles.formLabel}>Age or Class (عمر يا ڪلاس)</label>
+                  <input
+                    type="text"
+                    placeholder="e.g. 18 / Class 10th / Graduate"
+                    value={dva_age}
+                    onChange={(e) => setDvaAge(e.target.value)}
                     className={styles.formInput}
                   />
                 </div>
@@ -523,8 +558,8 @@ Salam Sir! I want to join this batch. I am sending my EasyPaisa / JazzCash payme
                     type="tel"
                     required
                     placeholder="0300-1234567"
-                    value={studentPhone}
-                    onChange={(e) => setStudentPhone(e.target.value)}
+                    value={dva_phone}
+                    onChange={(e) => setDvaPhone(e.target.value)}
                     className={styles.formInput}
                   />
                 </div>
@@ -532,8 +567,8 @@ Salam Sir! I want to join this batch. I am sending my EasyPaisa / JazzCash payme
                 <div className={styles.formGroup}>
                   <label className={styles.formLabel}>City / District (ضلعو يا شهر)</label>
                   <select
-                    value={studentDistrict}
-                    onChange={(e) => setStudentDistrict(e.target.value)}
+                    value={dva_district}
+                    onChange={(e) => setDvaDistrict(e.target.value)}
                     className={styles.formInput}
                   >
                     {SINDH_DISTRICTS.map((dist) => (

@@ -70,7 +70,7 @@ export default function DashboardPage() {
           <div className={styles.profileInfo}>
             <div className={styles.avatarWrapper}>
               <img 
-                src={user.user_metadata?.avatar_url || '/images/profile.png'} 
+                src={user?.user_metadata?.avatar_url || '/images/profile.png'} 
                 alt="Profile" 
                 className={styles.avatar} 
               />
@@ -79,7 +79,7 @@ export default function DashboardPage() {
               </button>
             </div>
             <div className={styles.welcomeText}>
-              <h1>Welcome back, <span className={styles.userName}>{user.user_metadata?.full_name || user.email.split('@')[0]}!</span></h1>
+              <h1>Welcome back, <span className={styles.userName}>{user?.user_metadata?.full_name || (user?.email ? user.email.split('@')[0] : 'Student')}!</span></h1>
               <p>Ready to crush your study goals today?</p>
             </div>
           </div>

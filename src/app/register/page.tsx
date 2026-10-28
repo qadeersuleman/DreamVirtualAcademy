@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Lock, Eye, EyeOff, UserPlus, AlertCircle, CheckCircle2, User } from 'lucide-react';
 import { GithubIcon as Github, ChromeIcon as Chrome } from '@/components/Icons';
 import { supabase } from '@/lib/supabase';
+import { dvaAlert, dvaToast } from '@/components/DvaToast';
 import styles from './page.module.css';
 
 /**
@@ -35,30 +36,41 @@ export default function RegisterPage() {
     setMessage(null);
 
     try {
+      const dva_name = fullName.trim();
+      const dva_email = email.trim().toLowerCase();
+      const dva_password = password;
+
       const { data, error } = await supabase.auth.signUp({
-        email,
-        password,
+        email: dva_email,
+        password: dva_password,
         options: {
           data: {
-            full_name: fullName,
+            dva_name,
+            full_name: dva_name,
           }
         }
       });
 
       if (error) throw error;
 
+      dvaToast.success('Registration kamyab!', 'Account Created');
+      dvaAlert.fire({
+        title: 'Account Registered! 🎉',
+        text: 'Aapka account successfully ban gaya hai. Apne email inbox mein jakar verification link confirm karein.',
+        icon: 'success',
+        confirmButtonText: 'Go to Login',
+        onConfirm: () => router.push('/login'),
+      });
+
       setMessage({ 
         type: 'success', 
         text: 'Registration successful! Please check your email for the confirmation link.' 
       });
-      
-      // Flash successful message then maybe redirect to login after a delay
-      setTimeout(() => {
-        router.push('/login');
-      }, 5000);
     } catch (error: unknown) {
       const err = error as Error;
-      setMessage({ type: 'error', text: err.message || 'Signup failed. Please try again.' });
+      const errorText = err.message || 'Signup failed. Please try again.';
+      dvaToast.error(errorText, 'Registration Failed');
+      setMessage({ type: 'error', text: errorText });
     } finally {
       setLoading(false);
     }

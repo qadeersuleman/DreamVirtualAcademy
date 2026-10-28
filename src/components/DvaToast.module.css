@@ -1,0 +1,288 @@
+/* DVA SweetAlert & Toast Notification Styles */
+
+/* ================= TOASTS (Floating) ================= */
+.toastContainer {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 999999;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  pointer-events: none;
+  max-width: 400px;
+  width: calc(100% - 3rem);
+}
+
+.toast {
+  pointer-events: auto;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 1rem 1.2rem;
+  border-radius: 14px;
+  background: rgba(18, 22, 34, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45), 0 0 20px rgba(0, 229, 255, 0.1);
+  color: #F8FAFC;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+:global(html:not(.dark)) .toast {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.15), 0 0 20px rgba(0, 168, 204, 0.1);
+  color: #0F172A;
+}
+
+.toast.success {
+  border-left: 4px solid #10B981;
+}
+
+.toast.error {
+  border-left: 4px solid #EF4444;
+}
+
+.toast.warning {
+  border-left: 4px solid #F59E0B;
+}
+
+.toast.info {
+  border-left: 4px solid #00E5FF;
+}
+
+.toastIconWrapper {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+.toastContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.toastTitle {
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 0.2rem;
+  color: inherit;
+}
+
+.toastMessage {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+:global(html:not(.dark)) .toastMessage {
+  color: rgba(15, 23, 42, 0.75);
+}
+
+.toastCloseBtn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: color 0.2s, background 0.2s;
+  flex-shrink: 0;
+}
+
+:global(html:not(.dark)) .toastCloseBtn {
+  color: rgba(15, 23, 42, 0.5);
+}
+
+.toastCloseBtn:hover {
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+:global(html:not(.dark)) .toastCloseBtn:hover {
+  color: #000000;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.progressBar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  transform-origin: left;
+}
+
+/* ================= SWEETALERT (Modal Dialog) ================= */
+.alertBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000000;
+  background: rgba(5, 8, 16, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.alertModal {
+  width: 100%;
+  max-width: 480px;
+  background: rgba(16, 20, 32, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  padding: 2.25rem 2rem;
+  text-align: center;
+  color: #F8FAFC;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 229, 255, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+:global(html:not(.dark)) .alertModal {
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: #0F172A;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2), 0 0 30px rgba(0, 168, 204, 0.12);
+}
+
+.alertIconWrapper {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  margin: 0 auto 1.5rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.alertIconWrapper.success {
+  background: rgba(16, 185, 129, 0.12);
+  border: 2px solid rgba(16, 185, 129, 0.35);
+  color: #10B981;
+  box-shadow: 0 0 25px rgba(16, 185, 129, 0.25);
+}
+
+.alertIconWrapper.error {
+  background: rgba(239, 68, 68, 0.12);
+  border: 2px solid rgba(239, 68, 68, 0.35);
+  color: #EF4444;
+  box-shadow: 0 0 25px rgba(239, 68, 68, 0.25);
+}
+
+.alertIconWrapper.warning {
+  background: rgba(245, 158, 11, 0.12);
+  border: 2px solid rgba(245, 158, 11, 0.35);
+  color: #F59E0B;
+  box-shadow: 0 0 25px rgba(245, 158, 11, 0.25);
+}
+
+.alertIconWrapper.info {
+  background: rgba(0, 229, 255, 0.12);
+  border: 2px solid rgba(0, 229, 255, 0.35);
+  color: #00E5FF;
+  box-shadow: 0 0 25px rgba(0, 229, 255, 0.25);
+}
+
+.alertTitle {
+  font-size: 1.45rem;
+  font-weight: 800;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+}
+
+.alertText {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 1.75rem;
+  word-break: break-word;
+}
+
+:global(html:not(.dark)) .alertText {
+  color: rgba(15, 23, 42, 0.75);
+}
+
+.alertActions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.confirmBtn {
+  background: linear-gradient(135deg, #00E5FF 0%, #0284C7 100%);
+  color: #050B14;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: 12px;
+  padding: 0.75rem 1.6rem;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 15px rgba(0, 229, 255, 0.3);
+  min-width: 120px;
+}
+
+.confirmBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 229, 255, 0.45);
+}
+
+.cancelBtn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #F8FAFC;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: 12px;
+  padding: 0.75rem 1.4rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+:global(html:not(.dark)) .cancelBtn {
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #0F172A;
+}
+
+.cancelBtn:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+:global(html:not(.dark)) .cancelBtn:hover {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 640px) {
+  .toastContainer {
+    top: 1rem;
+    right: 1rem;
+    left: 1rem;
+    width: auto;
+  }
+  .alertModal {
+    padding: 1.75rem 1.25rem;
+  }
+  .alertActions {
+    flex-direction: column-reverse;
+  }
+  .confirmBtn, .cancelBtn {
+    width: 100%;
+  }
+}
+

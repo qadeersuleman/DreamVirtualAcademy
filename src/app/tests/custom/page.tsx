@@ -68,12 +68,17 @@ function CustomQuizRunner() {
     // Save Attempt to Supabase if authenticated
     if (user) {
       try {
+        const dva_user_id = user.id;
+        const dva_score = finalScore;
+        const dva_total_questions = questions.length;
+        const dva_difficulty = level;
+
         await supabase.from('user_attempts').insert({
-          user_id: user.id,
-          score: finalScore,
-          total_questions: questions.length,
-          difficulty: level,
-          completed_at: new Date().toISOString()
+          user_id: dva_user_id,
+          score: dva_score,
+          total_questions: dva_total_questions,
+          difficulty: dva_difficulty,
+          completed_at: new Date().toISOString(),
         });
       } catch (err) {
         console.error("Failed to save attempt to Supabase", err);
