@@ -5,6 +5,7 @@ export interface MockQuestion {
 }
 
 export interface SubjectData {
+  id: number;
   subject: string; // "Science" | "Mathematics" | "Chemistry" | "Physics" | "Computer Basics"
   questions: {
     easy: MockQuestion[];
@@ -15,6 +16,7 @@ export interface SubjectData {
 
 export const mockTestsData: SubjectData[] = [
   {
+    id: 1,
     subject: "Science",
     questions: {
       easy: [
@@ -71,6 +73,7 @@ export const mockTestsData: SubjectData[] = [
     }
   },
   {
+    id: 2,
     subject: "Mathematics",
     questions: {
       easy: [
@@ -127,6 +130,7 @@ export const mockTestsData: SubjectData[] = [
     }
   },
   {
+    id: 3,
     subject: "Chemistry",
     questions: {
       easy: [
@@ -183,6 +187,7 @@ export const mockTestsData: SubjectData[] = [
     }
   },
   {
+    id: 4,
     subject: "Physics",
     questions: {
       easy: [
@@ -239,6 +244,7 @@ export const mockTestsData: SubjectData[] = [
     }
   },
   {
+    id: 5,
     subject: "Computer Basics",
     questions: {
       easy: [

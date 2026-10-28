@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useSyncExternalStore } from "react";
 
 interface AdBannerProps {
   slot?: string;
@@ -10,6 +10,8 @@ interface AdBannerProps {
   className?: string;
 }
 
+const emptySubscribe = () => () => {};
+
 export default function AdBanner({
   slot = "1234567890",
   format = "auto",
@@ -17,14 +19,17 @@ export default function AdBanner({
   style,
   className,
 }: AdBannerProps) {
-  const [isClient, setIsClient] = useState(false);
+  const isClient = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false
+  );
   const isDev = process.env.NODE_ENV === "development";
 
   useEffect(() => {
-    setIsClient(true);
     if (!isDev) {
       try {
-        // @ts-ignore
+        // @ts-expect-error Google adsbygoogle window global
         (window.adsbygoogle = window.adsbygoogle || []).push({});
       } catch (err) {
         console.warn("AdSense push error:", err);

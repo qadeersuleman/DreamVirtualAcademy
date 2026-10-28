@@ -18,10 +18,11 @@ import {
 } from 'lucide-react';
 import styles from './page.module.css';
 import Link from 'next/link';
+import type { User } from '@supabase/supabase-js';
 
 export default function DashboardPage() {
   const router = useRouter();
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -166,11 +167,11 @@ export default function DashboardPage() {
                 </div>
                 <h4>Videos</h4>
              </Link>
-             <Link href="/playlists" className={`${styles.linkCard} glass`}>
+             <Link href="/courses" className={`${styles.linkCard} glass`}>
                 <div className={styles.linkIcon} style={{background: '#FAF5FF', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
                   <FolderOpen size={22} color="#7C3AED" />
                 </div>
-                <h4>Playlists</h4>
+                <h4>Live Batches</h4>
              </Link>
              <Link href="/quizzes" className={`${styles.linkCard} glass`}>
                 <div className={styles.linkIcon} style={{background: '#FEF2F2', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
@@ -178,11 +179,11 @@ export default function DashboardPage() {
                 </div>
                 <h4>Daily Quiz</h4>
              </Link>
-             <Link href="/flashcards" className={`${styles.linkCard} glass`}>
+             <Link href="/progress" className={`${styles.linkCard} glass`}>
                 <div className={styles.linkIcon} style={{background: '#ECFDF5', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
                   <Layers size={22} color="#059669" />
                 </div>
-                <h4>Flashcards</h4>
+                <h4>Progress</h4>
              </Link>
           </div>
         </section>

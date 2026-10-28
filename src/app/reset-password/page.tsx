@@ -48,10 +48,11 @@ export default function ResetPasswordPage() {
       setTimeout(() => {
         router.push('/login');
       }, 2000);
-    } catch (error: any) {
+    } catch (error: unknown) {
+      const err = error as Error;
       setMessage({
         type: 'error',
-        text: error.message || 'Failed to update password. Your reset link may have expired.',
+        text: err.message || 'Failed to update password. Your reset link may have expired.',
       });
     } finally {
       setLoading(false);

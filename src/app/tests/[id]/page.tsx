@@ -4,8 +4,9 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Target, Clock, Trophy, RefreshCcw, CheckCircle2, ArrowRight, ArrowLeft, ArrowLeftCircle, ThumbsUp, BookOpen, AlertCircle, GraduationCap } from 'lucide-react';
-import { mockTestsData } from '@/data/mockTestsData';
+import { mockTestsData, type MockQuestion, type SubjectData } from '@/data/mockTestsData';
 import { createClient } from '@/lib/supabase/client';
+import type { User } from '@supabase/supabase-js';
 import styles from '@/app/page.module.css';
 
 export default function TakeTestPage() {
@@ -14,12 +15,12 @@ export default function TakeTestPage() {
   const testId = Number(params?.id);
 
   const supabase = createClient();
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<User | null>(null);
 
   // States
-  const [testDetails, setTestDetails] = useState<any>(null);
+  const [testDetails, setTestDetails] = useState<SubjectData | null>(null);
   const [difficulty, setDifficulty] = useState<'easy' | 'medium' | 'hard' | null>(null);
-  const [questions, setQuestions] = useState<any[]>([]);
+  const [questions, setQuestions] = useState<MockQuestion[]>([]);
   const [started, setStarted] = useState(false);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState<Record<number, number>>({});
@@ -110,40 +111,6 @@ export default function TakeTestPage() {
     setLoading(false);
   };
 
-  // 3. Timer Effect
-  useEffect(() => {
-    if (started && !showResult && timeLeft > 0) {
-      const timer = setInterval(() => setTimeLeft((prev) => prev - 1), 1000);
-      return () => clearInterval(timer);
-    } else if (started && timeLeft === 0) {
-      handleFinish();
-    }
-  }, [started, showResult, timeLeft]);
-
-  const formatTime = (seconds: number) => {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${mins}:${secs.toString().padStart(2, '0')}`;
-  };
-
-  const handleSelect = (idx: number) => {
-    setSelectedAnswers({ ...selectedAnswers, [currentQuestionIndex]: idx });
-  };
-
-  const handleNext = () => {
-    if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
-    } else {
-      handleFinish();
-    }
-  };
-
-  const handlePrev = () => {
-    if (currentQuestionIndex > 0) {
-      setCurrentQuestionIndex(currentQuestionIndex - 1);
-    }
-  };
-
   const handleFinish = async () => {
     let finalScore = 0;
     questions.forEach((q, idx) => {
@@ -168,6 +135,53 @@ export default function TakeTestPage() {
       } catch (err) {
         console.error("Failed to save attempt to Supabase", err);
       }
+    }
+  };
+
+  const handleFinishRef = React.useRef(handleFinish);
+  useEffect(() => {
+    handleFinishRef.current = handleFinish;
+  });
+
+  // 3. Timer Effect
+  useEffect(() => {
+    if (!started || showResult) return;
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          setTimeout(() => {
+            handleFinishRef.current();
+          }, 0);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [started, showResult]);
+
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  };
+
+  const handleSelect = (idx: number) => {
+    setSelectedAnswers({ ...selectedAnswers, [currentQuestionIndex]: idx });
+  };
+
+  const handleNext = () => {
+    if (currentQuestionIndex < questions.length - 1) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+    } else {
+      handleFinish();
+    }
+  };
+
+  const handlePrev = () => {
+    if (currentQuestionIndex > 0) {
+      setCurrentQuestionIndex(currentQuestionIndex - 1);
     }
   };
 

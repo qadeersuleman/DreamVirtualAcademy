@@ -48,8 +48,9 @@ export default function LoginPage() {
       setTimeout(() => {
         router.push('/dashboard');
       }, 1500);
-    } catch (error: any) {
-      setMessage({ type: 'error', text: error.message || 'Failed to sign in. Please check your credentials.' });
+    } catch (error: unknown) {
+      const err = error as Error;
+      setMessage({ type: 'error', text: err.message || 'Failed to sign in. Please check your credentials.' });
     } finally {
       setLoading(false);
     }
@@ -64,8 +65,9 @@ export default function LoginPage() {
         },
       });
       if (error) throw error;
-    } catch (error: any) {
-      setMessage({ type: 'error', text: error.message });
+    } catch (error: unknown) {
+      const err = error as Error;
+      setMessage({ type: 'error', text: err.message });
     }
   };
 
@@ -245,7 +247,7 @@ export default function LoginPage() {
           </div>
 
           <p className={styles.footerText}>
-            Don't have an account? <Link href="/register">Create an account</Link>
+            Don&apos;t have an account? <Link href="/register">Create an account</Link>
           </p>
         </div>
       </motion.div>

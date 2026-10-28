@@ -56,8 +56,9 @@ export default function RegisterPage() {
       setTimeout(() => {
         router.push('/login');
       }, 5000);
-    } catch (error: any) {
-      setMessage({ type: 'error', text: error.message || 'Signup failed. Please try again.' });
+    } catch (error: unknown) {
+      const err = error as Error;
+      setMessage({ type: 'error', text: err.message || 'Signup failed. Please try again.' });
     } finally {
       setLoading(false);
     }
@@ -72,8 +73,9 @@ export default function RegisterPage() {
         },
       });
       if (error) throw error;
-    } catch (error: any) {
-      setMessage({ type: 'error', text: error.message });
+    } catch (error: unknown) {
+      const err = error as Error;
+      setMessage({ type: 'error', text: err.message });
     }
   };
 

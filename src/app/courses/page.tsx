@@ -499,7 +499,7 @@ Salam Sir! I want to join this batch. I am sending my EasyPaisa / JazzCash payme
                 </div>
                 <p className={styles.paymentNote}>
                   <AlertCircle size={15} color="var(--accent)" style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '0.3rem' }} />
-                  <strong>طريقو:</strong> مٿئين نمبر تي في موڪلي، فارم مڪمل ڪري "Confirm on WhatsApp" بٽڻ دٻايو ۽ واٽس ايپ تي پنهنجي في جي سلپ/اسڪرين شاٽ موڪليو.
+                  <strong>طريقو:</strong> مٿئين نمبر تي في موڪلي، فارم مڪمل ڪري &quot;Confirm on WhatsApp&quot; بٽڻ دٻايو ۽ واٽس ايپ تي پنهنجي في جي سلپ/اسڪرين شاٽ موڪليو.
                 </p>
               </div>
 

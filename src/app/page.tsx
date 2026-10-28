@@ -24,7 +24,10 @@ import {
   Share2,
   X,
   Languages,
+  Users,
+  Award,
 } from 'lucide-react';
+import CountUp from '@/components/CountUp';
 import { WhatsAppIcon, YoutubeIcon, FacebookIcon } from '@/components/Icons';
 import styles from './page.module.css';
 
@@ -338,6 +341,55 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Animated Interactive Stats Strip */}
+      <section className={styles.statsSection}>
+        <div className={styles.statsGrid}>
+          <div className={styles.statItem}>
+            <div className={styles.statIconWrapper}>
+              <Users size={24} />
+            </div>
+            <div className={styles.statNumber}>
+              <CountUp end={15000} suffix="+" duration={2.2} />
+            </div>
+            <div className={styles.statLabel}>Active Students</div>
+            <div className={styles.statSindhiLabel}>سنڌ جا شاگرد</div>
+          </div>
+
+          <div className={styles.statItem}>
+            <div className={styles.statIconWrapper}>
+              <Video size={24} />
+            </div>
+            <div className={styles.statNumber}>
+              <CountUp end={85} suffix="+" duration={2.0} />
+            </div>
+            <div className={styles.statLabel}>Video Lectures</div>
+            <div className={styles.statSindhiLabel}>مڪمل ليڪچرز</div>
+          </div>
+
+          <div className={styles.statItem}>
+            <div className={styles.statIconWrapper}>
+              <Award size={24} />
+            </div>
+            <div className={styles.statNumber}>
+              <CountUp end={98} suffix="%" duration={2.4} />
+            </div>
+            <div className={styles.statLabel}>Exam Pass Rate</div>
+            <div className={styles.statSindhiLabel}>ڪاميابي جو تناسب</div>
+          </div>
+
+          <div className={styles.statItem}>
+            <div className={styles.statIconWrapper}>
+              <Sparkles size={24} />
+            </div>
+            <div className={styles.statNumber}>
+              <CountUp end={4.9} decimals={1} suffix=" ★" duration={1.8} />
+            </div>
+            <div className={styles.statLabel}>Student Rating</div>
+            <div className={styles.statSindhiLabel}>شاگردن جو اعتماد</div>
+          </div>
+        </div>
+      </section>
+
       {/* Top Features Section */}
       <motion.section 
         className={styles.section}
@@ -435,7 +487,7 @@ export default function Home() {
             </div>
 
             <div className={styles.teacherSindhiQuote}>
-              "منهنجو خواب آهي ته سنڌ جي هر نياڻي ۽ نوجوان تائين سائنس، فزڪس ۽ ٽيسٽن جي تياري سڀ کان آسان انداز ۾ سندن مادري ٻوليءَ ۾ پهچائي سگهجي."
+              &quot;منهنجو خواب آهي ته سنڌ جي هر نياڻي ۽ نوجوان تائين سائنس، فزڪس ۽ ٽيسٽن جي تياري سڀ کان آسان انداز ۾ سندن مادري ٻوليءَ ۾ پهچائي سگهجي.&quot;
             </div>
 
             <p className={styles.teacherText}>
@@ -912,89 +964,12 @@ export default function Home() {
                   <span>{t.role}</span>
                 </div>
               </div>
-              <p>"{t.text}"</p>
+              <p>&quot;{t.text}&quot;</p>
             </motion.div>
           ))}
         </div>
       </motion.section>
 
-      {/* Footer */}
-      <footer className={styles.footer}>
-        <div className={styles.footerGrid}>
-          <div className={styles.footerInfo}>
-            <Link href="/" style={{ textDecoration: 'none', display: 'inline-block', marginBottom: '1.25rem' }}>
-              <img
-                src="/images/logo-title-light.png"
-                alt="Dreams Virtual Academy"
-                style={{ height: '52px', width: 'auto', objectFit: 'contain' }}
-              />
-            </Link>
-            <p>
-              Dedicated to empowering Sindhi students with modern science, physics, mathematics, and competitive exam education.
-            </p>
-            <div className={styles.socials}>
-              <a
-                href="https://wa.me/923018183624"
-                target="_blank"
-                rel="noopener noreferrer"
-                title="WhatsApp Support"
-              >
-                <WhatsAppIcon size={22} />
-              </a>
-              <a
-                href="https://youtube.com/@DreamsScienceAcademy"
-                target="_blank"
-                rel="noopener noreferrer"
-                title="YouTube Channel"
-              >
-                <YoutubeIcon size={22} />
-              </a>
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                title="Facebook Page"
-              >
-                <FacebookIcon size={22} />
-              </a>
-            </div>
-          </div>
-
-          <div className={styles.footerNav}>
-            <h4>Quick Navigation</h4>
-            <Link href="/courses">Live Batches</Link>
-            <Link href="/videos">Video Lectures</Link>
-            <Link href="/notes">PDF Study Notes</Link>
-            <Link href="/tests">Online Mock Tests</Link>
-            <Link href="/quizzes">Daily Quiz</Link>
-          </div>
-
-          <div className={styles.footerNav}>
-            <h4>Support & Admission</h4>
-            <a
-              href="https://wa.me/923018183624?text=Salam%20Sir%20Dilshad,%20I%20need%20help%20with%20admissions"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              WhatsApp: 0301-8183624
-            </a>
-            <p style={{ color: 'var(--text-light)', fontSize: '0.85rem', marginTop: '0.5rem' }}>
-              Fee via EasyPaisa / JazzCash:
-              <br />
-              <strong>0301-8183624</strong> (Dilshad Murtaza)
-            </p>
-          </div>
-        </div>
-
-        <div className={styles.footerBottom}>
-          <p>© 2026 Dreams Virtual Academy. Serving the Sindhi Student Community with Excellence.</p>
-          <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', marginTop: '0.6rem', fontSize: '0.85rem' }}>
-            <Link href="/privacy-policy" style={{ color: 'var(--text-light)', textDecoration: 'none' }}>Privacy Policy</Link>
-            <span style={{ color: 'var(--card-border)' }}>•</span>
-            <Link href="/terms" style={{ color: 'var(--text-light)', textDecoration: 'none' }}>Terms of Service</Link>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

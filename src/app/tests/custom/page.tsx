@@ -4,8 +4,9 @@ import React, { useState, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Target, Clock, Trophy, RefreshCcw, CheckCircle2, ArrowRight, ArrowLeft, ArrowLeftCircle, Award, ThumbsUp, BookOpen, Microscope, Star } from 'lucide-react';
-import { mockTestsData } from '@/data/mockTestsData';
+import { mockTestsData, type MockQuestion } from '@/data/mockTestsData';
 import { createClient } from '@/lib/supabase/client';
+import type { User } from '@supabase/supabase-js';
 import styles from '@/app/page.module.css';
 
 function CustomQuizRunner() {
@@ -17,10 +18,10 @@ function CustomQuizRunner() {
   const testType = searchParams.get('type') || 'Mock Exams';
 
   const supabase = createClient();
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<User | null>(null);
 
   // States
-  const [questions, setQuestions] = useState<any[]>([]);
+  const [questions, setQuestions] = useState<MockQuestion[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState<Record<number, number>>({});
   const [showResult, setShowResult] = useState(false);
@@ -53,40 +54,6 @@ function CustomQuizRunner() {
     loadTest();
   }, [subject, level]);
 
-  // 2. Timer Effect
-  useEffect(() => {
-    if (started && !showResult && timeLeft > 0) {
-      const timer = setInterval(() => setTimeLeft((prev) => prev - 1), 1000);
-      return () => clearInterval(timer);
-    } else if (started && timeLeft === 0) {
-      handleFinish();
-    }
-  }, [started, showResult, timeLeft]);
-
-  const formatTime = (seconds: number) => {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${mins}:${secs.toString().padStart(2, '0')}`;
-  };
-
-  const handleSelect = (idx: number) => {
-    setSelectedAnswers({ ...selectedAnswers, [currentQuestionIndex]: idx });
-  };
-
-  const handleNext = () => {
-    if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
-    } else {
-      handleFinish();
-    }
-  };
-
-  const handlePrev = () => {
-    if (currentQuestionIndex > 0) {
-      setCurrentQuestionIndex(currentQuestionIndex - 1);
-    }
-  };
-
   const handleFinish = async () => {
     let finalScore = 0;
     questions.forEach((q, idx) => {
@@ -111,6 +78,53 @@ function CustomQuizRunner() {
       } catch (err) {
         console.error("Failed to save attempt to Supabase", err);
       }
+    }
+  };
+
+  const handleFinishRef = React.useRef(handleFinish);
+  useEffect(() => {
+    handleFinishRef.current = handleFinish;
+  });
+
+  // 2. Timer Effect
+  useEffect(() => {
+    if (!started || showResult) return;
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          setTimeout(() => {
+            handleFinishRef.current();
+          }, 0);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [started, showResult]);
+
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  };
+
+  const handleSelect = (idx: number) => {
+    setSelectedAnswers({ ...selectedAnswers, [currentQuestionIndex]: idx });
+  };
+
+  const handleNext = () => {
+    if (currentQuestionIndex < questions.length - 1) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+    } else {
+      handleFinish();
+    }
+  };
+
+  const handlePrev = () => {
+    if (currentQuestionIndex > 0) {
+      setCurrentQuestionIndex(currentQuestionIndex - 1);
     }
   };
 

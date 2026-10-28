@@ -4,12 +4,14 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
+import type { User as SupabaseUser } from "@supabase/supabase-js";
 import { WhatsAppIcon } from "@/components/Icons";
-import { User, LayoutDashboard, LogOut } from "lucide-react";
+import { User as UserIcon, LayoutDashboard, LogOut } from "lucide-react";
 import styles from "./Navbar.module.css";
 
 const navLinks = [
   { name: "Home", path: "/" },
+  { name: "About", path: "/about" },
   { name: "Batches", path: "/courses" },
   { name: "Videos", path: "/videos" },
   { name: "Notes", path: "/notes" },
@@ -24,7 +26,7 @@ export default function Navbar() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<SupabaseUser | null>(null);
 
   useEffect(() => {
     // Get initial session
@@ -123,7 +125,7 @@ export default function Navbar() {
                   </div>
                   <div className={styles.dropdownDivider} />
                   <Link href="/profile" className={styles.dropdownLink} onClick={() => setIsProfileOpen(false)}>
-                    <User size={16} style={{ marginRight: '0.5rem', verticalAlign: 'middle' }} />
+                    <UserIcon size={16} style={{ marginRight: '0.5rem', verticalAlign: 'middle' }} />
                     View Profile
                   </Link>
                   <Link href="/dashboard" className={styles.dropdownLink} onClick={() => setIsProfileOpen(false)}>
@@ -157,31 +159,42 @@ export default function Navbar() {
         </div>
       </div>
 
+      {/* Mobile Drawer Backdrop */}
+      {isMenuOpen && (
+        <div
+          className={styles.mobileBackdrop}
+          onClick={() => setIsMenuOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+
       {/* Mobile Drawer */}
       <div className={`${styles.mobileDrawer} ${isMenuOpen ? styles.drawerOpen : ""}`}>
-        <div style={{ paddingBottom: '1rem', borderBottom: '1px solid var(--card-border)' }}>
+        <div style={{ paddingBottom: '1rem', borderBottom: '1px solid var(--card-border)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <img 
             src="/images/logo-title-light.png" 
             alt="Dreams Virtual Academy" 
-            style={{ height: '42px', width: 'auto', objectFit: 'contain' }} 
+            style={{ height: '38px', width: 'auto', objectFit: 'contain' }} 
           />
         </div>
         {navLinks.map((link) => (
           <Link
             key={link.path}
             href={link.path}
-            className={styles.mobileLink}
+            className={`${styles.mobileLink} ${pathname === link.path ? styles.mobileLinkActive : ""}`}
             onClick={() => setIsMenuOpen(false)}
           >
-            {link.name}
+            <span>{link.name}</span>
+            {pathname === link.path && <span style={{ fontSize: '0.8rem', color: 'var(--accent)' }}>●</span>}
           </Link>
         ))}
         <Link 
           href="/profile" 
-          className={styles.mobileLink} 
+          className={`${styles.mobileLink} ${pathname === "/profile" ? styles.mobileLinkActive : ""}`} 
           onClick={() => setIsMenuOpen(false)}
         >
-          Profile
+          <span>Profile / شاگرد</span>
+          {pathname === "/profile" && <span style={{ fontSize: '0.8rem', color: 'var(--accent)' }}>●</span>}
         </Link>
         <a 
           href="https://wa.me/923018183624" 

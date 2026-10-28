@@ -43,8 +43,9 @@ export default function ForgotPasswordPage() {
 
       setIsSubmitted(true);
       setResendTimer(60);
-    } catch (error: any) {
-      setErrorMessage(error.message || 'Failed to send reset link. Please check your email and try again.');
+    } catch (error: unknown) {
+      const err = error as Error;
+      setErrorMessage(err.message || 'Failed to send reset link. Please check your email and try again.');
     } finally {
       setLoading(false);
     }
@@ -61,8 +62,9 @@ export default function ForgotPasswordPage() {
       });
       if (error) throw error;
       setResendTimer(60);
-    } catch (error: any) {
-      setErrorMessage(error.message || 'Failed to resend link.');
+    } catch (error: unknown) {
+      const err = error as Error;
+      setErrorMessage(err.message || 'Failed to resend link.');
     } finally {
       setLoading(false);
     }

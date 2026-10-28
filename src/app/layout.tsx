@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
 import WhatsAppFloatingButton from "@/components/WhatsAppFloatingButton";
 import "./globals.css";
@@ -51,6 +52,7 @@ export default function RootLayout({
         <ScrollProgress />
         <Navbar />
         {children}
+        <Footer />
         <WhatsAppFloatingButton />
       </body>
     </html>

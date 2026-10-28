@@ -7,7 +7,7 @@ import { physicsLogicQuiz, Question } from '@/data/quizzes';
 import styles from '@/app/page.module.css';
 
 interface QuizAppProps {
-  user: any;
+  user?: { id?: string; email?: string } | null;
 }
 
 export default function QuizApp({ user }: QuizAppProps) {
@@ -17,25 +17,48 @@ export default function QuizApp({ user }: QuizAppProps) {
   const [showResult, setShowResult] = useState(false);
   const [score, setScore] = useState(0);
   const [timeLeft, setTimeLeft] = useState(900); // 15 mins
-  const [active, setActive] = useState(true);
+
+  const currentQuestion = physicsLogicQuiz[currentQuestionIndex];
+
+  const handleFinish = React.useCallback(() => {
+    let finalScore = 0;
+    physicsLogicQuiz.forEach((q, idx) => {
+      if (selectedAnswers[idx] === q.correctAnswer) {
+        finalScore++;
+      }
+    });
+    setScore(finalScore);
+    setShowResult(true);
+  }, [selectedAnswers]);
+
+  const handleFinishRef = React.useRef(handleFinish);
+  useEffect(() => {
+    handleFinishRef.current = handleFinish;
+  });
 
   // Timer logic
   useEffect(() => {
-    if (started && !showResult && timeLeft > 0) {
-      const timer = setInterval(() => setTimeLeft((prev) => prev - 1), 1000);
-      return () => clearInterval(timer);
-    } else if (timeLeft === 0) {
-      handleFinish();
-    }
-  }, [started, showResult, timeLeft]);
+    if (!started || showResult) return;
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          setTimeout(() => {
+            handleFinishRef.current();
+          }, 0);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [started, showResult]);
 
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
-
-  const currentQuestion = physicsLogicQuiz[currentQuestionIndex];
 
   const handleSelect = (index: number) => {
     setSelectedAnswers({ ...selectedAnswers, [currentQuestionIndex]: index });
@@ -53,17 +76,6 @@ export default function QuizApp({ user }: QuizAppProps) {
     if (currentQuestionIndex > 0) {
       setCurrentQuestionIndex(currentQuestionIndex - 1);
     }
-  };
-
-  const handleFinish = () => {
-    let finalScore = 0;
-    physicsLogicQuiz.forEach((q, idx) => {
-      if (selectedAnswers[idx] === q.correctAnswer) {
-        finalScore++;
-      }
-    });
-    setScore(finalScore);
-    setShowResult(true);
   };
 
   const resetQuiz = () => {
