@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { WhatsAppIcon } from '@/components/Icons';
 import { dvaAlert, dvaToast } from '@/components/DvaToast';
+import { supabase } from '@/lib/supabase';
 import styles from './page.module.css';
 
 type Instructor = {
@@ -232,6 +233,23 @@ Salam Sir! I want to join this batch. I am sending my EasyPaisa / JazzCash payme
 
     const url = `https://wa.me/923018183624?text=${encodeURIComponent(message)}`;
     
+    // Save admission attempt backup to Supabase course_enrollments
+    try {
+      supabase.from('course_enrollments').insert({
+        dva_name: clean_name || 'Anonymous Student',
+        dva_phone: clean_phone || 'Not provided',
+        dva_age: clean_age || null,
+        dva_district: clean_district,
+        dva_course_id: selectedCourse.id,
+        dva_course_title: dva_course_title,
+        dva_price: dva_price,
+        payment_method: 'EasyPaisa / JazzCash',
+        status: 'pending',
+      }).then(() => {});
+    } catch {
+      // Non-blocking save
+    }
+
     dvaToast.success('Admission request generated successfully!');
     dvaAlert.fire({
       title: 'Admission Request Ready! 🎉',

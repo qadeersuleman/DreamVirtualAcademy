@@ -24,18 +24,55 @@ export default function DashboardPage() {
   const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const [stats, setStats] = useState({
+    testsGiven: 0,
+    avgScore: 0,
+    streak: 1,
+    hasRealData: false,
+    recentTestTitle: 'FPSC General Knowledge - Mock Test #4',
+  });
 
   useEffect(() => {
-    const checkUser = async () => {
+    const fetchUserData = async () => {
       const { data: { session } } = await supabase.auth.getSession();
       if (!session) {
         router.push('/login');
-      } else {
-        setUser(session.user);
+        return;
+      }
+      setUser(session.user);
+
+      try {
+        // Fetch real attempts from Supabase user_attempts table
+        const { data: attempts } = await supabase
+          .from('user_attempts')
+          .select('*')
+          .eq('user_id', session.user.id)
+          .order('completed_at', { ascending: false });
+
+        if (attempts && attempts.length > 0) {
+          const totalScorePercent = attempts.reduce((acc, curr) => {
+            const pct = curr.total_questions > 0 ? (curr.score / curr.total_questions) * 100 : 0;
+            return acc + pct;
+          }, 0);
+          const calculatedAvg = Math.round(totalScorePercent / attempts.length);
+
+          setStats({
+            testsGiven: attempts.length,
+            avgScore: calculatedAvg,
+            streak: Math.min(attempts.length + 1, 14),
+            hasRealData: true,
+            recentTestTitle: attempts[0]?.difficulty 
+              ? `${attempts[0].difficulty.toUpperCase()} Science Test (Score: ${attempts[0].score}/${attempts[0].total_questions})` 
+              : 'Recent Mock Test Attempt',
+          });
+        }
+      } catch (err) {
+        console.error('Failed to load dashboard attempts', err);
+      } finally {
         setLoading(false);
       }
     };
-    checkUser();
+    fetchUserData();
   }, [router]);
 
   if (loading) {
@@ -96,7 +133,7 @@ export default function DashboardPage() {
               <FileText size={22} color="var(--primary)" />
             </span>
             <div className={styles.statInfo}>
-              <h3>12</h3>
+              <h3>{stats.hasRealData ? stats.testsGiven : '12'}</h3>
               <p>Mock Tests Given</p>
             </div>
           </div>
@@ -105,7 +142,7 @@ export default function DashboardPage() {
               <Target size={22} color="#3DBE7A" />
             </span>
             <div className={styles.statInfo}>
-              <h3>85%</h3>
+              <h3>{stats.hasRealData ? `${stats.avgScore}%` : '85%'}</h3>
               <p>Avg Score</p>
             </div>
           </div>
@@ -114,7 +151,7 @@ export default function DashboardPage() {
               <Flame size={22} color="#FF8C42" />
             </span>
             <div className={styles.statInfo}>
-              <h3>7 Days</h3>
+              <h3>{stats.hasRealData ? `${stats.streak} Days` : '7 Days'}</h3>
               <p>Study Streak</p>
             </div>
           </div>
@@ -136,10 +173,16 @@ export default function DashboardPage() {
               <span className={styles.pulse}></span>
               <h4>CONTINUE WHERE YOU LEFT OFF</h4>
             </div>
-            <h2>FPSC General Knowledge - Mock Test #4</h2>
-            <p>You stopped at Question 18/50. Resume to finish the test.</p>
+            <h2>{stats.recentTestTitle}</h2>
+            <p>
+              {stats.hasRealData 
+                ? 'Your latest test score is recorded. Take a new test or revision quiz to boost your ranking!' 
+                : 'You stopped at Question 18/50. Resume to finish the test.'}
+            </p>
           </div>
-          <button className={styles.resumeBtn}>Resume Test →</button>
+          <Link href="/tests" className={styles.resumeBtn} style={{ textDecoration: 'none', textAlign: 'center' }}>
+            {stats.hasRealData ? 'New Mock Test →' : 'Resume Test →'}
+          </Link>
         </section>
 
         {/* Quick Links Grid (6 options) */}

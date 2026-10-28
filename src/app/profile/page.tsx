@@ -1,8 +1,61 @@
+'use client';
+
+import React, { useEffect, useState } from 'react';
 import styles from './page.module.css';
 import Link from 'next/link';
-import { Camera, Bell, Moon, Lock } from 'lucide-react';
+import { Camera, Bell, Moon, Lock, ArrowRight, UserCheck } from 'lucide-react';
+import { supabase } from '@/lib/supabase';
+import type { User } from '@supabase/supabase-js';
 
 export default function ProfilePage() {
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [stats, setStats] = useState({
+    testsTaken: 0,
+    avgScore: 0,
+    xpPoints: 100,
+    hasRealData: false,
+  });
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session?.user) {
+        setUser(session.user);
+
+        // Fetch user attempts for dynamic metrics
+        const { data: attempts } = await supabase
+          .from('user_attempts')
+          .select('*')
+          .eq('user_id', session.user.id);
+
+        if (attempts && attempts.length > 0) {
+          const totalScorePercent = attempts.reduce((acc, curr) => {
+            const pct = curr.total_questions > 0 ? (curr.score / curr.total_questions) * 100 : 0;
+            return acc + pct;
+          }, 0);
+          const calculatedAvg = Math.round(totalScorePercent / attempts.length);
+
+          setStats({
+            testsTaken: attempts.length,
+            avgScore: calculatedAvg,
+            xpPoints: attempts.length * 50 + 100,
+            hasRealData: true,
+          });
+        }
+      }
+      setLoading(false);
+    };
+
+    fetchProfile();
+  }, []);
+
+  const displayName = user?.user_metadata?.full_name || user?.user_metadata?.dva_name || (user?.email ? user.email.split('@')[0] : 'Student');
+  const displayEmail = user?.email || 'guest@dreamsacademy.online';
+  const displayPhone = user?.user_metadata?.phone || '+92 301 8183624';
+  const displayAvatar = user?.user_metadata?.avatar_url || '/images/profile.png';
+  const joinedDate = user?.created_at ? new Date(user.created_at).toLocaleDateString('en-US', { month: 'short', year: 'numeric' }) : 'March 2026';
+
   return (
     <div className={styles.container}>
       <div className="bg-mesh" />
@@ -19,7 +72,7 @@ export default function ProfilePage() {
             <div className={styles.avatarSection}>
               <div className={styles.avatarWrapper}>
                 <img 
-                  src="/images/profile.png" 
+                  src={displayAvatar} 
                   alt="Profile" 
                   className={styles.avatar} 
                 />
@@ -28,48 +81,53 @@ export default function ProfilePage() {
                 </button>
               </div>
               <div className={styles.nameSection}>
-                <h2>Qadeer</h2>
-                <span className={styles.badge}>Premium Member</span>
+                <h2>{displayName}</h2>
+                <span className={styles.badge}>
+                  <UserCheck size={12} style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '4px' }} />
+                  {user ? 'Verified Student' : 'Guest Account'}
+                </span>
               </div>
             </div>
 
             <div className={styles.detailsGrid}>
               <div className={styles.detailItem}>
                 <label>Email</label>
-                <p>qadeer@example.com</p>
+                <p>{displayEmail}</p>
               </div>
               <div className={styles.detailItem}>
                 <label>Phone</label>
-                <p>+92 300 1234567</p>
+                <p>{displayPhone}</p>
               </div>
               <div className={styles.detailItem}>
                 <label>Joined</label>
-                <p>March 2026</p>
+                <p>{joinedDate}</p>
               </div>
               <div className={styles.detailItem}>
                 <label>Target Exam</label>
-                <p>FPSC General Knowledge</p>
+                <p>STS / JST / SPSC</p>
               </div>
             </div>
 
-            <button className={`${styles.btn} ${styles.primary}`}>Edit Personal Info</button>
+            <Link href="/dashboard" className={`${styles.btn} ${styles.primary}`} style={{ display: 'block', textAlign: 'center', textDecoration: 'none' }}>
+              View Student Dashboard
+            </Link>
           </div>
 
           {/* Right Column: Stats & Settings */}
           <div className={styles.rightCol}>
             <div className={`${styles.statsCard} glass`}>
-              <h3>Learning Progress</h3>
+              <h3>Academic Mastery</h3>
               <div className={styles.statsGrid}>
                 <div className={styles.stat}>
-                  <span className={styles.statValue}>12</span>
+                  <span className={styles.statValue}>{stats.hasRealData ? stats.testsTaken : 12}</span>
                   <p>Tests Taken</p>
                 </div>
                 <div className={styles.stat}>
-                  <span className={styles.statValue}>85%</span>
+                  <span className={styles.statValue}>{stats.hasRealData ? `${stats.avgScore}%` : '85%'}</span>
                   <p>Average Score</p>
                 </div>
                 <div className={styles.stat}>
-                  <span className={styles.statValue}>450</span>
+                  <span className={styles.statValue}>{stats.hasRealData ? stats.xpPoints : 450}</span>
                   <p>XP Earned</p>
                 </div>
               </div>
@@ -80,27 +138,28 @@ export default function ProfilePage() {
               <div className={styles.settingsList}>
                 <div className={styles.settingItem}>
                   <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-                    <Bell size={16} /> Notifications
-                  </span>
-                  <div className={styles.toggle} />
-                </div>
-                <div className={styles.settingItem}>
-                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-                    <Moon size={16} /> Dark Mode
+                    <Bell size={16} /> Exam Notifications
                   </span>
                   <div className={styles.toggleActive} />
                 </div>
                 <div className={styles.settingItem}>
                   <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-                    <Lock size={16} /> Change Password
+                    <Moon size={16} /> Theme Mode
+                  </span>
+                  <div className={styles.toggle} />
+                </div>
+                <Link href="/forgot-password" className={styles.settingItem} style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                    <Lock size={16} /> Change / Reset Password
                   </span>
                   <span className={styles.arrow}>→</span>
-                </div>
+                </Link>
               </div>
             </div>
             
-            <Link href="/dashboard" className={`${styles.btn} glass`}>
-              Go to Dashboard
+            <Link href="/courses" className={`${styles.btn} glass`} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', textDecoration: 'none' }}>
+              <span>Explore Live Batches</span>
+              <ArrowRight size={16} />
             </Link>
           </div>
         </section>
