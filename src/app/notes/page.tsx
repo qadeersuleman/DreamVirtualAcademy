@@ -334,9 +334,9 @@ export default function NotesPage() {
         >
           <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.25rem' }}>
             <img 
-              src="/images/logo-variants/07_horizontal_color_light.png" 
+              src="/images/logo-title-light.png" 
               alt="Dreams Virtual Academy Notes" 
-              style={{ height: '42px', width: 'auto', objectFit: 'contain', mixBlendMode: 'multiply' }} 
+              style={{ height: '42px', width: 'auto', objectFit: 'contain' }} 
             />
           </div>
           <span className={`${styles.badge} animate-pulse-glow`}>

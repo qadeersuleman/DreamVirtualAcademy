@@ -49,7 +49,7 @@ export default function DashboardPage() {
         color: '#4A3B2F'
       }}>
         <img 
-          src="/images/logo-variants/12_app_icon_light.png" 
+          src="/images/logo-yellow.png" 
           alt="Dreams Academy" 
           style={{ width: '56px', height: '56px', borderRadius: '16px', marginBottom: '1.25rem', boxShadow: '0 8px 24px rgba(0,0,0,0.1)' }} 
         />

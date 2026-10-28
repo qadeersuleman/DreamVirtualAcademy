@@ -38,14 +38,14 @@ export default function MockTestsPage() {
           <div className={styles.headerText} style={{ paddingTop: '140px' }}>
              <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.25rem' }}>
                <img 
-                 src="/images/logo-variants/07_horizontal_color_light.png" 
+                 src="/images/logo-title-light.png" 
                  alt="Dreams Virtual Academy Mock Tests" 
-                 style={{ height: '44px', width: 'auto', objectFit: 'contain', mixBlendMode: 'multiply' }} 
+                 style={{ height: '44px', width: 'auto', objectFit: 'contain' }} 
                />
              </div>
              <span className={styles.badge}>EXAM GENERATOR</span>
              <h1>Custom Practice Tests & Mock Exams</h1>
-             <p style={{ fontFamily: 'var(--font-sindhi), "Noto Sans Arabic"', fontSize: '1.4rem', color: 'var(--accent)', direction: 'rtl', margin: '0.5rem 0 1rem' }}>
+             <p style={{ fontFamily: 'var(--font-sindhi), "Noto Sans Arabic"', fontSize: '1.4rem', color: 'var(--accent)', direction: 'rtl', textAlign: 'center', margin: '0.6rem auto 1.25rem', maxWidth: '800px', display: 'block' }}>
                سنڌي شاگردن لاءِ آنلائن ايم سي ڪيوز ٽيسٽ ۽ امتحانن جي مشق
              </p>
              <p>Generate customized academic & science assessments based on your level and subject choice.</p>

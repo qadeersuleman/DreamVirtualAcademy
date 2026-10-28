@@ -61,12 +61,12 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" className={styles.logo} aria-label="Dreams Virtual Academy Home">
           <img 
-            src="/images/logo-variants/07_horizontal_color_light.png" 
+            src="/images/logo-title-light.png" 
             alt="Dreams Virtual Academy" 
             className={styles.logoLight} 
           />
           <img 
-            src="/images/logo-variants/06_horizontal_color_dark.png" 
+            src="/images/logo-title-dark.png" 
             alt="Dreams Virtual Academy" 
             className={styles.logoDark} 
           />
@@ -161,9 +161,9 @@ export default function Navbar() {
       <div className={`${styles.mobileDrawer} ${isMenuOpen ? styles.drawerOpen : ""}`}>
         <div style={{ paddingBottom: '1rem', borderBottom: '1px solid var(--card-border)' }}>
           <img 
-            src="/images/logo-variants/07_horizontal_color_light.png" 
+            src="/images/logo-title-light.png" 
             alt="Dreams Virtual Academy" 
-            style={{ height: '42px', width: 'auto', objectFit: 'contain', mixBlendMode: 'multiply' }} 
+            style={{ height: '42px', width: 'auto', objectFit: 'contain' }} 
           />
         </div>
         {navLinks.map((link) => (

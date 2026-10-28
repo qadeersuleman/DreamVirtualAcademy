@@ -148,6 +148,7 @@ const popularPlaylists = [
     videos: 12,
     hours: 8,
     link: "/videos",
+    thumbnail: "https://img.youtube.com/vi/VFVrHw5RR2o/hqdefault.jpg",
   },
   {
     category: "Science 8th (STBB)",
@@ -155,6 +156,7 @@ const popularPlaylists = [
     videos: 15,
     hours: 10,
     link: "/videos",
+    thumbnail: "https://img.youtube.com/vi/DLZ6h4QwgeQ/hqdefault.jpg",
   },
   {
     category: "Physics",
@@ -162,6 +164,7 @@ const popularPlaylists = [
     videos: 14,
     hours: 7,
     link: "/videos",
+    thumbnail: "https://img.youtube.com/vi/bXvSG16rpXY/hqdefault.jpg",
   },
   {
     category: "Chemistry",
@@ -169,6 +172,7 @@ const popularPlaylists = [
     videos: 10,
     hours: 6,
     link: "/videos",
+    thumbnail: "https://img.youtube.com/vi/tfNyZX7-gf8/hqdefault.jpg",
   },
 ];
 
@@ -224,7 +228,7 @@ export default function Home() {
             >
               <span className={styles.badge}>
                 <img 
-                  src="/images/logo-variants/12_app_icon_light.png" 
+                  src="/images/logo-yellow.png" 
                   alt="Dreams Academy Badge" 
                   style={{ width: 18, height: 18, borderRadius: 4, display: 'inline-block', verticalAlign: 'middle', marginRight: '0.45rem' }} 
                 />
@@ -646,7 +650,20 @@ export default function Home() {
                 whileHover={{ y: -8, scale: 1.02 }}
               >
                 <div className={styles.playImage}>
-                  <Play size={24} color="white" fill="white" />
+                  <img
+                    src={playlist.thumbnail}
+                    alt={playlist.title}
+                    className={styles.playThumb}
+                    loading="lazy"
+                  />
+                  <div className={styles.playOverlay}>
+                    <div className={styles.playBtnBadge}>
+                      <Play size={20} color="white" fill="white" />
+                    </div>
+                  </div>
+                  <span className={styles.videoDurationBadge}>
+                    {playlist.hours}h • {playlist.videos} Videos
+                  </span>
                 </div>
                 <div className={styles.playInfo}>
                   <span className={styles.category}>{playlist.category}</span>
@@ -825,7 +842,7 @@ export default function Home() {
           <div style={{ padding: '3rem 2.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1.25rem' }}>
               <img 
-                src="/images/logo-variants/20_premium_gold.png" 
+                src="/images/logo-dark.png" 
                 alt="Dreams Gold Seal" 
                 style={{ height: '34px', width: 'auto', borderRadius: '6px' }} 
               />
@@ -853,7 +870,7 @@ export default function Home() {
           </div>
           <div style={{ position: 'relative', minHeight: '300px' }}>
             <img 
-              src="/images/logo-variants/21_wall_signage_mockup.png" 
+              src="/images/logo-yellow.png" 
               alt="Dreams Virtual Academy Signage" 
               style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
             />
@@ -907,7 +924,7 @@ export default function Home() {
           <div className={styles.footerInfo}>
             <Link href="/" style={{ textDecoration: 'none', display: 'inline-block', marginBottom: '1.25rem' }}>
               <img
-                src="/images/logo-variants/07_horizontal_color_light.png"
+                src="/images/logo-title-light.png"
                 alt="Dreams Virtual Academy"
                 style={{ height: '52px', width: 'auto', objectFit: 'contain' }}
               />

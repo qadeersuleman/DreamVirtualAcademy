@@ -93,7 +93,7 @@ export default function RegisterPage() {
         <div className={styles.brandSide}>
           <div className={styles.brandLogo}>
             <img 
-              src="/images/logo-variants/12_app_icon_light.png" 
+              src="/images/logo-yellow.png" 
               alt="Dreams Academy Icon" 
               style={{ width: 44, height: 44, borderRadius: 12, objectFit: 'cover', boxShadow: '0 4px 14px rgba(0,0,0,0.12)' }} 
             />
@@ -127,7 +127,7 @@ export default function RegisterPage() {
           <div className={styles.formHeader}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1rem' }}>
               <img 
-                src="/images/logo-variants/12_app_icon_light.png" 
+                src="/images/logo-yellow.png" 
                 alt="Dreams Academy" 
                 style={{ width: 36, height: 36, borderRadius: 10, objectFit: 'cover' }} 
               />

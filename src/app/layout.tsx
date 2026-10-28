@@ -9,9 +9,9 @@ export const metadata: Metadata = {
   description: "Dreams Virtual Academy - Master Science, Physics, Chemistry, Math and prepare for STS / JST tests in simple Sindhi and English.",
   keywords: "dreams virtual academy, science academy sindh, physics in sindhi, stbb science notes, sts iba sukkur test, jst preparation, dilshad murtaza",
   icons: {
-    icon: "/images/logo-variants/12_app_icon_light.png",
-    shortcut: "/images/logo-variants/14_favicon_light.png",
-    apple: "/images/logo-variants/11_app_icon_dark.png",
+    icon: "/images/logo-yellow.png",
+    shortcut: "/images/logo-yellow.png",
+    apple: "/images/logo-yellow.png",
   },
   openGraph: {
     title: "Dreams Virtual Academy",

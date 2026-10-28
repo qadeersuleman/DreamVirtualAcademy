@@ -17,7 +17,7 @@ export default async function QuizzesPage() {
             DAILY CHALLENGE
           </span>
           <h1>Interactive Learning & Daily Quizzes</h1>
-          <p style={{ fontFamily: 'var(--font-sindhi), "Noto Sans Arabic"', fontSize: '1.4rem', color: 'var(--accent)', direction: 'rtl', margin: '0.5rem 0 1rem' }}>
+          <p style={{ fontFamily: 'var(--font-sindhi), "Noto Sans Arabic"', fontSize: '1.4rem', color: 'var(--accent)', direction: 'rtl', textAlign: 'center', margin: '0.6rem auto 1.25rem', maxWidth: '800px', display: 'block' }}>
             روزانو آنلائن ڪوئيز ۽ پنهنجي ذهني صلاحيتن جو امتحان
           </p>
           <p>Boost your knowledge with our daily interactive concept-based quiz challenges and real-time results.</p>

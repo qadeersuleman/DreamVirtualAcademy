@@ -238,7 +238,7 @@ Salam Sir! I want to join this batch. I am sending my EasyPaisa / JazzCash payme
         >
           <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.25rem' }}>
             <img 
-              src="/images/logo-variants/02_full_color_light.png" 
+              src="/images/logo-light.png" 
               alt="Dreams Virtual Academy" 
               style={{ height: '76px', width: 'auto', objectFit: 'contain' }} 
             />
@@ -466,7 +466,7 @@ Salam Sir! I want to join this batch. I am sending my EasyPaisa / JazzCash payme
               <div className={styles.modalHeader}>
                 <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '0.75rem' }}>
                   <img 
-                    src="/images/logo-variants/07_horizontal_color_light.png" 
+                    src="/images/logo-title-light.png" 
                     alt="Dreams Virtual Academy" 
                     style={{ height: '36px', width: 'auto', objectFit: 'contain' }} 
                   />

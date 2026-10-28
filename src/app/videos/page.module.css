@@ -50,6 +50,18 @@
   line-height: 1.7;
 }
 
+.sindhiSubtitle {
+  font-family: var(--font-sindhi), 'Noto Sans Arabic', serif;
+  font-size: 1.4rem;
+  color: var(--accent);
+  direction: rtl;
+  text-align: center !important;
+  margin: 0.6rem auto 1.25rem !important;
+  max-width: 800px;
+  line-height: 1.6;
+  display: block;
+}
+
 .sourceNote {
   display: inline-flex;
   align-items: center;
@@ -532,6 +544,11 @@
 @media (max-width: 768px) {
   .header h1 {
     font-size: 2.4rem;
+  }
+
+  .sindhiSubtitle {
+    font-size: 1.2rem;
+    padding: 0 1rem;
   }
 
   .videoInfo {

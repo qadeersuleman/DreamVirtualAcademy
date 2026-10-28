@@ -39,7 +39,7 @@ export default function ProgressPage() {
         <h1 style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--text-dark)', marginBottom: '0.5rem' }}>
           Student Progress Center
         </h1>
-        <p style={{ fontFamily: 'var(--font-sindhi), "Noto Sans Arabic"', fontSize: '1.4rem', color: 'var(--accent)', marginBottom: '1rem', direction: 'rtl' }}>
+        <p style={{ fontFamily: 'var(--font-sindhi), "Noto Sans Arabic"', fontSize: '1.4rem', color: 'var(--accent)', direction: 'rtl', textAlign: 'center', margin: '0.6rem auto 1.25rem', maxWidth: '800px', display: 'block' }}>
           شاگردن جي ڪارڪردگي ۽ روزاني ترقي جو مرڪز
         </p>
         <p style={{ color: 'var(--text-light)', maxWidth: '600px', margin: '0 auto 2.5rem', fontSize: '1.05rem' }}>

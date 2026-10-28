@@ -418,23 +418,70 @@
 }
 
 .playImage {
+  position: relative;
   aspect-ratio: 16/9;
-  background: var(--text-dark);
+  background: #0f172a;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.playIcon {
-  width: 50px;
-  height: 50px;
-  background: var(--primary);
+.playThumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.playlistCard:hover .playThumb {
+  transform: scale(1.06);
+}
+
+.playOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.55) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+}
+
+.playlistCard:hover .playOverlay {
+  background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%);
+}
+
+.playBtnBadge {
+  width: 48px;
+  height: 48px;
+  background: rgba(245, 158, 11, 0.95);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
-  color: var(--text-dark);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.35);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease;
+  padding-left: 3px;
+}
+
+.playlistCard:hover .playBtnBadge {
+  transform: scale(1.15);
+  background: #d97706;
+}
+
+.videoDurationBadge {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  letter-spacing: 0.02em;
 }
 
 .playInfo {

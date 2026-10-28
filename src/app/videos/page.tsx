@@ -372,9 +372,9 @@ export default function VideosPage() {
         <header className={styles.header}>
           <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.25rem' }}>
             <img 
-              src="/images/logo-variants/07_horizontal_color_light.png" 
+              src="/images/logo-title-light.png" 
               alt="Dreams Virtual Academy Lectures" 
-              style={{ height: '42px', width: 'auto', objectFit: 'contain', mixBlendMode: 'multiply' }} 
+              style={{ height: '42px', width: 'auto', objectFit: 'contain' }} 
             />
           </div>
           <span className={styles.badge}>
@@ -382,7 +382,7 @@ export default function VideosPage() {
             DREAMS SCIENCE ACADEMY
           </span>
           <h1>Video Lectures Library</h1>
-          <p style={{ fontFamily: 'var(--font-sindhi), "Noto Sans Arabic"', fontSize: '1.4rem', color: 'var(--accent)', direction: 'rtl', margin: '0.5rem 0 1rem' }}>
+          <p className={styles.sindhiSubtitle}>
             سنڌي ٻوليءَ ۾ سائنس، فزڪس، ڪيمسٽري ۽ ٽيسٽن جي تياري جا مڪمل وڊيو ليڪچرز
           </p>
           <p>Explore our complete library of {videos.length} educational video lectures — from Pedagogy to Physics, Biology, Chemistry and STS preparation.</p>
