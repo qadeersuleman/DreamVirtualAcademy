@@ -19,10 +19,10 @@ export default function ScrollProgress() {
         left: 0,
         right: 0,
         height: "3.5px",
-        background: "linear-gradient(90deg, #F4C47F 0%, #FF8C42 35%, #7C5CFF 70%, #3DBE7A 100%)",
+        background: "linear-gradient(90deg, #F3C322 0%, #FEF08A 35%, #F3C322 70%, #E2AE08 100%)",
         transformOrigin: "0%",
         zIndex: 99999,
-        boxShadow: "0 0 12px rgba(124, 92, 255, 0.75)"
+        boxShadow: "0 0 12px rgba(243, 195, 34, 0.75)"
       }}
       aria-hidden="true"
     />

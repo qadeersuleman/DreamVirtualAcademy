@@ -31,7 +31,7 @@
 .blob2 {
   width: 500px;
   height: 500px;
-  background: #7C5CFF;
+  background: #F3C322;
   bottom: -150px;
   right: -150px;
   animation: float 25s infinite alternate-reverse;
@@ -224,12 +224,12 @@
 .checkbox {
   width: 18px;
   height: 18px;
-  accent-color: #7C5CFF;
+  accent-color: #F3C322;
 }
 
 .forgotPass {
   font-size: 0.9rem;
-  color: #7C5CFF;
+  color: #D4A30B;
   font-weight: 600;
   text-decoration: none;
 }
@@ -241,25 +241,25 @@
 .loginButton {
   width: 100%;
   padding: 16px;
-  background: #7C5CFF;
-  color: white;
+  background: linear-gradient(135deg, #F3C322 0%, #E2AE08 100%);
+  color: #0F172A;
   border: none;
   border-radius: 16px;
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 800;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   transition: all 0.3s ease;
-  box-shadow: 0 10px 20px -5px rgba(124, 92, 255, 0.4);
+  box-shadow: 0 10px 20px -5px rgba(243, 195, 34, 0.45);
 }
 
 .loginButton:hover {
   transform: translateY(-2px);
-  background: #6C4CFF;
-  box-shadow: 0 15px 30px -5px rgba(124, 92, 255, 0.6);
+  background: linear-gradient(135deg, #E2AE08 0%, #D4A30B 100%);
+  box-shadow: 0 15px 30px -5px rgba(243, 195, 34, 0.6);
 }
 
 .loginButton:active {
@@ -326,7 +326,7 @@
 }
 
 .footerText a {
-  color: #7C5CFF;
+  color: #D4A30B;
   font-weight: 700;
   text-decoration: none;
 }

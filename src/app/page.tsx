@@ -882,23 +882,15 @@ export default function Home() {
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
       >
-        <div style={{
-          background: 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)',
-          borderRadius: '24px',
-          overflow: 'hidden',
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-          boxShadow: '0 20px 40px rgba(0,0,0,0.2)',
-          border: '1px solid rgba(255,255,255,0.08)'
-        }}>
-          <div style={{ padding: '3rem 2.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+        <div className={styles.brandShowcase}>
+          <div className={styles.brandShowcaseContent}>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1.25rem' }}>
               <img 
                 src="/images/logo-dark.png" 
                 alt="Dreams Gold Seal" 
                 style={{ height: '34px', width: 'auto', borderRadius: '6px' }} 
               />
-              <span style={{ color: '#F59E0B', fontWeight: 700, fontSize: '0.82rem', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+              <span style={{ color: '#F3C322', fontWeight: 700, fontSize: '0.82rem', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
                 Official Virtual Academy Portal
               </span>
             </div>
@@ -912,7 +904,7 @@ export default function Home() {
               Specializing in Class 7th to 12th Sindh Board (STBB) science coaching and IBA Sukkur STS / JST competitive test preparation with complete Sindhi medium support.
             </p>
             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-              <Link href="/courses" className={styles.whatsappHeroBtn} style={{ background: '#F59E0B' }}>
+              <Link href="/courses" className={styles.whatsappHeroBtn} style={{ background: '#F3C322', color: '#0F172A', fontWeight: 800 }}>
                 View All Batches
               </Link>
               <Link href="/tests" className={styles.secondaryBtn} style={{ color: '#FFFFFF', borderColor: 'rgba(255,255,255,0.2)' }}>
@@ -920,11 +912,11 @@ export default function Home() {
               </Link>
             </div>
           </div>
-          <div style={{ position: 'relative', minHeight: '300px' }}>
+          <div className={styles.brandShowcaseImageWrap}>
             <img 
-              src="/images/logo-yellow.png" 
+              src="/images/logo-dark.png" 
               alt="Dreams Virtual Academy Signage" 
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+              style={{ maxWidth: '280px', width: '85%', height: 'auto', objectFit: 'contain', filter: 'drop-shadow(0 15px 30px rgba(0,0,0,0.5))' }} 
             />
           </div>
         </div>

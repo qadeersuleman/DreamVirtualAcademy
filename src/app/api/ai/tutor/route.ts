@@ -18,13 +18,44 @@ Guidelines:
 - Safety: Strictly answer educational, scientific, academic, career guidance, and test-prep related questions. Keep responses polite and under 300 words.
 `;
 
-export async function POST(request: Request) {
-  const apiKey = process.env.GEMINI_API_KEY;
+// In-memory sliding window rate limiter for security & anti-abuse
+const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
 
-  if (!apiKey) {
+function checkRateLimit(ip: string, limit = 20, windowMs = 60 * 1000): boolean {
+  const now = Date.now();
+  const record = rateLimitMap.get(ip);
+
+  if (!record || now > record.resetAt) {
+    rateLimitMap.set(ip, { count: 1, resetAt: now + windowMs });
+    return true;
+  }
+
+  if (record.count >= limit) {
+    return false;
+  }
+
+  record.count += 1;
+  return true;
+}
+
+export async function POST(request: Request) {
+  // Extract client IP for rate limiting
+  const forwardedFor = request.headers.get('x-forwarded-for');
+  const clientIp = forwardedFor ? forwardedFor.split(',')[0].trim() : '127.0.0.1';
+
+  if (!checkRateLimit(clientIp)) {
     return NextResponse.json(
-      { error: 'Gemini API key is not configured on the server.' },
-      { status: 500 }
+      { error: 'Boht zyada requests bheji gayi hain. Baraye meherbani 1 minute baad dobara koshish karein.' },
+      { status: 429 }
+    );
+  }
+
+  const dvm_apiKey = process.env.GEMINI_API_KEY;
+
+  if (!dvm_apiKey) {
+    return NextResponse.json(
+      { error: 'AI Tutor service is currently unavailable. API key not configured.' },
+      { status: 503 }
     );
   }
 
@@ -68,7 +99,7 @@ export async function POST(request: Request) {
     let lastError = '';
     for (const model of GEMINI_MODELS) {
       try {
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${dvm_apiKey}`;
         const response = await fetch(url, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -95,13 +126,12 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.json(
-      { error: lastError || 'Unable to generate response from Gemini AI. Please try again.' },
+      { error: 'Ustad AI is currently busy. Please try asking again in a moment.' },
       { status: 502 }
     );
-  } catch (err: unknown) {
-    const e = err as Error;
+  } catch {
     return NextResponse.json(
-      { error: e.message || 'Internal server error while processing AI request.' },
+      { error: 'An unexpected security or processing error occurred.' },
       { status: 500 }
     );
   }

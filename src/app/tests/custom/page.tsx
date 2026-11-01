@@ -168,13 +168,13 @@ function CustomQuizRunner() {
   if (showResult) {
     const percentage = Math.round((score / questions.length) * 100);
     return (
-      <div className={styles.container} style={{ minHeight: '90vh', paddingTop: '140px' }}>
-        <div style={{ maxWidth: '650px', margin: '0 auto', padding: '0 1.5rem' }}>
+      <div className={styles.container} style={{ minHeight: '90vh', paddingTop: 'clamp(80px, 12vh, 120px)' }}>
+        <div style={{ maxWidth: '650px', margin: '0 auto', padding: '0 1rem' }}>
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             className={`${styles.featureCard} glass`} 
-            style={{ textAlign: 'center', padding: '4rem 2rem' }}
+            style={{ textAlign: 'center', padding: 'clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 2rem)' }}
           >
             <div style={{ position: 'relative', width: '120px', height: '120px', margin: '0 auto 2rem' }}>
                 <svg viewBox="0 0 36 36" style={{ width: '100%', height: '100%' }}>
@@ -216,8 +216,8 @@ function CustomQuizRunner() {
   // Pre-test Intro view
   if (!started) {
     return (
-      <div className={styles.container} style={{ minHeight: '90vh', paddingTop: '140px' }}>
-        <div style={{ maxWidth: '750px', margin: '0 auto', padding: '0 1.5rem' }}>
+      <div className={styles.container} style={{ minHeight: '90vh', paddingTop: 'clamp(80px, 12vh, 120px)' }}>
+        <div style={{ maxWidth: '750px', margin: '0 auto', padding: '0 1rem' }}>
           <div style={{ marginBottom: '1.5rem' }}>
             <button 
               onClick={() => router.push('/tests')} 
@@ -250,7 +250,7 @@ function CustomQuizRunner() {
                 <Clock size={20} color="var(--accent)" /> 5 Minutes Limit
               </div>
               <div className={styles.stat} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', textTransform: 'capitalize' }}>
-                <Star size={18} color="#F59E0B" /> {level} Level
+                <Star size={18} color="#F3C322" /> {level} Level
               </div>
             </div>
 
@@ -271,14 +271,14 @@ function CustomQuizRunner() {
   const currentQuestion = questions[currentQuestionIndex];
 
   return (
-    <div className={styles.container} style={{ minHeight: '80vh', paddingTop: '90px' }}>
+    <div className={styles.container} style={{ minHeight: '80vh', paddingTop: 'clamp(75px, 10vh, 100px)' }}>
       <div style={{ maxWidth: '800px', margin: '0 auto', padding: '0 1rem' }}>
         <motion.div 
           key={currentQuestionIndex}
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           className={`${styles.featureCard} glass`} 
-          style={{ padding: '1.5rem 2rem' }}
+          style={{ padding: 'clamp(1rem, 3.5vw, 1.75rem)' }}
         >
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
             <div style={{ fontWeight: 800, fontSize: '0.8rem', color: 'var(--accent)' }}>
@@ -301,7 +301,7 @@ function CustomQuizRunner() {
             {currentQuestion?.questionText}
           </h3>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '0.75rem', marginBottom: '1.75rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '0.75rem', marginBottom: '1.75rem' }}>
             {currentQuestion?.options.map((option: string, idx: number) => {
               const isSelected = selectedAnswers[currentQuestionIndex] === idx;
               return (
@@ -315,7 +315,7 @@ function CustomQuizRunner() {
                     padding: '0.8rem 1.2rem',
                     borderRadius: '12px',
                     border: isSelected ? '2px solid var(--accent)' : '1px solid var(--card-border)',
-                    background: isSelected ? 'rgba(124, 92, 255, 0.05)' : '#FFFFFF',
+                    background: isSelected ? 'rgba(245, 158, 11, 0.08)' : '#FFFFFF',
                     fontSize: '0.95rem',
                     display: 'flex',
                     justifyContent: 'space-between',

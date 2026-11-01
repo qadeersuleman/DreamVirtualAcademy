@@ -46,6 +46,7 @@ id_rsa.pub
 credentials.json
 serviceAccountKey*.json
 supabase-keys.json
+scratch/
 
 # vercel
 .vercel

@@ -10,7 +10,7 @@ import { dvaAlert, dvaToast } from '@/components/DvaToast';
 import styles from './page.module.css';
 
 export default function ForgotPasswordPage() {
-  const [email, setEmail] = useState('');
+  const [dvm_email, setDvmEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -26,18 +26,18 @@ export default function ForgotPasswordPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email) return;
+    if (!dvm_email) return;
 
     setLoading(true);
     setErrorMessage(null);
 
     try {
-      const dva_email = email.trim().toLowerCase();
+      const clean_dvm_email = dvm_email.trim().toLowerCase().replace(/[<>]/g, '');
       const redirectUrl = typeof window !== 'undefined'
         ? `${window.location.origin}/auth/callback?next=/reset-password`
         : 'https://www.dreamsacademy.online/reset-password';
 
-      const { error } = await supabase.auth.resetPasswordForEmail(dva_email, {
+      const { error } = await supabase.auth.resetPasswordForEmail(clean_dvm_email, {
         redirectTo: redirectUrl,
       });
 
@@ -46,7 +46,7 @@ export default function ForgotPasswordPage() {
       dvaToast.success('Password reset link bhej diya gaya hai!');
       dvaAlert.fire({
         title: 'Check Your Email ✉️',
-        text: `Humne ${dva_email} par password reset instructions bhej di hain. Apne inbox aur spam folder ko check karein.`,
+        text: `Humne ${clean_dvm_email} par password reset instructions bhej di hain. Apne inbox aur spam folder ko check karein.`,
         icon: 'info',
         confirmButtonText: 'Theek Hai',
       });
@@ -64,12 +64,13 @@ export default function ForgotPasswordPage() {
   };
 
   const handleResend = async () => {
-    if (resendTimer > 0 || !email) return;
+    if (resendTimer > 0 || !dvm_email) return;
     setLoading(true);
     setErrorMessage(null);
     try {
+      const clean_dvm_email = dvm_email.trim().toLowerCase().replace(/[<>]/g, '');
       const redirectUrl = `${window.location.origin}/auth/callback?next=/reset-password`;
-      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      const { error } = await supabase.auth.resetPasswordForEmail(clean_dvm_email, {
         redirectTo: redirectUrl,
       });
       if (error) throw error;
@@ -183,7 +184,7 @@ export default function ForgotPasswordPage() {
               </div>
               <h3>Check Your Email</h3>
               <p>
-                We have sent a password reset link to <strong>{email}</strong>. Please check your inbox (and Spam/Junk folder) and follow the instructions to choose a new password.
+                We have sent a password reset link to <strong>{dvm_email}</strong>. Please check your inbox (and Spam/Junk folder) and follow the instructions to choose a new password.
               </p>
 
               <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem', flexWrap: 'wrap' }}>
@@ -193,8 +194,9 @@ export default function ForgotPasswordPage() {
                   disabled={resendTimer > 0 || loading}
                   className={styles.submitBtn}
                   style={{
-                    background: resendTimer > 0 ? '#E2E8F0' : 'var(--accent, #7C5CFF)',
-                    color: resendTimer > 0 ? '#64748B' : 'white',
+                    background: resendTimer > 0 ? '#E2E8F0' : 'var(--accent, #F3C322)',
+                    color: resendTimer > 0 ? '#64748B' : '#0F172A',
+                    fontWeight: 700,
                     padding: '10px 20px',
                     fontSize: '0.9rem',
                     boxShadow: resendTimer > 0 ? 'none' : undefined
@@ -223,8 +225,8 @@ export default function ForgotPasswordPage() {
                     type="email" 
                     className={styles.input}
                     placeholder="student@example.com"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    value={dvm_email}
+                    onChange={(e) => setDvmEmail(e.target.value)}
                     required
                     autoFocus
                   />

@@ -30,7 +30,7 @@
 .blob2 {
   width: 500px;
   height: 500px;
-  background: #7C5CFF;
+  background: #F3C322;
   bottom: -150px;
   right: -150px;
   animation: float 22s infinite alternate-reverse;
@@ -211,22 +211,22 @@
 
 .input:focus {
   outline: none;
-  border-color: var(--accent, #7C5CFF);
+  border-color: var(--accent, #F3C322);
   background: white;
-  box-shadow: 0 0 0 4px rgba(124, 92, 255, 0.15), 0 8px 20px rgba(0,0,0,0.04);
+  box-shadow: 0 0 0 4px rgba(243, 195, 34, 0.2), 0 8px 20px rgba(0,0,0,0.04);
 }
 
 .submitBtn {
   width: 100%;
   padding: 15px;
-  background: linear-gradient(135deg, #7C5CFF 0%, #6842FF 100%);
-  color: white;
+  background: linear-gradient(135deg, #F3C322 0%, #E2AE08 100%);
+  color: #0F172A;
   border: none;
   border-radius: 16px;
   font-size: 1.05rem;
-  font-weight: 700;
+  font-weight: 800;
   cursor: pointer;
-  box-shadow: 0 10px 25px rgba(124, 92, 255, 0.35);
+  box-shadow: 0 10px 25px rgba(243, 195, 34, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -239,7 +239,8 @@
 
 .submitBtn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 14px 30px rgba(124, 92, 255, 0.45);
+  background: linear-gradient(135deg, #E2AE08 0%, #D4A30B 100%);
+  box-shadow: 0 14px 30px rgba(243, 195, 34, 0.55);
 }
 
 .submitBtn:disabled {
@@ -276,7 +277,7 @@
 }
 
 .backToLogin:hover {
-  color: var(--accent, #7C5CFF);
+  color: var(--accent, #D4A30B);
   transform: translateX(-3px);
 }
 

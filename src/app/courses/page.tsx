@@ -194,10 +194,10 @@ const SINDH_DISTRICTS = [
 
 export default function CoursesPage() {
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
-  const [dva_name, setDvaName] = useState('');
-  const [dva_phone, setDvaPhone] = useState('');
-  const [dva_age, setDvaAge] = useState('');
-  const [dva_district, setDvaDistrict] = useState(SINDH_DISTRICTS[0]);
+  const [dvm_name, setDvmName] = useState('');
+  const [dvm_phone, setDvmPhone] = useState('');
+  const [dvm_age, setDvmAge] = useState('');
+  const [dvm_district, setDvmDistrict] = useState(SINDH_DISTRICTS[0]);
 
   const handleOpenEnrollment = (course: Course) => {
     setSelectedCourse(course);
@@ -211,23 +211,23 @@ export default function CoursesPage() {
     e.preventDefault();
     if (!selectedCourse) return;
 
-    // Standardized DVA parameters with strict input sanitization
-    const clean_name = dva_name.trim().replace(/[<>]/g, '');
-    const clean_phone = dva_phone.trim().replace(/[^\d+-\s]/g, '');
-    const clean_age = dva_age.trim().replace(/[^\d]/g, '');
-    const clean_district = dva_district.replace(/[<>]/g, '');
-    const dva_price = selectedCourse.fee;
-    const dva_course_title = selectedCourse.title;
+    // Standardized DVM parameters with strict input sanitization
+    const clean_dvm_name = dvm_name.trim().replace(/[<>]/g, '');
+    const clean_dvm_phone = dvm_phone.trim().replace(/[^\d+-\s]/g, '');
+    const clean_dvm_age = dvm_age.trim().replace(/[^\d]/g, '');
+    const clean_dvm_district = dvm_district.replace(/[<>]/g, '');
+    const dvm_price = selectedCourse.fee;
+    const dvm_course_title = selectedCourse.title;
 
     const message = `*Dreams Virtual Academy - New Admission Request*
 ---------------------------------------
-• Student Name (dva_name): ${clean_name || 'Not specified'}
-• Age / Class (dva_age): ${clean_age ? `${clean_age} Years` : 'Not specified'}
-• WhatsApp Number (dva_phone): ${clean_phone || 'Not specified'}
-• District / City (dva_district): ${clean_district}
-• Selected Course: ${dva_course_title}
+• Student Name (dvm_name): ${clean_dvm_name || 'Not specified'}
+• Age / Class (dvm_age): ${clean_dvm_age ? `${clean_dvm_age} Years` : 'Not specified'}
+• WhatsApp Number (dvm_phone): ${clean_dvm_phone || 'Not specified'}
+• District / City (dvm_district): ${clean_dvm_district}
+• Selected Course: ${dvm_course_title}
 • Instructor: ${selectedCourse.instructor.name}
-• Course Fee (dva_price): ${dva_price} (${selectedCourse.duration})
+• Course Fee (dvm_price): ${dvm_price} (${selectedCourse.duration})
 ---------------------------------------
 Salam Sir! I want to join this batch. I am sending my EasyPaisa / JazzCash payment screenshot for confirmation.`;
 
@@ -236,13 +236,13 @@ Salam Sir! I want to join this batch. I am sending my EasyPaisa / JazzCash payme
     // Save admission attempt backup to Supabase course_enrollments
     try {
       supabase.from('course_enrollments').insert({
-        dva_name: clean_name || 'Anonymous Student',
-        dva_phone: clean_phone || 'Not provided',
-        dva_age: clean_age || null,
-        dva_district: clean_district,
+        dva_name: clean_dvm_name || 'Anonymous Student',
+        dva_phone: clean_dvm_phone || 'Not provided',
+        dva_age: clean_dvm_age || null,
+        dva_district: clean_dvm_district,
         dva_course_id: selectedCourse.id,
-        dva_course_title: dva_course_title,
-        dva_price: dva_price,
+        dva_course_title: dvm_course_title,
+        dva_price: dvm_price,
         payment_method: 'EasyPaisa / JazzCash',
         status: 'pending',
       }).then(() => {});
@@ -253,7 +253,7 @@ Salam Sir! I want to join this batch. I am sending my EasyPaisa / JazzCash payme
     dvaToast.success('Admission request generated successfully!');
     dvaAlert.fire({
       title: 'Admission Request Ready! 🎉',
-      text: `Salam ${clean_name || 'Student'}! Aapka admission details tayyar hai. "Send on WhatsApp" dabayein aur fees screenshot send karein.`,
+      text: `Salam ${clean_dvm_name || 'Student'}! Aapka admission details tayyar hai. "Send on WhatsApp" dabayein aur fees screenshot send karein.`,
       icon: 'success',
       confirmButtonText: 'Send on WhatsApp',
       showCancelButton: true,
@@ -352,7 +352,7 @@ Salam Sir! I want to join this batch. I am sending my EasyPaisa / JazzCash payme
                     <span
                       className={styles.categoryBadge}
                       style={{
-                        background: course.isFeatured ? 'rgba(124, 92, 255, 0.15)' : '#EEE',
+                        background: course.isFeatured ? 'rgba(243, 195, 34, 0.2)' : '#EEE',
                         color: course.isFeatured ? 'var(--accent)' : 'var(--text-dark)',
                       }}
                     >
@@ -471,7 +471,7 @@ Salam Sir! I want to join this batch. I am sending my EasyPaisa / JazzCash payme
                     fontSize: '0.8rem',
                     fontWeight: 700,
                     color: 'var(--accent)',
-                    background: 'rgba(124, 92, 255, 0.08)',
+                    background: 'rgba(243, 195, 34, 0.16)',
                     padding: '0.2rem 0.6rem',
                     borderRadius: '99px',
                     display: 'inline-block',
@@ -553,8 +553,8 @@ Salam Sir! I want to join this batch. I am sending my EasyPaisa / JazzCash payme
                     type="text"
                     required
                     placeholder="e.g. Asad Ali / زاهد حسين"
-                    value={dva_name}
-                    onChange={(e) => setDvaName(e.target.value)}
+                    value={dvm_name}
+                    onChange={(e) => setDvmName(e.target.value)}
                     className={styles.formInput}
                   />
                 </div>
@@ -564,8 +564,8 @@ Salam Sir! I want to join this batch. I am sending my EasyPaisa / JazzCash payme
                   <input
                     type="text"
                     placeholder="e.g. 18 / Class 10th / Graduate"
-                    value={dva_age}
-                    onChange={(e) => setDvaAge(e.target.value)}
+                    value={dvm_age}
+                    onChange={(e) => setDvmAge(e.target.value)}
                     className={styles.formInput}
                   />
                 </div>
@@ -576,8 +576,8 @@ Salam Sir! I want to join this batch. I am sending my EasyPaisa / JazzCash payme
                     type="tel"
                     required
                     placeholder="0300-1234567"
-                    value={dva_phone}
-                    onChange={(e) => setDvaPhone(e.target.value)}
+                    value={dvm_phone}
+                    onChange={(e) => setDvmPhone(e.target.value)}
                     className={styles.formInput}
                   />
                 </div>
@@ -585,8 +585,8 @@ Salam Sir! I want to join this batch. I am sending my EasyPaisa / JazzCash payme
                 <div className={styles.formGroup}>
                   <label className={styles.formLabel}>City / District (ضلعو يا شهر)</label>
                   <select
-                    value={dva_district}
-                    onChange={(e) => setDvaDistrict(e.target.value)}
+                    value={dvm_district}
+                    onChange={(e) => setDvmDistrict(e.target.value)}
                     className={styles.formInput}
                   >
                     {SINDH_DISTRICTS.map((dist) => (

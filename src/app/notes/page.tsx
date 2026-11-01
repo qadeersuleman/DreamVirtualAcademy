@@ -250,7 +250,7 @@ const CATEGORIES = [
 ];
 
 const CATEGORY_COLORS: Record<string, string> = {
-  All: '#7C5CFF',
+  All: '#F3C322',
   'Class 10th Biology': '#0284C7',
   'Visual Diagrams': '#3DBE7A',
   'STS / JST Prep': '#F4C47F',
@@ -440,9 +440,9 @@ export default function NotesPage() {
                     <span
                       className={styles.categoryTag}
                       style={{
-                        background: (CATEGORY_COLORS[note.category] || '#7C5CFF') + '1A',
-                        color: CATEGORY_COLORS[note.category] || '#7C5CFF',
-                        border: `1px solid ${(CATEGORY_COLORS[note.category] || '#7C5CFF')}33`,
+                        background: (CATEGORY_COLORS[note.category] || '#F3C322') + '1A',
+                        color: CATEGORY_COLORS[note.category] || '#D4A30B',
+                        border: `1px solid ${(CATEGORY_COLORS[note.category] || '#F3C322')}33`,
                       }}
                     >
                       {note.category}

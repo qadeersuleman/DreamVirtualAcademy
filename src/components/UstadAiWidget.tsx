@@ -286,7 +286,7 @@ export default function UstadAiWidget() {
                 <div>
                   <h3 className={styles.headerTitle}>
                     Ustad AI
-                    <span style={{ fontSize: '0.7rem', background: 'var(--accent, #7C5CFF)', color: '#FFFFFF', padding: '2px 7px', borderRadius: '4px', fontWeight: 800 }}>
+                    <span style={{ fontSize: '0.7rem', background: '#F3C322', color: '#0F172A', padding: '2px 7px', borderRadius: '4px', fontWeight: 800 }}>
                       GEMINI PRO
                     </span>
                   </h3>
@@ -317,7 +317,7 @@ export default function UstadAiWidget() {
               {messages.length === 1 && (
                 <div className={styles.welcomeCard}>
                   <h4>
-                    <BookOpen size={16} style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '5px', color: 'var(--accent, #7C5CFF)' }} />
+                    <BookOpen size={16} style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '5px', color: 'var(--accent, #F3C322)' }} />
                     Quick Science & Test Questions
                   </h4>
                   <p>Click any topic below to ask Ustad AI in Sindhi & English:</p>

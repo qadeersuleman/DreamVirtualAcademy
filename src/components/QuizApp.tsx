@@ -232,7 +232,7 @@ export default function QuizApp({ user }: QuizAppProps) {
                 padding: '1.2rem 1.5rem',
                 borderRadius: '16px',
                 border: isSelected ? '2px solid var(--accent)' : '1px solid var(--card-border)',
-                background: isSelected ? 'rgba(124, 92, 255, 0.05)' : '#FFFFFF',
+                background: isSelected ? 'rgba(245, 158, 11, 0.08)' : '#FFFFFF',
                 fontSize: '1.1rem',
                 display: 'flex',
                 justifyContent: 'space-between',

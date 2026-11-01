@@ -53,7 +53,7 @@ export default function MockTestsPage() {
         </header>
 
         {/* Dynamic Generator Section */}
-        <section className={`${styles.filters} glass`} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr auto', alignItems: 'end', gap: '1.5rem', margin: '2rem auto 4rem', maxWidth: '1000px', padding: '2rem' }}>
+        <section className={`${styles.filters} glass`}>
           <div className={styles.filterGroup}>
              <label style={{ display: 'block', fontWeight: 'bold', fontSize: '0.8rem', color: 'var(--accent)', marginBottom: '0.5rem', textTransform: 'uppercase' }}>Subject</label>
              <select 
@@ -101,7 +101,6 @@ export default function MockTestsPage() {
           <button 
             onClick={handleStartCustomTest}
             className={styles.filterBtn}
-            style={{ padding: '0.9rem 2rem', background: 'var(--accent)', color: 'white', border: 'none', borderRadius: '12px', fontWeight: 'bold', cursor: 'pointer', fontSize: '1rem', transition: 'all 0.3s' }}
           >
             Start Custom Test
           </button>
@@ -109,7 +108,7 @@ export default function MockTestsPage() {
 
         {/* Featured Quick Start Cards */}
         <h2 style={{ textAlign: 'center', marginBottom: '2rem', fontSize: '2rem' }}>Featured Science & Math Tests</h2>
-        <div className={styles.testGrid} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '2rem' }}>
+        <div className={styles.testGrid}>
           {featuredTests.map((test, idx) => (
             <motion.div 
               key={test.id} 
@@ -119,11 +118,11 @@ export default function MockTestsPage() {
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1, duration: 0.5 }}
               whileHover={{ y: -8, scale: 1.02 }}
-              style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '2rem', background: 'white', borderRadius: '24px', border: '1px solid var(--card-border)' }}
+              style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', background: 'white', borderRadius: '24px', border: '1px solid var(--card-border)' }}
             >
               <div>
                 <div className={styles.cardHeader} style={{ marginBottom: '1.5rem' }}>
-                   <span className={styles.catBadge} style={{ background: 'rgba(124, 92, 255, 0.1)', color: 'var(--accent)', padding: '0.4rem 1rem', borderRadius: '99px', fontSize: '0.75rem', fontWeight: 800 }}>{test.type}</span>
+                   <span className={styles.catBadge} style={{ background: 'rgba(243, 195, 34, 0.16)', color: 'var(--accent)', padding: '0.4rem 1rem', borderRadius: '99px', fontSize: '0.75rem', fontWeight: 800 }}>{test.type}</span>
                    <h3 style={{ fontSize: '1.4rem', marginTop: '1rem', color: 'var(--text-dark)' }}>{test.title}</h3>
                 </div>
                 

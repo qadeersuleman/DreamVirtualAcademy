@@ -105,7 +105,7 @@
 }
 
 .badge {
-  background: rgba(124, 92, 255, 0.1);
+  background: rgba(243, 195, 34, 0.16);
   color: var(--accent);
   padding: 0.3rem 0.75rem;
   border-radius: 999px;
@@ -238,13 +238,14 @@
 
 .primary {
   background: var(--accent);
-  color: white;
-  box-shadow: 0 4px 15px rgba(124, 92, 255, 0.3);
+  color: #0F172A;
+  font-weight: 800;
+  box-shadow: 0 4px 15px rgba(243, 195, 34, 0.35);
 }
 
 .primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(124, 92, 255, 0.4);
+  box-shadow: 0 8px 20px rgba(243, 195, 34, 0.5);
 }
 
 .arrow {

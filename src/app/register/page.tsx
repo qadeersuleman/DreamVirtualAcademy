@@ -16,9 +16,9 @@ import styles from './page.module.css';
  */
 export default function RegisterPage() {
   const router = useRouter();
-  const [fullName, setFullName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [dvm_name, setDvmName] = useState('');
+  const [dvm_email, setDvmEmail] = useState('');
+  const [dvm_password, setDvmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<{ type: 'error' | 'success'; text: string } | null>(null);
@@ -36,17 +36,22 @@ export default function RegisterPage() {
     setMessage(null);
 
     try {
-      const dva_name = fullName.trim();
-      const dva_email = email.trim().toLowerCase();
-      const dva_password = password;
+      const clean_dvm_name = dvm_name.trim().replace(/[<>]/g, '');
+      const clean_dvm_email = dvm_email.trim().toLowerCase();
+      const clean_dvm_password = dvm_password;
+
+      if (clean_dvm_password.length < 6) {
+        throw new Error('Password must be at least 6 characters long.');
+      }
 
       const { data, error } = await supabase.auth.signUp({
-        email: dva_email,
-        password: dva_password,
+        email: clean_dvm_email,
+        password: clean_dvm_password,
         options: {
           data: {
-            dva_name,
-            full_name: dva_name,
+            dvm_name: clean_dvm_name,
+            dva_name: clean_dvm_name,
+            full_name: clean_dvm_name,
           }
         }
       });
@@ -191,8 +196,8 @@ export default function RegisterPage() {
                   type="text" 
                   className={styles.input}
                   placeholder="John Doe"
-                  value={fullName}
-                  onChange={(e) => setFullName(e.target.value)}
+                  value={dvm_name}
+                  onChange={(e) => setDvmName(e.target.value)}
                   required
                 />
               </div>
@@ -206,8 +211,8 @@ export default function RegisterPage() {
                   type="email" 
                   className={styles.input}
                   placeholder="name@example.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={dvm_email}
+                  onChange={(e) => setDvmEmail(e.target.value)}
                   required
                 />
               </div>
@@ -221,8 +226,8 @@ export default function RegisterPage() {
                   type={showPassword ? "text" : "password"} 
                   className={styles.input}
                   placeholder="••••••••"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  value={dvm_password}
+                  onChange={(e) => setDvmPassword(e.target.value)}
                   required
                 />
                 <button 

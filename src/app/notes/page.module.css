@@ -14,14 +14,14 @@
 
 .header {
   text-align: center;
-  padding: 8.5rem 1rem 2.5rem;
+  padding: 7rem 1rem 2rem;
 }
 
 .badge {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(124, 92, 255, 0.12);
+  background: rgba(243, 195, 34, 0.16);
   color: var(--accent);
   padding: 0.4rem 1.2rem;
   border-radius: 99px;
@@ -74,7 +74,7 @@
 
 .searchBox:focus-within {
   border-color: var(--accent);
-  box-shadow: 0 10px 30px rgba(124, 92, 255, 0.15);
+  box-shadow: 0 10px 30px rgba(243, 195, 34, 0.22);
 }
 
 .searchIcon {
@@ -141,9 +141,10 @@
 
 .filterBtnActive {
   background: var(--accent) !important;
-  color: white !important;
+  color: #0F172A !important;
+  font-weight: 800 !important;
   border-color: var(--accent) !important;
-  box-shadow: 0 4px 14px rgba(124, 92, 255, 0.3);
+  box-shadow: 0 4px 14px rgba(243, 195, 34, 0.4);
 }
 
 .countBadge {
@@ -161,7 +162,7 @@
 /* Grid of Notes */
 .notesGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.75rem;
   margin-top: 1.5rem;
 }
@@ -182,8 +183,8 @@
 
 .noteCard:hover {
   transform: translateY(-8px) scale(1.015);
-  box-shadow: 0 20px 40px -10px rgba(124, 92, 255, 0.18);
-  border-color: rgba(124, 92, 255, 0.45);
+  box-shadow: 0 20px 40px -10px rgba(243, 195, 34, 0.25);
+  border-color: rgba(243, 195, 34, 0.5);
 }
 
 .cardTop {

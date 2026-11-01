@@ -286,8 +286,8 @@ const getCategoryIcon = (cat: string, size = 16) => {
 };
 
 const CATEGORY_COLORS: Record<string, string> = {
-  All: '#7C5CFF',
-  Pedagogy: '#7C5CFF',
+  All: '#F3C322',
+  Pedagogy: '#D4A30B',
   Biology: '#3DBE7A',
   Physics: '#FF8C42',
   Chemistry: '#FF6B9D',

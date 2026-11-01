@@ -35,11 +35,11 @@ export default function ProgressPage() {
   }, []);
 
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--background)', padding: '9rem 1.5rem 4rem' }}>
+    <div style={{ minHeight: '100vh', background: 'var(--background)', padding: 'clamp(80px, 12vh, 120px) 1rem 3rem' }}>
       <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
         <span
           style={{
-            background: 'rgba(124, 92, 255, 0.12)',
+            background: 'rgba(243, 195, 34, 0.16)',
             color: 'var(--accent)',
             padding: '0.4rem 1.2rem',
             borderRadius: '99px',
@@ -54,7 +54,7 @@ export default function ProgressPage() {
           <BarChart3 size={15} />
           ACADEMIC PERFORMANCE & TRACKER
         </span>
-        <h1 style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--text-dark)', marginBottom: '0.5rem' }}>
+        <h1 style={{ fontSize: 'clamp(1.75rem, 5vw, 2.5rem)', fontWeight: 800, color: 'var(--text-dark)', marginBottom: '0.5rem' }}>
           Student Progress Center
         </h1>
         <p style={{ fontFamily: 'var(--font-sindhi), "Noto Sans Arabic"', fontSize: '1.4rem', color: 'var(--accent)', direction: 'rtl', textAlign: 'center', margin: '0.6rem auto 1.25rem', maxWidth: '800px', display: 'block' }}>
@@ -71,7 +71,7 @@ export default function ProgressPage() {
             style={{
               background: 'white',
               borderRadius: '20px',
-              padding: '2.5rem',
+              padding: 'clamp(1.25rem, 4vw, 2.5rem)',
               border: '1px solid var(--card-border)',
               boxShadow: '0 8px 30px rgba(74, 59, 47, 0.05)',
               textAlign: 'left',
@@ -99,7 +99,7 @@ export default function ProgressPage() {
                 </h4>
                 <p style={{ fontSize: '0.8rem', color: 'var(--text-light)' }}>Study Streak</p>
               </div>
-              <div style={{ background: 'rgba(124, 92, 255, 0.08)', padding: '1.25rem', borderRadius: '14px', border: '1px solid rgba(124, 92, 255, 0.2)' }}>
+              <div style={{ background: 'rgba(243, 195, 34, 0.12)', padding: '1.25rem', borderRadius: '14px', border: '1px solid rgba(243, 195, 34, 0.25)' }}>
                 <FileQuestion size={28} color="var(--accent)" />
                 <h4 style={{ fontSize: '1.4rem', margin: '0.3rem 0 0.1rem', color: 'var(--accent)' }}>
                   {testCount} Completed

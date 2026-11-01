@@ -83,7 +83,7 @@ export default function Footer() {
           <div className={styles.brandCol}>
             <Link href="/" className={styles.brandLogoWrap}>
               <img
-                src="/images/logo-title-light.png"
+                src="/images/logo-title-dark.png"
                 alt="Dreams Virtual Academy"
                 className={styles.brandLogoImg}
               />

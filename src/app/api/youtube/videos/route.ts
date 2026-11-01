@@ -77,7 +77,7 @@ function buildTags(title: string, description: string, category: string) {
   return Array.from(tags).slice(0, 5);
 }
 
-async function getUploadsPlaylistId(apiKey: string) {
+async function getUploadsPlaylistId(dvm_apiKey: string) {
   if (process.env.YOUTUBE_UPLOADS_PLAYLIST_ID) {
     return process.env.YOUTUBE_UPLOADS_PLAYLIST_ID;
   }
@@ -91,7 +91,7 @@ async function getUploadsPlaylistId(apiKey: string) {
   const params = new URLSearchParams({
     part: 'contentDetails',
     id: channelId,
-    key: apiKey,
+    key: dvm_apiKey,
   });
 
   const response = await fetch(`https://www.googleapis.com/youtube/v3/channels?${params}`);
@@ -106,9 +106,9 @@ async function getUploadsPlaylistId(apiKey: string) {
 }
 
 export async function GET() {
-  const apiKey = process.env.YOUTUBE_API_KEY;
+  const dvm_apiKey = process.env.YOUTUBE_API_KEY;
 
-  if (!apiKey) {
+  if (!dvm_apiKey) {
     return NextResponse.json(
       { videos: [], error: 'YOUTUBE_API_KEY is not configured.' },
       { status: 200 }
@@ -116,7 +116,7 @@ export async function GET() {
   }
 
   try {
-    const playlistId = await getUploadsPlaylistId(apiKey);
+    const playlistId = await getUploadsPlaylistId(dvm_apiKey);
 
     if (!playlistId) {
       return NextResponse.json(
@@ -133,7 +133,7 @@ export async function GET() {
         part: 'snippet',
         playlistId,
         maxResults: '50',
-        key: apiKey,
+        key: dvm_apiKey,
       });
 
       if (pageToken) {

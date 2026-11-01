@@ -1,27 +1,30 @@
 /**
- * Color palette inspired by the Dreams Virtual Academy logo.
+ * Color palette inspired by the Dreams Virtual Academy (DVA) Black & Yellow Logo.
+ * Logo Primary Yellow extracted directly from the emblem & tassel: #F3C322 (rgb(243, 195, 34))
  */
 export const Colors = {
-  // Primary brand colors
-  primary: "#F4C47F",     // Warm soft peach
-  primaryDark: "#D9A461", // Slightly deeper peach tone
+  // Primary brand Yellow colors (from the 'D' emblem and graduation tassel)
+  primary: "#F3C322",     // Exact Logo Primary Yellow
+  primaryDark: "#D4A30B", // Deep Golden Yellow
+  primaryLight: "#FEF08A",// Soft Pale Yellow
 
-  // Text colors
-  textDark: "#4A3B2F",    // Dark brown (for titles)
-  textLight: "#7A6A5C",   // Muted brown (for paragraphs)
+  // High-contrast Obsidian & Black text (from the graduation cap and logo typography)
+  textDark: "#0F172A",    // Deep Obsidian Slate (headings & titles)
+  textLight: "#475569",   // Crisp Muted Slate (paragraphs & subtext)
 
-  // Background shades
-  background: "#FFF7ED",  // Very light cream
-  cardBackground: "#FFE8C7",
+  // Clean, high-end educational background shades
+  background: "#F8FAFC",  // Crisp Off-White / Ivory
+  cardBackground: "#FFFFFF", // Pure Card White
 
   // Accent colors
-  accent: "#7C5CFF",      // Modern purple (buttons/links)
-  accentLight: "#A892FF",
+  accent: "#D4A30B",      // Deep Academic Yellow
+  accentLight: "#F3C322", // Bright Logo Yellow
+  accentDark: "#A17A05",
 
   // Feedback colors
-  success: "#3DBE7A",
-  warning: "#FFB020",
-  error: "#FF6B6B",
+  success: "#10B981",     // Emerald Green
+  warning: "#F3C322",     // Logo Yellow
+  error: "#EF4444",       // Coral Red
 };
 
 export default Colors;

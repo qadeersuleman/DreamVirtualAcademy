@@ -86,23 +86,23 @@
 
 .select:focus {
   border-color: var(--accent);
-  box-shadow: 0 0 0 4px rgba(124, 92, 255, 0.18), 0 8px 24px rgba(0,0,0,0.06);
+  box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.18), 0 8px 24px rgba(0,0,0,0.06);
 }
 
 .filterBtn {
   padding: 1rem 2rem;
-  background: linear-gradient(135deg, #7C5CFF 0%, #6842FF 100%);
-  color: white;
+  background: linear-gradient(135deg, #F3C322 0%, #E2AE08 100%);
+  color: #0F172A;
   border-radius: 14px;
-  font-weight: 700;
+  font-weight: 800;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 16px rgba(124, 92, 255, 0.3);
+  box-shadow: 0 4px 16px rgba(243, 195, 34, 0.4);
 }
 
 .filterBtn:hover {
-  background: linear-gradient(135deg, #6842FF 0%, #522ee6 100%);
+  background: linear-gradient(135deg, #E2AE08 0%, #D4A30B 100%);
   transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 8px 25px rgba(124, 92, 255, 0.45);
+  box-shadow: 0 8px 25px rgba(243, 195, 34, 0.55);
 }
 
 /* Test Grid and Cards */
@@ -123,7 +123,7 @@
 .testCard:hover {
   transform: translateY(-10px) scale(1.02);
   background: white;
-  box-shadow: 0 24px 50px -10px rgba(124, 92, 255, 0.2);
+  box-shadow: 0 24px 50px -10px rgba(245, 158, 11, 0.15);
   border-color: var(--accent);
 }
 
@@ -209,13 +209,13 @@
   text-align: center;
   border-radius: 16px;
   font-weight: 800;
-  box-shadow: 0 4px 12px rgba(124, 92, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.25);
   transition: all 0.3s ease;
 }
 
 .startBtn:hover {
   background: var(--accent-light);
-  box-shadow: 0 8px 24px rgba(124, 92, 255, 0.4);
+  box-shadow: 0 8px 24px rgba(245, 158, 11, 0.4);
 }
 
 /* Responsive */
@@ -224,8 +224,38 @@
 }
 
 @media (max-width: 768px) {
-  .testGrid { grid-template-columns: 1fr; }
-  .filters { flex-direction: column; align-items: stretch; padding: 2rem; }
-  .filterBtn { width: 100%; }
-  .headerText h1 { font-size: 2.25rem; }
+  .container {
+    padding-top: 75px;
+  }
+  .content {
+    padding: 1.5rem 1rem 3rem;
+  }
+  .header {
+    margin-bottom: 2rem;
+  }
+  .headerText h1 { 
+    font-size: clamp(1.75rem, 5vw, 2.25rem); 
+  }
+  .testGrid { 
+    grid-template-columns: 1fr; 
+    gap: 1.5rem;
+  }
+  .testCard {
+    padding: 1.5rem;
+    gap: 1.25rem;
+  }
+  .filters { 
+    flex-direction: column; 
+    align-items: stretch; 
+    padding: 1.25rem; 
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+  .filterGroup {
+    min-width: 100%;
+  }
+  .filterBtn { 
+    width: 100%; 
+    padding: 0.9rem;
+  }
 }

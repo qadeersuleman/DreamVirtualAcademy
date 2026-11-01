@@ -11,12 +11,12 @@
   width: 100%;
   height: 100%;
   z-index: -1;
-  background-color: #FFF7ED;
+  background-color: #F8FAFC;
   background-image: 
-    radial-gradient(at 0% 0%, rgba(244, 196, 127, 0.2) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(124, 92, 255, 0.1) 0px, transparent 50%),
-    radial-gradient(at 100% 100%, rgba(244, 196, 127, 0.2) 0px, transparent 50%),
-    radial-gradient(at 0% 100%, rgba(124, 92, 255, 0.1) 0px, transparent 50%);
+    radial-gradient(at 0% 0%, rgba(243, 195, 34, 0.16) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(15, 23, 42, 0.05) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(243, 195, 34, 0.12) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(15, 23, 42, 0.04) 0px, transparent 50%);
 }
 
 /* Hero Section */
@@ -78,12 +78,12 @@
 
 .chipTopLeft {
   top: 8%;
-  left: -20px;
+  left: 0px;
 }
 
 .chipBottomRight {
   bottom: 8%;
-  right: -25px;
+  right: 0px;
 }
 
 .illustration {
@@ -132,12 +132,12 @@
 
 .primaryBtn {
   padding: 1rem 2.5rem;
-  background: linear-gradient(135deg, #7C5CFF 0%, #6842FF 100%);
-  color: white;
+  background: linear-gradient(135deg, #F3C322 0%, #E2AE08 100%);
+  color: #0F172A;
   border-radius: 14px;
-  font-weight: 700;
+  font-weight: 800;
   font-size: 1.125rem;
-  box-shadow: 0 6px 20px rgba(124, 92, 255, 0.35);
+  box-shadow: 0 6px 20px rgba(243, 195, 34, 0.4);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
   overflow: hidden;
@@ -145,7 +145,7 @@
 
 .primaryBtn:hover {
   transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 12px 30px rgba(124, 92, 255, 0.5);
+  box-shadow: 0 12px 30px rgba(243, 195, 34, 0.55);
 }
 
 .primaryBtn:active {
@@ -170,7 +170,7 @@
   border-color: var(--accent);
   color: var(--accent);
   transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 10px 25px rgba(124, 92, 255, 0.15);
+  box-shadow: 0 10px 25px rgba(245, 158, 11, 0.18);
 }
 
 .secondaryBtn:active {
@@ -201,7 +201,7 @@
 .searchBar:focus-within {
   transform: translateY(-3px) scale(1.01);
   border-color: var(--accent);
-  box-shadow: 0 16px 45px rgba(124, 92, 255, 0.18), 0 0 0 4px rgba(124, 92, 255, 0.12);
+  box-shadow: 0 16px 45px rgba(245, 158, 11, 0.2), 0 0 0 4px rgba(245, 158, 11, 0.12);
 }
 
 .searchIcon {
@@ -455,7 +455,7 @@
 .playBtnBadge {
   width: 48px;
   height: 48px;
-  background: rgba(245, 158, 11, 0.95);
+  background: rgba(243, 195, 34, 0.95);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -467,7 +467,7 @@
 
 .playlistCard:hover .playBtnBadge {
   transform: scale(1.15);
-  background: #d97706;
+  background: #E2AE08;
 }
 
 .videoDurationBadge {
@@ -593,7 +593,7 @@
     text-align: center;
   }
   .heroText .subtitle {
-    margin: 0 auto 3rem;
+    margin: 0 auto 2.5rem;
   }
   .ctaGroup {
     justify-content: center;
@@ -607,36 +607,134 @@
 }
 
 @media (max-width: 768px) {
+  .hero {
+    min-height: auto;
+    padding-top: 85px;
+    padding-bottom: 2rem;
+  }
+  .heroMain {
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+  .floatingChip {
+    font-size: 0.76rem;
+    padding: 0.45rem 0.85rem;
+  }
+  .chipTopLeft {
+    top: 4px;
+    left: 4px;
+  }
+  .chipBottomRight {
+    bottom: 4px;
+    right: 4px;
+  }
   .title {
-    font-size: 3rem;
+    font-size: clamp(2rem, 6.5vw, 2.75rem);
+    margin-bottom: 1rem;
+  }
+  .subtitle {
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
   }
   .grid {
     grid-template-columns: 1fr;
+    gap: 1.25rem;
   }
   .footerGrid {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2rem;
   }
   .searchBar {
     flex-wrap: wrap;
-    padding: 1rem;
+    padding: 0.75rem;
   }
   .searchBtn {
     width: 100%;
     margin-top: 0.5rem;
   }
+  .section {
+    padding: 2.5rem 1rem;
+  }
+  .districtStrip {
+    border-radius: 16px;
+    padding: 0.75rem 1rem;
+    font-size: 0.82rem;
+  }
 }
 
 @media (max-width: 480px) {
+  .hero {
+    padding-top: 75px;
+  }
   .title {
-    font-size: 2.25rem;
+    font-size: 1.85rem;
+    line-height: 1.2;
   }
   .subtitle {
-    font-size: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
   }
   .ctaGroup {
     flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 0.75rem;
+  }
+  .primaryBtn, .secondaryBtn {
+    width: 100%;
+    text-align: center;
+    padding: 0.85rem 1.5rem;
+    font-size: 1rem;
+  }
+  .floatingChip {
+    position: static;
+    margin: 0.35rem auto;
+    font-size: 0.75rem;
+  }
+  .heroImage {
+    flex-direction: column;
     align-items: center;
+  }
+}
+
+/* ── Brand Portal Showcase ── */
+.brandShowcase {
+  background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+  border-radius: 24px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.brandShowcaseContent {
+  padding: 3rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.brandShowcaseImageWrap {
+  position: relative;
+  min-height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: radial-gradient(circle at center, rgba(243, 195, 34, 0.16) 0%, transparent 70%);
+}
+
+@media (max-width: 768px) {
+  .brandShowcase {
+    grid-template-columns: 1fr;
+  }
+  .brandShowcaseContent {
+    padding: 1.75rem 1.25rem;
+  }
+  .brandShowcaseImageWrap {
+    min-height: 220px;
+    padding: 1.5rem;
   }
 }
 
@@ -705,19 +803,19 @@
   width: 50px;
   height: 50px;
   border-radius: 14px;
-  background: linear-gradient(135deg, rgba(245, 158, 11, 0.12), rgba(217, 119, 6, 0.18));
+  background: linear-gradient(135deg, rgba(243, 195, 34, 0.16), rgba(212, 163, 11, 0.22));
   color: var(--accent);
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 0.85rem;
-  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.15);
+  box-shadow: 0 4px 12px rgba(243, 195, 34, 0.18);
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease;
 }
 
 .statItem:hover .statIconWrapper {
   transform: scale(1.12) rotate(4deg);
-  background: linear-gradient(135deg, rgba(245, 158, 11, 0.25), rgba(217, 119, 6, 0.35));
+  background: linear-gradient(135deg, rgba(243, 195, 34, 0.28), rgba(212, 163, 11, 0.38));
 }
 
 .statNumber {
@@ -804,7 +902,7 @@
 
 .teacherBadge {
   display: inline-block;
-  background: rgba(124, 92, 255, 0.12);
+  background: rgba(243, 195, 34, 0.16);
   color: var(--accent);
   padding: 0.35rem 0.9rem;
   border-radius: 99px;
@@ -1206,7 +1304,7 @@
   font-weight: 800;
   text-transform: uppercase;
   color: var(--accent);
-  background: rgba(124, 92, 255, 0.1);
+  background: rgba(243, 195, 34, 0.16);
   padding: 0.2rem 0.6rem;
   border-radius: 99px;
   width: fit-content;
@@ -1397,7 +1495,7 @@
 }
 
 .downloadDiagramBtn:hover {
-  background: #6a48f5;
+  background: #B45309;
   transform: translateY(-2px);
 }
 

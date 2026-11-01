@@ -226,14 +226,14 @@ export default function TakeTestPage() {
   if (showResult) {
     const percentage = questions.length > 0 ? Math.round((score / questions.length) * 100) : 0;
     return (
-      <div className={styles.container} style={{ minHeight: '90vh', paddingTop: '140px' }}>
+      <div className={styles.container} style={{ minHeight: '90vh', paddingTop: 'clamp(80px, 12vh, 120px)' }}>
         <div className="bg-mesh" />
-        <div style={{ maxWidth: '650px', margin: '0 auto', padding: '0 1.5rem' }}>
+        <div style={{ maxWidth: '650px', margin: '0 auto', padding: '0 1rem' }}>
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             className={`${styles.featureCard} glass`} 
-            style={{ textAlign: 'center', padding: '4rem 2rem' }}
+            style={{ textAlign: 'center', padding: 'clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 2rem)' }}
           >
             <div style={{ position: 'relative', width: '120px', height: '120px', margin: '0 auto 2rem' }}>
                 <svg viewBox="0 0 36 36" style={{ width: '100%', height: '100%' }}>
@@ -312,7 +312,7 @@ export default function TakeTestPage() {
 
   if (!started) {
     return (
-      <div className={styles.container} style={{ minHeight: '90vh', paddingTop: '140px' }}>
+      <div className={styles.container} style={{ minHeight: '90vh', paddingTop: 'clamp(80px, 12vh, 120px)' }}>
         <div className="bg-mesh" />
         <div style={{ maxWidth: '750px', margin: '0 auto', padding: '0 1.5rem' }}>
           <div style={{ marginBottom: '1.5rem' }}>
@@ -384,15 +384,15 @@ export default function TakeTestPage() {
   const currentQuestion = questions[currentQuestionIndex];
 
   return (
-    <div className={styles.container} style={{ minHeight: '90vh', paddingTop: '140px' }}>
+    <div className={styles.container} style={{ minHeight: '90vh', paddingTop: 'clamp(80px, 12vh, 120px)' }}>
       <div className="bg-mesh" />
-      <div style={{ maxWidth: '850px', margin: '0 auto', padding: '0 1.5rem' }}>
+      <div style={{ maxWidth: '850px', margin: '0 auto', padding: '0 1rem' }}>
         <motion.div 
           key={currentQuestionIndex}
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           className={`${styles.featureCard} glass`} 
-          style={{ padding: '3rem' }}
+          style={{ padding: 'clamp(1.25rem, 4vw, 3rem)' }}
         >
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2.5rem' }}>
             <div style={{ fontWeight: 800, fontSize: '0.9rem', color: 'var(--accent)' }}>
@@ -429,7 +429,7 @@ export default function TakeTestPage() {
                     padding: '1.2rem 1.5rem',
                     borderRadius: '16px',
                     border: isSelected ? '2px solid var(--accent)' : '1px solid var(--card-border)',
-                    background: isSelected ? 'rgba(124, 92, 255, 0.05)' : '#FFFFFF',
+                    background: isSelected ? 'rgba(245, 158, 11, 0.08)' : '#FFFFFF',
                     fontSize: '1.1rem',
                     display: 'flex',
                     justifyContent: 'space-between',

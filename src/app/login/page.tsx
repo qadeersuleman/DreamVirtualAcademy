@@ -16,8 +16,8 @@ import styles from './page.module.css';
  */
 export default function LoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [dvm_email, setDvmEmail] = useState('');
+  const [dvm_password, setDvmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<{ type: 'error' | 'success'; text: string } | null>(null);
@@ -36,12 +36,12 @@ export default function LoginPage() {
     setMessage(null);
 
     try {
-      const dva_email = email.trim().toLowerCase();
-      const dva_password = password;
+      const clean_dvm_email = dvm_email.trim().toLowerCase();
+      const clean_dvm_password = dvm_password;
 
       const { data, error } = await supabase.auth.signInWithPassword({
-        email: dva_email,
-        password: dva_password,
+        email: clean_dvm_email,
+        password: clean_dvm_password,
       });
 
       if (error) throw error;
@@ -178,8 +178,8 @@ export default function LoginPage() {
                   type="email" 
                   className={styles.input}
                   placeholder="name@example.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={dvm_email}
+                  onChange={(e) => setDvmEmail(e.target.value)}
                   required
                 />
               </div>
@@ -193,8 +193,8 @@ export default function LoginPage() {
                   type={showPassword ? "text" : "password"} 
                   className={styles.input}
                   placeholder="••••••••"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  value={dvm_password}
+                  onChange={(e) => setDvmPassword(e.target.value)}
                   required
                 />
                 <button 

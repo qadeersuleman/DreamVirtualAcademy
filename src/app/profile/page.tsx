@@ -50,9 +50,9 @@ export default function ProfilePage() {
     fetchProfile();
   }, []);
 
-  const displayName = user?.user_metadata?.full_name || user?.user_metadata?.dva_name || (user?.email ? user.email.split('@')[0] : 'Student');
-  const displayEmail = user?.email || 'guest@dreamsacademy.online';
-  const displayPhone = user?.user_metadata?.phone || '+92 301 8183624';
+  const dvm_name = user?.user_metadata?.dvm_name || user?.user_metadata?.full_name || user?.user_metadata?.dva_name || (user?.email ? user.email.split('@')[0] : 'Student');
+  const dvm_email = user?.email || 'guest@dreamsacademy.online';
+  const dvm_phone = user?.user_metadata?.dvm_phone || user?.user_metadata?.phone || '+92 301 8183624';
   const displayAvatar = user?.user_metadata?.avatar_url || '/images/profile.png';
   const joinedDate = user?.created_at ? new Date(user.created_at).toLocaleDateString('en-US', { month: 'short', year: 'numeric' }) : 'March 2026';
 
@@ -81,7 +81,7 @@ export default function ProfilePage() {
                 </button>
               </div>
               <div className={styles.nameSection}>
-                <h2>{displayName}</h2>
+                <h2>{dvm_name}</h2>
                 <span className={styles.badge}>
                   <UserCheck size={12} style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '4px' }} />
                   {user ? 'Verified Student' : 'Guest Account'}
@@ -92,11 +92,11 @@ export default function ProfilePage() {
             <div className={styles.detailsGrid}>
               <div className={styles.detailItem}>
                 <label>Email</label>
-                <p>{displayEmail}</p>
+                <p>{dvm_email}</p>
               </div>
               <div className={styles.detailItem}>
                 <label>Phone</label>
-                <p>{displayPhone}</p>
+                <p>{dvm_phone}</p>
               </div>
               <div className={styles.detailItem}>
                 <label>Joined</label>

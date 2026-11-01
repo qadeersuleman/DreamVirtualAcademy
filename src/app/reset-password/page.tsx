@@ -11,8 +11,8 @@ import styles from './page.module.css';
 
 export default function ResetPasswordPage() {
   const router = useRouter();
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [dvm_password, setDvmPassword] = useState('');
+  const [dvm_confirmPassword, setDvmConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -21,12 +21,12 @@ export default function ResetPasswordPage() {
   const handleReset = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (password.length < 6) {
+    if (dvm_password.length < 6) {
       setMessage({ type: 'error', text: 'Password must be at least 6 characters long.' });
       return;
     }
 
-    if (password !== confirmPassword) {
+    if (dvm_password !== dvm_confirmPassword) {
       setMessage({ type: 'error', text: 'Passwords do not match. Please re-enter.' });
       return;
     }
@@ -35,9 +35,9 @@ export default function ResetPasswordPage() {
     setMessage(null);
 
     try {
-      const dva_new_password = password;
+      const clean_dvm_password = dvm_password;
       const { error } = await supabase.auth.updateUser({
-        password: dva_new_password,
+        password: clean_dvm_password,
       });
 
       if (error) throw error;
@@ -165,8 +165,8 @@ export default function ResetPasswordPage() {
                   type={showPassword ? 'text' : 'password'}
                   className={styles.input}
                   placeholder="At least 6 characters"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  value={dvm_password}
+                  onChange={(e) => setDvmPassword(e.target.value)}
                   required
                   autoFocus
                 />
@@ -190,8 +190,8 @@ export default function ResetPasswordPage() {
                   type={showConfirm ? 'text' : 'password'}
                   className={styles.input}
                   placeholder="Re-enter your new password"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  value={dvm_confirmPassword}
+                  onChange={(e) => setDvmConfirmPassword(e.target.value)}
                   required
                 />
                 <button

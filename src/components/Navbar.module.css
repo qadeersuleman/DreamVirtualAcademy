@@ -37,21 +37,26 @@
 }
 
 .logoLight {
-  height: 44px;
+  height: 42px;
   width: auto;
   object-fit: contain;
-  mix-blend-mode: multiply;
   display: block;
   transition: transform 0.2s ease;
 }
 
 .logoDark {
-  height: 44px;
+  height: 42px;
   width: auto;
   object-fit: contain;
-  mix-blend-mode: screen;
   display: none;
   transition: transform 0.2s ease;
+}
+
+@media (max-width: 640px) {
+  .logoLight,
+  .logoDark {
+    height: 35px;
+  }
 }
 
 .logo:hover .logoLight,
@@ -83,19 +88,19 @@
   font-size: 0.95rem;
   color: var(--text-light);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  border-radius: 999px; /* Rounded button style */
+  border-radius: 999px;
   white-space: nowrap;
 }
 
 .link:hover {
   color: var(--accent);
-  background: rgba(124, 92, 255, 0.08);
+  background: rgba(245, 158, 11, 0.08);
   transform: translateY(-2px);
 }
 
 .active {
   color: var(--accent);
-  background: rgba(124, 92, 255, 0.12);
+  background: rgba(245, 158, 11, 0.14);
   font-weight: 700;
 }
 
@@ -106,7 +111,7 @@
   left: 50%;
   width: 0;
   height: 2.5px;
-  background: linear-gradient(90deg, #F4C47F, #7C5CFF);
+  background: linear-gradient(90deg, #F3C322, #D4A30B);
   border-radius: 99px;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   transform: translateX(-50%);
@@ -237,7 +242,7 @@
 }
 
 .dropdownLink:hover {
-  background: rgba(124, 92, 255, 0.05);
+  background: rgba(245, 158, 11, 0.08);
   color: var(--accent);
   padding-left: 1rem;
 }
@@ -264,19 +269,19 @@
 }
 
 .loginBtnNav {
-  background: linear-gradient(135deg, #7C5CFF 0%, #6842FF 100%);
-  color: white;
+  background: linear-gradient(135deg, #F3C322 0%, #E2AE08 100%);
+  color: #0F172A;
   padding: 0.65rem 1.5rem;
   border-radius: 12px;
-  font-weight: 700;
+  font-weight: 800;
   text-decoration: none;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 14px rgba(124, 92, 255, 0.3);
+  box-shadow: 0 4px 14px rgba(243, 195, 34, 0.35);
 }
 
 .loginBtnNav:hover {
   transform: translateY(-2px) scale(1.03);
-  box-shadow: 0 8px 24px rgba(124, 92, 255, 0.45);
+  box-shadow: 0 8px 24px rgba(243, 195, 34, 0.5);
 }
 
 .whatsappBtn {
