@@ -57,7 +57,7 @@ export const config = {
      * - images/ (public images)
      * - static files with extensions
      */
-    '/((?!_next/static|_next/image|favicon.ico|images/|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+    '/((?!_next/static|_next/image|favicon.ico|ads\\.txt|robots\\.txt|sitemap\\.xml|images/|.*\\.(?:svg|png|jpg|jpeg|gif|webp|txt|xml)$).*)',
   ],
 };
 
